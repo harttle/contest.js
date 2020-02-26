@@ -1,0 +1,26 @@
+{
+  "name": "contest.js",
+  "version": "1.0.0",
+  "description": "Ready for contest use! Data structures and algorithms in pure JavaScript with zero dependency.",
+  "main": "index.js",
+  "scripts": {
+    "check": "npm run test && npm run lint",
+    "lint": "eslint .",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/harttle/classics.git"
+  },
+  "author": "harttle <yangjvn@126.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/harttle/classics/issues"
+  },
+  "homepage": "https://github.com/harttle/classics#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-plugin-jest": "^23.8.0",
+    "jest": "^25.1.0"
+  }
+}

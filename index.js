@@ -1,0 +1,16 @@
+module.exports = {
+    ...require('./heap'),
+    ...require('./bit'),
+    ...require('./functional'),
+    ...require('./algorithm'),
+    ...require('./string'),
+    ...require('./bitset'),
+    ...require('./treeset'),
+    ...require('./rbtree'),
+    ...require('./dsu'),
+    ...require('./deque'),
+    ...require('./prime'),
+    ...require('./euclidean'),
+    ...require('./factorial'),
+    ...require('./binomial'),
+}
