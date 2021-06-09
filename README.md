@@ -359,6 +359,6 @@ for (let [ni, nj] of adjacent2D(arr, 1, 0)) {
 ## 在 Node.js 里使用
 
 ```javascript
-const {Heap} = require('classics')
+const {Heap} = require('contest.js')
 let heap = new Heap()
 ```
