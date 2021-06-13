@@ -1,5 +1,5 @@
 {
-  "name": "contest.ts",
+  "name": "contest.js",
   "version": "1.0.1",
   "description": "Ready for contest use! Data structures and algorithms in pure JavaScript with zero dependency.",
   "main": "lib/index.js",
@@ -17,9 +17,9 @@
   "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/upupming/contest.ts"
+    "url": "git+https://github.com/harttle/contest.js"
   },
-  "author": "harttle <yangjvn@126.com>, upupming <yimingli.cs@gmail.com>",
+  "author": "harttle <yangjvn@126.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/harttle/classics/issues"
