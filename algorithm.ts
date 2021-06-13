@@ -29,7 +29,7 @@ export function reverse<T=number> (arr: T[], begin = 0, end = arr.length): void 
     swap(arr, begin++, --end)
   }
 }
-function swap<T=number> (arr: T[], l: number, r: number): void {
+export function swap<T=number> (arr: T[], l: number, r: number): void {
   const tmp = arr[l]
   arr[l] = arr[r]
   arr[r] = tmp
