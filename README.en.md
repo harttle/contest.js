@@ -1,10 +1,12 @@
 # contest.js
 
+> Original work by [@harttle](https://github.com/harttle/contest.js), ported to TypeScript by [@upupming](https://github.com/upupming/contest.js).
+
 [简体中文](./README.md)
 
 Ready for contest use! Data structures and algorithms in pure JavaScript with zero dependency. Features:
 
-- Ready to copy! Supports all LTS/* Node.js and has ZERO dependency.
+- Ready to copy! Supports all LTS/* Node.ts and has ZERO dependency.
 - Easy to change! Implemented in simplified code with less abstraction.
 - Available via npm! Can be imported as part of the WORKING code.
 
@@ -25,11 +27,11 @@ Ready for contest use! Data structures and algorithms in pure JavaScript with ze
 - [Binomial](#Binomial): Binomial coefficient, Pascal's Triangle
 - [Euclidean](#Euclidean): euclidean/GCD algorithm, extended-euclidean/extended-GCD algorithm and modular inverse.
 - [Functional](#Functional): create2DArray, create3DArray, greater, less, valid2D, adjacent2D
-- [Use in Node.js](#Use-in-Node.js): how to use contest.js in Node.js via npm.
+- [Use in Node.ts](#Use-in-Node.ts): how to use contest.js in Node.ts via npm.
 
 ## Algorithm
 
-[Source](https://github.com/harttle/contest.js/blob/master/bit.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bit.js)
+[Source](https://github.com/harttle/contest.js/blob/master/bit.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bit.ts)
 
 ### Modifying the Sequence
 
@@ -70,7 +72,7 @@ console.log(sort(arr))    // [1, 2, 3]
 
 ## String
 
-[Source](https://github.com/harttle/contest.js/blob/master/string.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/string.js)
+[Source](https://github.com/harttle/contest.js/blob/master/string.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/string.ts)
 
 **kmp(str: string, pattern: string)**: find index of `pattern` in `str` using KMP method, return `-1` if not found.
 
@@ -86,7 +88,7 @@ rabinkarp('what a wonderful world', 'a wonderful')  // return 5
 
 ## Queue
 
-[Source](https://github.com/harttle/contest.js/blob/master/queue.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/queue.js)
+[Source](https://github.com/harttle/contest.js/blob/master/queue.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/queue.ts)
 
 **new Queue(collection?: Iterable)**: create a queue.
 
@@ -104,7 +106,7 @@ rabinkarp('what a wonderful world', 'a wonderful')  // return 5
 
 ## Deque
 
-[Source](https://github.com/harttle/contest.js/blob/master/deque.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/deque.js)
+[Source](https://github.com/harttle/contest.js/blob/master/deque.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/deque.ts)
 
 **new Deque(collection?: Iterable)**: create a deque.
 
@@ -138,7 +140,7 @@ for (let val of deque) {
 
 ## Heap
 
-[Source](https://github.com/harttle/contest.js/blob/master/heap.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/heap.js)
+[Source](https://github.com/harttle/contest.js/blob/master/heap.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/heap.ts)
 
 **new Heap(collection?: Iterable, compare?: ((l, r) => number) = (l, r) => l - r)**: create a min heap (less elements pop out first) from elements of the `collection`, and compare elements using `compare` (accepts two arguments, return `true` if first argument is less).
 
@@ -167,7 +169,7 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // outputs 3, 2, 1
 
 ## TreeSet
 
-[Source](https://github.com/harttle/contest.js/blob/master/treeset.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/treeset.js)
+[Source](https://github.com/harttle/contest.js/blob/master/treeset.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/treeset.ts)
 
 A worst-case time complexity log(n) set implemented by RedBlackTree (see follows).
 
@@ -191,7 +193,7 @@ A worst-case time complexity log(n) set implemented by RedBlackTree (see follows
 
 ## TreeMultiSet
 
-[Source](https://github.com/harttle/contest.js/blob/master/treeset.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/treeset.js)
+[Source](https://github.com/harttle/contest.js/blob/master/treeset.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/treeset.ts)
 
 A worst-case time complexity log(n) multiset implemented by RedBlackTree (see follows).
 
@@ -215,7 +217,7 @@ A worst-case time complexity log(n) multiset implemented by RedBlackTree (see fo
 
 ## BitSet
 
-[Source](https://github.com/harttle/contest.js/blob/master/bitset.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bitset.js)
+[Source](https://github.com/harttle/contest.js/blob/master/bitset.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bitset.ts)
 
 A bitset implemented by bigint, which is very space efficient but not efficient for read/write.
 
@@ -245,7 +247,7 @@ A bitset implemented by bigint, which is very space efficient but not efficient 
 
 ## Binary Indexed Tree
 
-[Source](https://github.com/harttle/contest.js/blob/master/bit.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bit.js)
+[Source](https://github.com/harttle/contest.js/blob/master/bit.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bit.ts)
 
 A binary indexed tree implementation, also called [Fenwick Tree](https://en.wikipedia.org/wiki/Fenwick_tree).
 
@@ -265,7 +267,7 @@ bit.sum(10) // elements in [1, 10] sums to 10 + 20 + 100 = 130
 ```
 ## Disjoint Union Set
 
-[Source](https://github.com/harttle/contest.js/blob/master/dsu.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/dsu.js)
+[Source](https://github.com/harttle/contest.js/blob/master/dsu.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/dsu.ts)
 
 A disjoint union set implementation supports path compression and union by rank, providing nearly constant time complexity (Inverse Ackermann Function) `find/union` operations.
 
@@ -277,7 +279,7 @@ A disjoint union set implementation supports path compression and union by rank,
 
 ## Primes
 
-[Source](https://github.com/harttle/contest.js/blob/master/prime.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/prime.js)
+[Source](https://github.com/harttle/contest.js/blob/master/prime.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/prime.ts)
 
 **prime(nth: number)**: get nth (1-indexed) prime. e.g. `prime(1)` return `2`
 
@@ -299,7 +301,7 @@ for (let [prime, count] of factors) {
 
 ## Factorial
 
-[Source](https://github.com/harttle/contest.js/blob/master/factorial.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/factorial.js)
+[Source](https://github.com/harttle/contest.js/blob/master/factorial.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/factorial.ts)
 
 **factorial(n: number)**: factorial of `n`, e.g. `factorial(3)` return `6`.
 
@@ -311,7 +313,7 @@ for (let [prime, count] of factors) {
 
 ## Binomial
 
-[Source](https://github.com/harttle/contest.js/blob/master/binomial.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/binomial.js)
+[Source](https://github.com/harttle/contest.js/blob/master/binomial.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/binomial.ts)
 
 **pascalsTriangle(n: number)**: return the `n`-th Pascal's Triangle, e.g. `pascalsTriangle(3)` return `[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]]`, in which the value of `P[n][k]` represents the value of C(n, k).
 
@@ -323,7 +325,7 @@ for (let [prime, count] of factors) {
 
 ## Euclidean
 
-[Source](https://github.com/harttle/contest.js/blob/master/euclidean.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/euclidean.js)
+[Source](https://github.com/harttle/contest.js/blob/master/euclidean.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/euclidean.ts)
 
 **gcd(a: number, b: number)**: run Euclidean algorithm to compute the greatest common divisor.
 
@@ -333,7 +335,7 @@ for (let [prime, count] of factors) {
 
 ## Functional
 
-[Source](https://github.com/harttle/contest.js/blob/master/funcitonal.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/functional.js)
+[Source](https://github.com/harttle/contest.js/blob/master/funcitonal.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/functional.ts)
 
 **memorized(fn: Function, getKey? ((...args: any[]) => string) = ((...args) => args.join(',')))**: create a new function memorizing arguments and result for each call, return that result if the same arguments are passed in. A custom `getKey` can be specified to avoid conflict or to be more efficient.
 
@@ -356,7 +358,7 @@ for (let [ni, nj] of adjacent2D(arr, 1, 0)) {
 
 **valid2D(arr, i, j)**: test if index `[i, j]` is valid or not for 2D array `arr`, return `true` if valid and `false` otherwise.
 
-## Use in Node.js
+## Use in Node.ts
 
 ```javascript
 const {Heap} = require('classics')
