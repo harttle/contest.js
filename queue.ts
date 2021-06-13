@@ -9,21 +9,21 @@ export class ListNode<T = number> {
 export class Queue<T=number> {
   lead: ListNode<T>
   tail: ListNode<T>
-  _size: number
+  #size: number
   constructor (collection: T[] = []) {
     this.lead = new ListNode<T>()
     this.tail = this.lead
-    this._size = 0
+    this.#size = 0
     for (const item of collection) this.push(item)
   }
 
   size (): number {
-    return this._size
+    return this.#size
   }
 
   push (value: T): void {
     this.tail = this.tail.next = new ListNode(value)
-    this._size++
+    this.#size++
   }
 
   back (): T {
@@ -31,16 +31,16 @@ export class Queue<T=number> {
   }
 
   shift (): T | undefined {
-    if (!this._size) return undefined
+    if (!this.#size) return undefined
     const first = this.lead.next!
     this.lead.next = first.next
-    this._size--
-    if (this._size === 0) this.tail = this.lead
+    this.#size--
+    if (this.#size === 0) this.tail = this.lead
     return first.value
   }
 
   front (): T | undefined {
-    if (!this._size) return undefined
+    if (!this.#size) return undefined
     return this.lead.next!.value
   }
 
