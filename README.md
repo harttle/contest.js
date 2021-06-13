@@ -6,7 +6,7 @@
 
 纯 JavaScript 实现的数据结构和算法，主要是方便用于比赛、教学和白板，尽可能缓解 JavaScript 在竞赛上的劣势，特点：
 
-- **拷来即用**。支持所有 LTS/* Node.ts 且零依赖。
+- **拷来即用**。支持所有 LTS/* Node.js 且零依赖。
 - **容易更改**。采用简化的实现，尽量少的抽象层级。
 - **支持 npm**。加一句 require，即可写出可以工作的代码。
 
@@ -29,7 +29,7 @@
 - [二项式](#二项式): 二项式系数、帕斯卡三角。
 - [欧几里得算法](#欧几里得算法): 欧几里得公约数，扩展欧几里得，模拟元。
 - [工具](#工具): create2DArray, create3DArray, greater, less, valid2D, adjacent2D。
-- [在 Node.ts 里使用](#在-Node.ts-里使用): 在 Node.ts 里如何通过 npm 使用 contest.js。
+- [在 Node.js 里使用](#在-Node.js-里使用): 在 Node.js 里如何通过 npm 使用 contest.js。
 
 ## 算法
 
@@ -360,7 +360,7 @@ for (let [ni, nj] of adjacent2D(arr, 1, 0)) {
 
 **valid2D(arr, i, j)**：测试 `[i, j]` 对于二位数组 `arr` 是否合法，如果合法则返回 `true` 否则返回 `false`。
 
-## 在 Node.ts 里使用
+## 在 Node.js 里使用
 
 ```javascript
 const {Heap} = require('contest.js')
