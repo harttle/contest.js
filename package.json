@@ -11,6 +11,9 @@
     "build": "tsc -p .",
     "clean": "tsc --build --clean"
   },
+  "files": [
+    "lib"
+  ],
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
