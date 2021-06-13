@@ -1,10 +1,12 @@
 # contest.js
 
+> Original work by [@harttle](https://github.com/harttle/contest.js), ported to TypeScript by [@upupming](https://github.com/upupming/contest.js).
+
 [English](./README.en.md)
 
 纯 JavaScript 实现的数据结构和算法，主要是方便用于比赛、教学和白板，尽可能缓解 JavaScript 在竞赛上的劣势，特点：
 
-- **拷来即用**。支持所有 LTS/* Node.js 且零依赖。
+- **拷来即用**。支持所有 LTS/* Node.ts 且零依赖。
 - **容易更改**。采用简化的实现，尽量少的抽象层级。
 - **支持 npm**。加一句 require，即可写出可以工作的代码。
 
@@ -27,11 +29,11 @@
 - [二项式](#二项式): 二项式系数、帕斯卡三角。
 - [欧几里得算法](#欧几里得算法): 欧几里得公约数，扩展欧几里得，模拟元。
 - [工具](#工具): create2DArray, create3DArray, greater, less, valid2D, adjacent2D。
-- [在 Node.js 里使用](#在-Node.js-里使用): 在 Node.js 里如何通过 npm 使用 contest.js。
+- [在 Node.ts 里使用](#在-Node.ts-里使用): 在 Node.ts 里如何通过 npm 使用 contest.js。
 
 ## 算法
 
-[Source](https://github.com/harttle/contest.js/blob/master/bit.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bit.js)
+[Source](https://github.com/harttle/contest.js/blob/master/bit.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bit.ts)
 
 ### 数组修改
 
@@ -72,7 +74,7 @@ console.log(sort(arr))    // [1, 2, 3]
 
 ## 字符串
 
-[Source](https://github.com/harttle/contest.js/blob/master/string.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/string.js)
+[Source](https://github.com/harttle/contest.js/blob/master/string.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/string.ts)
 
 **kmp(str: string, pattern: string)**：使用 KMP 方法在 `str` 中找到 `pattern` 的下标，如果不存在则返回 `-1`。
 
@@ -88,7 +90,7 @@ rabinkarp('what a wonderful world', 'a wonderful')  // returns 5
 
 ## 队列
 
-[Source](https://github.com/harttle/contest.js/blob/master/queue.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/queue.js)
+[Source](https://github.com/harttle/contest.js/blob/master/queue.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/queue.ts)
 
 **new Queue(collection?: Iterable)**：创建一个队列。
 
@@ -106,7 +108,7 @@ rabinkarp('what a wonderful world', 'a wonderful')  // returns 5
 
 ## 双向队列
 
-[Source](https://github.com/harttle/contest.js/blob/master/deque.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/deque.js)
+[Source](https://github.com/harttle/contest.js/blob/master/deque.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/deque.ts)
 
 **new Deque(collection?: Iterable)**：创建一个双向队列。
 
@@ -140,7 +142,7 @@ for (let val of deque) {
 
 ## 堆
 
-[Source](https://github.com/harttle/contest.js/blob/master/heap.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/heap.js)
+[Source](https://github.com/harttle/contest.js/blob/master/heap.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/heap.ts)
 
 **new Heap(collection?: Iterable, compare?: ((l, r) => number) = (l, r) => l - r)**：从可迭代集合 `collection` 创建一个最小堆（较小的先 pop 出来），使用 `compare` 比较大小（接受两个参数，首个参数较小则返回 `true`，否则返回 `false`，详见示例）。
 
@@ -169,7 +171,7 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 
 ## TreeSet
 
-[Source](https://github.com/harttle/contest.js/blob/master/treeset.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/treeset.js)
+[Source](https://github.com/harttle/contest.js/blob/master/treeset.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/treeset.ts)
 
 读写元素最坏情况时间复杂度为 log(n) 的有序集合，由红黑树实现。
 
@@ -193,7 +195,7 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 
 ## TreeMultiSet
 
-[Source](https://github.com/harttle/contest.js/blob/master/treeset.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/treeset.js)
+[Source](https://github.com/harttle/contest.js/blob/master/treeset.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/treeset.ts)
 
 读写元素最坏情况时间复杂度为 log(n) 的有序集合，和 `TreeSet` 不同的是它允许多个等价的键存在，由红黑树实现。
 
@@ -217,7 +219,7 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 
 ## BitSet
 
-[Source](https://github.com/harttle/contest.js/blob/master/bitset.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bitset.js)
+[Source](https://github.com/harttle/contest.js/blob/master/bitset.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bitset.ts)
 
 一个动态大小的位集合。由 BigInt 实现，占用空间很小，但独写性能不如数组。
 
@@ -247,7 +249,7 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 
 ## 树状数组
 
-[Source](https://github.com/harttle/contest.js/blob/master/bit.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bit.js)
+[Source](https://github.com/harttle/contest.js/blob/master/bit.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bit.ts)
 
 一个树状数组的实现，也叫 [Fenwick Tree](https://zh.wikipedia.org/zh-hans/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84), Binary Indexed Tree，BIT。
 
@@ -267,7 +269,7 @@ bit.sum(10) // elements in [1, 10] sums to 10 + 20 + 100 = 130
 ```
 ## 并查集
 
-[Source](https://github.com/harttle/contest.js/blob/master/dsu.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/dsu.js)
+[Source](https://github.com/harttle/contest.js/blob/master/dsu.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/dsu.ts)
 
 支持路径压缩和按秩合并的并查集实现，提供接近常数时间复杂度（Inverse Ackermann Function）的 `find/union` 操作。
 
@@ -279,7 +281,7 @@ bit.sum(10) // elements in [1, 10] sums to 10 + 20 + 100 = 130
 
 ## 质数算法
 
-[Source](https://github.com/harttle/contest.js/blob/master/prime.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/prime.js)
+[Source](https://github.com/harttle/contest.js/blob/master/prime.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/prime.ts)
 
 **prime(n: number)**：返回第 n（从 1 开始）个质数，例如 `prime(1)` 返回 `2`。
 
@@ -301,7 +303,7 @@ for (let [prime, count] of factors) {
 
 ## 阶乘
 
-[Source](https://github.com/harttle/contest.js/blob/master/factorial.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/factorial.js)
+[Source](https://github.com/harttle/contest.js/blob/master/factorial.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/factorial.ts)
 
 **factorial(n: number)**：返回 `n` 的阶乘，例如 `factorial(3)` 返回 `6`。
 
@@ -313,7 +315,7 @@ for (let [prime, count] of factors) {
 
 ## 二项式
 
-[Source](https://github.com/harttle/contest.js/blob/master/binomial.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/binomial.js)
+[Source](https://github.com/harttle/contest.js/blob/master/binomial.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/binomial.ts)
 
 **pascalsTriangle(n: number)**：返回第 `n` 个帕斯卡三角，例如 `pascalsTriangle(3)` 返回 `[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]]`。其中 `P[n][k]` 表示 C(n, k) 的值。
 
@@ -325,7 +327,7 @@ for (let [prime, count] of factors) {
 
 ## 欧几里得算法
 
-[Source](https://github.com/harttle/contest.js/blob/master/euclidean.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/euclidean.js)
+[Source](https://github.com/harttle/contest.js/blob/master/euclidean.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/euclidean.ts)
 
 **gcd(a: number, b: number)**：运行欧几里得算法，得到最大公约数。
 
@@ -335,7 +337,7 @@ for (let [prime, count] of factors) {
 
 ## 工具
 
-[Source](https://github.com/harttle/contest.js/blob/master/funcitonal.js) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/functional.js)
+[Source](https://github.com/harttle/contest.js/blob/master/funcitonal.ts) [Raw](https://raw.githubusercontent.com/harttle/contest.js/master/functional.ts)
 
 **memorized(fn: Function, getKey? ((...args: any[]) => string) = ((...args) => args.join(',')))**：返回一个新的函数，记录并缓存 `fn` 的调用参数和返回值。可以自定义 `getKey` 来避免键的冲突或降低键的空间占用。
 
@@ -358,7 +360,7 @@ for (let [ni, nj] of adjacent2D(arr, 1, 0)) {
 
 **valid2D(arr, i, j)**：测试 `[i, j]` 对于二位数组 `arr` 是否合法，如果合法则返回 `true` 否则返回 `false`。
 
-## 在 Node.js 里使用
+## 在 Node.ts 里使用
 
 ```javascript
 const {Heap} = require('contest.js')

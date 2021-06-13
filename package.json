@@ -1,26 +1,42 @@
 {
-  "name": "contest.js",
+  "name": "contest.ts",
   "version": "1.0.0",
   "description": "Ready for contest use! Data structures and algorithms in pure JavaScript with zero dependency.",
-  "main": "index.js",
+  "main": "lib/index.js",
   "scripts": {
     "check": "npm run test && npm run lint",
     "lint": "eslint .",
-    "test": "jest"
+    "dev": "jest --watch",
+    "test": "jest",
+    "build": "tsc -p .",
+    "clean": "tsc --build --clean"
   },
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/harttle/classics.git"
+    "url": "git+https://github.com/upupming/contest.ts"
   },
-  "author": "harttle <yangjvn@126.com>",
+  "author": "harttle <yangjvn@126.com>, upupming <yimingli.cs@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/harttle/classics/issues"
   },
   "homepage": "https://github.com/harttle/classics#readme",
   "devDependencies": {
-    "eslint": "^6.8.0",
+    "@babel/preset-env": "^7.14.5",
+    "@babel/preset-typescript": "^7.14.5",
+    "@types/jest": "^26.0.23",
+    "@typescript-eslint/eslint-plugin": "^4.26.1",
+    "@typescript-eslint/parser": "^4.26.1",
+    "eslint": "^7.28.0",
+    "eslint-config-standard-with-typescript": "^20.0.0",
+    "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-jest": "^23.8.0",
-    "jest": "^25.1.0"
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-standard": "5.0.0",
+    "jest": "^26.0.0",
+    "ts-jest": "^26.5.6",
+    "typescript": "^4.3.2"
   }
 }
