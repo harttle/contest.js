@@ -1,6 +1,6 @@
 {
   "name": "contest.ts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Ready for contest use! Data structures and algorithms in pure JavaScript with zero dependency.",
   "main": "lib/index.js",
   "scripts": {
@@ -14,7 +14,7 @@
   "files": [
     "lib"
   ],
-  "types": "dist/index.d.ts",
+  "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/upupming/contest.ts"
