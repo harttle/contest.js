@@ -41,7 +41,7 @@ export function rabinkarp (s: string, p: string): number {
   }
 }
 
-function maxCharCode (s: string): number {
+export function maxCharCode (s: string): number {
   let D = 0
   for (let i = 0; i < s.length; i++) {
     D = Math.max(D, s.charCodeAt(i))
