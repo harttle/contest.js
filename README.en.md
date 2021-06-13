@@ -6,7 +6,7 @@
 
 Ready for contest use! Data structures and algorithms in pure JavaScript with zero dependency. Features:
 
-- Ready to copy! Supports all LTS/* Node.ts and has ZERO dependency.
+- Ready to copy! Supports all LTS/* Node.js and has ZERO dependency.
 - Easy to change! Implemented in simplified code with less abstraction.
 - Available via npm! Can be imported as part of the WORKING code.
 
@@ -27,7 +27,7 @@ Ready for contest use! Data structures and algorithms in pure JavaScript with ze
 - [Binomial](#Binomial): Binomial coefficient, Pascal's Triangle
 - [Euclidean](#Euclidean): euclidean/GCD algorithm, extended-euclidean/extended-GCD algorithm and modular inverse.
 - [Functional](#Functional): create2DArray, create3DArray, greater, less, valid2D, adjacent2D
-- [Use in Node.ts](#Use-in-Node.ts): how to use contest.js in Node.ts via npm.
+- [Use in Node.js](#Use-in-Node.js): how to use contest.js in Node.js via npm.
 
 ## Algorithm
 
@@ -358,7 +358,7 @@ for (let [ni, nj] of adjacent2D(arr, 1, 0)) {
 
 **valid2D(arr, i, j)**: test if index `[i, j]` is valid or not for 2D array `arr`, return `true` if valid and `false` otherwise.
 
-## Use in Node.ts
+## Use in Node.js
 
 ```javascript
 const {Heap} = require('classics')
