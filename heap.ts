@@ -1,7 +1,16 @@
-export class Heap<T> {
+export class Heap<T=number> {
   data: Array<T | null>
   lt: (i: number, j: number) => boolean
-  constructor (data: T[] = [], cmp = (lhs: T, rhs: T) => lhs < rhs) {
+  constructor ()
+  constructor (data: T[])
+  constructor (cmp: (lhs: T, rhs: T) => boolean)
+  constructor (data: T[], cmp: (lhs: T, rhs: T) => boolean)
+  constructor (data: (T[] | ((lhs: T, rhs: T) => boolean)), cmp: (lhs: T, rhs: T) => boolean)
+  constructor (data: (T[] | ((lhs: T, rhs: T) => boolean)) = [], cmp = (lhs: T, rhs: T) => lhs < rhs) {
+    if (typeof data === 'function') {
+      cmp = data
+      data = []
+    }
     this.data = [null, ...data]
     this.lt = (i, j) => cmp(this.data[i]!, this.data[j]!)
     for (let i = this.size(); i > 0; i--) this.heapify(i)
@@ -47,7 +56,12 @@ export class RemovableHeap<T> {
   heap: Heap<T>
   counts: Map<T, number>
   _invalidCount: number
-  constructor (data: T[] = [], cmp = (lhs: T, rhs: T) => lhs < rhs) {
+  constructor ()
+  constructor (data: T[])
+  constructor (cmp: (lhs: T, rhs: T) => boolean)
+  constructor (data: T[], cmp: (lhs: T, rhs: T) => boolean)
+  constructor (data: (T[] | ((lhs: T, rhs: T) => boolean)), cmp: (lhs: T, rhs: T) => boolean)
+  constructor (data: (T[] | ((lhs: T, rhs: T) => boolean)) = [], cmp = (lhs: T, rhs: T) => lhs < rhs) {
     this.heap = new Heap<T>(data, cmp)
     this.counts = new Map()
     this._invalidCount = 0
@@ -98,7 +112,12 @@ export class RemovableHeap<T> {
 export class DoubleRemovableHeap<T> {
   min: RemovableHeap<T>
   max: RemovableHeap<T>
-  constructor (data: T[] = [], cmp = (lhs: T, rhs: T) => lhs < rhs) {
+  constructor ()
+  constructor (data: T[])
+  constructor (cmp: (lhs: T, rhs: T) => boolean)
+  constructor (data: T[], cmp: (lhs: T, rhs: T) => boolean)
+  constructor (data: (T[] | ((lhs: T, rhs: T) => boolean)), cmp: (lhs: T, rhs: T) => boolean)
+  constructor (data: (T[] | ((lhs: T, rhs: T) => boolean)) = [], cmp = (lhs: T, rhs: T) => lhs < rhs) {
     this.min = new RemovableHeap(data, cmp)
     this.max = new RemovableHeap(data, (lhs, rhs) => !cmp(lhs, rhs))
   }
