@@ -1,4 +1,4 @@
-export class BinarySegmentTree {
+class BinarySegmentTree {
   data: number[]
   height: number
 
@@ -61,3 +61,5 @@ export class BinarySegmentTree {
     return i * 2 + 1
   }
 }
+
+export { BinarySegmentTree }

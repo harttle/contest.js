@@ -1,7 +1,7 @@
 // O(n)
 // each non-prime = smallest prime factor * another number
 // SPF: smallest prime factor
-export function eulersSieve (n: number): number[] {
+function eulersSieve (n: number): number[] {
   const primes = []
   const isPrime = Array(n + 1).fill(true)
   for (let cand = 2; cand <= n; cand++) {
@@ -19,7 +19,7 @@ export function eulersSieve (n: number): number[] {
 }
 
 // O(nloglogn)
-export function eratosthenesSieve (n: number): number[] {
+function eratosthenesSieve (n: number): number[] {
   const isPrime = Array(n + 1).fill(true)
   for (let p = 2; p * p <= n; p++) {
     if (isPrime[p]) {
@@ -33,26 +33,26 @@ export function eratosthenesSieve (n: number): number[] {
   return primes
 }
 
-export function prime (nth: number): number {
+function prime (nth: number): number {
   let f = 20
   if (nth > 5e7) f = 50
   if (nth > 1e22) f = 100
   return primesLeq(f * nth)[nth - 1]
 }
 
-export function primesLeq (n: number): number[] {
+function primesLeq (n: number): number[] {
   return n < 1000 ? eratosthenesSieve(n) : eulersSieve(n)
 }
 
 // O(n^0.5)
-export function isPrime (n: number): boolean {
+function isPrime (n: number): boolean {
   if (n < 2) return false
   const primes = primesLeq(Math.floor(Math.sqrt(n)))
   for (const p of primes) if (n % p === 0) return false
   return true
 }
 
-export function primeFactors (n: number): Map<number, number> {
+function primeFactors (n: number): Map<number, number> {
   const factors = new Map()
   const sqrt = Math.sqrt(n)
   for (let f = 2; f <= sqrt; f++) {
@@ -66,3 +66,5 @@ export function primeFactors (n: number): Map<number, number> {
   if (n > 1) factors.set(n, 1)
   return factors
 }
+
+export { eulersSieve, eratosthenesSieve, prime, primesLeq, isPrime, primeFactors }

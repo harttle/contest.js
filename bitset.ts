@@ -1,4 +1,4 @@
-export class BitSet {
+class BitSet {
   N: number
   val: bigint
   constructor (val: bigint | string | number | number[] = 0, N = Infinity) {
@@ -70,3 +70,5 @@ export class BitSet {
     return new BitSet(this.val ^ rhs.val, Math.max(this.N, rhs.N))
   }
 }
+
+export { BitSet }

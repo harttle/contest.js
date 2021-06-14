@@ -10,7 +10,7 @@
 
 支持在 LeetCode 页面提取、执行、判定用例的 Tampermonkey 脚本： https://greasyfork.org/zh-CN/scripts/402276-leetcode-helper-for-javascript
 
-**目录**
+## 使用手册
 
 - [算法](#算法): shuffle, sort, swap, reverse, partition, nextPermutation 等。
 - [字符串](#字符串): KMP, RabinKarp
@@ -23,17 +23,15 @@
 - [树状数组](#树状数组)
 - [并查集](#并查集): 路径压缩、按秩合并。
 - [质数算法](#质数算法): 质数测试、筛选等。
-- [阶乘](#阶乘): 阶乘、模阶乘。
-- [二项式](#二项式): 二项式系数、帕斯卡三角。
+- [排列组合](#排列组合): 阶乘、模阶乘、二项式系数、帕斯卡三角。
 - [欧几里得算法](#欧几里得算法): 欧几里得公约数，扩展欧几里得，模拟元。
 - [工具](#工具): create2DArray, create3DArray, greater, less, valid2D, adjacent2D。
-- [在 Node.js 里使用](#在-Node.js-里使用): 在 Node.js 里如何通过 npm 使用 contest.js。
 
-## 算法
+### 算法
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/bit.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bit.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/bit.js)
 
-### 数组修改
+#### 数组操作
 
 补充 JavaScript 中一些针对数组的操作。比如 JavaScript 缺少 `swap`，不能对区间进行 `reverse`。
 
@@ -55,7 +53,7 @@ reverse(arr, 1)
 console.log(arr)    // [1, 5, 4, 3, 2]
 ```
 
-### 排序操作
+#### 排序操作
 
 **sort(arr: any[], begin = 0, end = arr.length, compare = (l, r) => l - r)**：使用快排堆数组进行原址排序（不稳定），支持对一个区间进行排序，以及自定义 `compare` 方法。
 
@@ -64,13 +62,13 @@ let arr = [1, 3, 2]
 console.log(sort(arr))    // [1, 2, 3]
 ```
 
-### 其他算法
+#### 其他算法
 
 **nextPermutation(arr)**：重组为下一个字典序排列。如果可以得到更大的排列，就完成排列并返回 `true`。如果无法得到更大的排列，就重排为第一个排列（所有元素都是升序）并返回 `false`。
 
 **prevPermutation(arr)**：重组为上一个字典序排列。如果可以得到更小的排列，就完成排列并返回 `true`。如果无法得到更小的排列，就重排为最后一个排列（所有元素都是降序）并返回 `false`。
 
-## 字符串
+### 字符串
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/string.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/string.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/string.js)
 
@@ -86,7 +84,7 @@ kmp('what a wonderful world', 'a wonderful') // returns 5
 rabinkarp('what a wonderful world', 'a wonderful')  // returns 5
 ```
 
-## 队列
+### 队列
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/queue.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/queue.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/queue.js)
 
@@ -104,7 +102,7 @@ rabinkarp('what a wonderful world', 'a wonderful')  // returns 5
 
 **.values()**：返回从第一个元素到最后一个元素的 ES6 迭代器。
 
-## 双向队列
+### 双向队列
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/deque.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/deque.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/deque.js)
 
@@ -138,7 +136,7 @@ for (let val of deque) {
 }
 ```
 
-## 堆
+### 堆
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/heap.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/heap.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/heap.js)
 
@@ -167,7 +165,7 @@ maxHeap.push(1)
 while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 ```
 
-## TreeSet
+### TreeSet
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/treeset.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/treeset.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/treeset.js)
 
@@ -191,7 +189,7 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 
 **.size(): number**：返回集合的大小。
 
-## TreeMultiSet
+### TreeMultiSet
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/treeset.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/treeset.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/treeset.js)
 
@@ -215,7 +213,7 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 
 **.size(): number**：返回集合的大小。
 
-## BitSet
+### BitSet
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/bitset.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bitset.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/bitset.js)
 
@@ -245,7 +243,7 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 
 **.negate(rhs: BitSet)**：返回一个新的 `BigSet`，它的值是 `!this`.
 
-## 树状数组
+### 树状数组
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/bit.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bit.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/bit.js)
 
@@ -265,7 +263,8 @@ bit.update(10, 100)
 bit.sum(5) // elements in [1, 5] sums to 10 + 20 = 30
 bit.sum(10) // elements in [1, 10] sums to 10 + 20 + 100 = 130
 ```
-## 并查集
+
+### 并查集
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/dsu.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/dsu.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/dsu.js)
 
@@ -277,7 +276,7 @@ bit.sum(10) // elements in [1, 10] sums to 10 + 20 + 100 = 130
 
 **.union(x: number, y: number)**：合并 `x` 和 `y` 所属的组并返回 `true`，如果 `x` 和 `y` 已经在同一组则返回 `false`。
 
-## 质数算法
+### 质数算法
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/prime.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/prime.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/prime.js)
 
@@ -299,9 +298,9 @@ for (let [prime, count] of factors) {
 // 3 1
 ```
 
-## 阶乘
+### 排列组合
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/factorial.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/factorial.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/factorial.js)
+[TypeScript Source](https://github.com/harttle/contest.js/blob/master/binomial.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/binomial.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/binomial.js)
 
 **factorial(n: number)**：返回 `n` 的阶乘，例如 `factorial(3)` 返回 `6`。
 
@@ -311,10 +310,6 @@ for (let [prime, count] of factors) {
 
 **modularFactorialSequence(n: number, MOD: number)**：得到取模的阶乘序列，同 `factorialSequence()`，区别是结果会对 `MOD` 取模。
 
-## 二项式
-
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/binomial.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/binomial.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/binomial.js)
-
 **pascalsTriangle(n: number)**：返回第 `n` 个帕斯卡三角，例如 `pascalsTriangle(3)` 返回 `[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]]`。其中 `P[n][k]` 表示 C(n, k) 的值。
 
 **modularPascalsTriangle(n: number, MOD: number)**：返回第 `n` 个帕斯卡三角，其中每个值对 `MOD` 取模。
@@ -323,7 +318,7 @@ for (let [prime, count] of factors) {
 
 **moduleBinomialCoefficient(n: number, k: number, MOD: number)**：返回二项式系数，它的值对 `MOD` 取模。
 
-## 欧几里得算法
+### 欧几里得算法
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/euclidean.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/euclidean.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/euclidean.js)
 
@@ -333,7 +328,7 @@ for (let [prime, count] of factors) {
 
 **modularInverse(a: number, n: number)**：返回 `a` 的模逆元，即 `a^-1 mod n`。如果 `a` 和 `n` 不互质则抛出异常。
 
-## 工具
+### 工具
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/funcitonal.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/functional.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/functional.js)
 
@@ -360,6 +355,8 @@ for (let [ni, nj] of adjacent2D(arr, 1, 0)) {
 
 ## 在 Node.js 里使用
 
+在 Node.js 里可以通过 npm 安装后使用 contest.js。
+
 CommonJS:
 
 ```javascript
@@ -369,8 +366,28 @@ let heap = new Heap()
 
 ES Module:
 
-```js
+```typescript
 import { Heap } from 'contest.js'
 
 const heap = new Heap()
 ```
+
+
+## 贡献指南
+
+### 行为准则
+
+1. 参考 C++ STL 或 Java 对算法和数据结构分类和为文件命名。
+2. 互相依赖的模块建议合并一个文件，拷贝出去时不需要找依赖文件。
+2. `export` 请写文件尾部，拷贝上面的内容时不需要逐个删除 `export`。
+3. 添加算法需要添加对应测试用例，请确保 lint, test 可以通过，覆盖率不下降。
+4. 渐进复杂度相同的情况下，优先确保简单性和可读性，而非性能。
+
+### 需要哪些贡献
+
+原则上任何形式和内容的贡献，我都会给予帮助！如果你不知道做什么，下面给个分类：
+
+- 新增算法：某个门类中缺少的算法/数据结构，或者缺少的门类。
+- 增强既有算法：更可读，更简单，或性能更好。
+- 工程：改善测试覆盖率，补充和翻译文档，中/英/其他。
+- 其他：发挥你的想象力！

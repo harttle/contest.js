@@ -8,7 +8,7 @@ Ready for contest use! Data structures and algorithms in pure JavaScript with ze
 - Easy to change! Implemented in simplified code with less abstraction.
 - Available via npm! Can be imported as part of the WORKING code.
 
-**Table of Contents**
+## User Guide
 
 - [Algorithm](#Algorithm): shuffle, sort, swap, reverse, partition, nextPermutation, etc.
 - [String](#String): KMP, RabinKarp
@@ -21,17 +21,15 @@ Ready for contest use! Data structures and algorithms in pure JavaScript with ze
 - [Binary Indexed Tree](#Binary%20Indexed%20Tree)
 - [Disjoint Union Set](#Disjoint%20Union%20Set): Path compression, union by rank
 - [Primes](#Primes): prime test, sieve, nth prime, etc.
-- [Factorial](#Factorial): factorial, modular factorial
-- [Binomial](#Binomial): Binomial coefficient, Pascal's Triangle
+- [Permutation and Combination](#Permutation%20and%20Combination): factorial, modular factorial, Binomial coefficient, Pascal's Triangle
 - [Euclidean](#Euclidean): euclidean/GCD algorithm, extended-euclidean/extended-GCD algorithm and modular inverse.
 - [Functional](#Functional): create2DArray, create3DArray, greater, less, valid2D, adjacent2D
-- [Use in Node.js](#Use-in-Node.js): how to use contest.js in Node.js via npm.
 
-## Algorithm
+### Algorithm
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/bit.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bit.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/bit.js)
 
-### Modifying the Sequence
+#### Modifying the Sequence
 
 A collection of functions especially designed to be used on arrays. As a compliment to JavaScript Array to `swap`, to `reverse` on an interval.
 
@@ -53,7 +51,7 @@ reverse(arr, 1)
 console.log(arr)    // [1, 5, 4, 3, 2]
 ```
 
-### Sorting
+#### Sorting
 
 **sort(arr: any[], begin = 0, end = arr.length, compare = (l, r) => l - r)**: sort the array in-place using quicksort, it's not stable. Support sorting on an specified interval and customize a `compare` function.
 
@@ -62,13 +60,13 @@ let arr = [1, 3, 2]
 console.log(sort(arr))    // [1, 2, 3]
 ```
 
-### Other
+#### Other
 
 **nextPermutation(arr)**: rearranges arr into the next lexicographically greater permutation. If the function can determine the next higher permutation, it rearranges the elements as such and return `true`. If that was not possible (because it is already at the largest possible permutation), it rearranges the elements according to the first permutation (sorted in ascending order) and return `false`.
 
 **prevPermutation(arr)**: rearranges arr into the previous lexicographically-ordered permutation. If the function can determine the previous permutation, it rearranges the elements as such and return `true`. If that was not possible (because it is already at the lowest possible permutation), it rearranges the elements according to the last permutation (sorted in descending order) and return `false`.
 
-## String
+### String
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/string.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/string.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/string.js)
 
@@ -84,7 +82,7 @@ kmp('what a wonderful world', 'a wonderful') // return 5
 rabinkarp('what a wonderful world', 'a wonderful')  // return 5
 ```
 
-## Queue
+### Queue
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/queue.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/queue.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/queue.js)
 
@@ -102,7 +100,7 @@ rabinkarp('what a wonderful world', 'a wonderful')  // return 5
 
 **.values()**: return an ES6 iterator of values, ordered from front to back.
 
-## Deque
+### Deque
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/deque.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/deque.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/deque.js)
 
@@ -136,7 +134,7 @@ for (let val of deque) {
 }
 ```
 
-## Heap
+### Heap
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/heap.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/heap.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/heap.js)
 
@@ -165,7 +163,7 @@ maxHeap.push(1)
 while(maxHeap.size()) console.log(maxHeap.pop()) // outputs 3, 2, 1
 ```
 
-## TreeSet
+### TreeSet
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/treeset.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/treeset.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/treeset.js)
 
@@ -189,7 +187,7 @@ A worst-case time complexity log(n) set implemented by RedBlackTree (see follows
 
 **.size(): number**: return size of the set.
 
-## TreeMultiSet
+### TreeMultiSet
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/treeset.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/treeset.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/treeset.js)
 
@@ -213,7 +211,7 @@ A worst-case time complexity log(n) multiset implemented by RedBlackTree (see fo
 
 **.size(): number**: return size of the set.
 
-## BitSet
+### BitSet
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/bitset.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bitset.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/bitset.js)
 
@@ -243,7 +241,7 @@ A bitset implemented by bigint, which is very space efficient but not efficient 
 
 **.negate(rhs: BitSet)**: return a new bitset as the result of `!this`.
 
-## Binary Indexed Tree
+### Binary Indexed Tree
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/bit.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bit.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/bit.js)
 
@@ -263,7 +261,7 @@ bit.update(10, 100)
 bit.sum(5) // elements in [1, 5] sums to 10 + 20 = 30
 bit.sum(10) // elements in [1, 10] sums to 10 + 20 + 100 = 130
 ```
-## Disjoint Union Set
+### Disjoint Union Set
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/dsu.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/dsu.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/dsu.js)
 
@@ -275,7 +273,7 @@ A disjoint union set implementation supports path compression and union by rank,
 
 **.union(x: number, y: number)**: union the group of `x` and the group of `y` and return `true`, return `false` if `x` and `y` are already in the same group.
 
-## Primes
+### Primes
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/prime.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/prime.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/prime.js)
 
@@ -297,9 +295,9 @@ for (let [prime, count] of factors) {
 // 3 1
 ```
 
-## Factorial
+### Permutation and Combination
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/factorial.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/factorial.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/factorial.js)
+[TypeScript Source](https://github.com/harttle/contest.js/blob/master/binomial.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/binomial.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/binomial.js)
 
 **factorial(n: number)**: factorial of `n`, e.g. `factorial(3)` return `6`.
 
@@ -309,10 +307,6 @@ for (let [prime, count] of factors) {
 
 **modularFactorialSequence(n: number, MOD: number)**: modular factorial sequence, same as `factorialSequence()` except that the results are modulo by `MOD`.
 
-## Binomial
-
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/binomial.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/binomial.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/binomial.js)
-
 **pascalsTriangle(n: number)**: return the `n`-th Pascal's Triangle, e.g. `pascalsTriangle(3)` return `[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]]`, in which the value of `P[n][k]` represents the value of C(n, k).
 
 **modularPascalsTriangle(n: number, MOD: number)**: return the `n`-th Pascal's Triangle with each value modulo `MOD`.
@@ -321,7 +315,7 @@ for (let [prime, count] of factors) {
 
 **moduleBinomialCoefficient(n: number, k: number, MOD: number)**: return the binomial coefficient with each value modulo `MOD`.
 
-## Euclidean
+### Euclidean
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/euclidean.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/euclidean.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/euclidean.js)
 
@@ -331,7 +325,7 @@ for (let [prime, count] of factors) {
 
 **modularInverse(a: number, n: number)**: return the modular inverse of `a`, i.e. `a^-1 mod n`. Throws an error if `a` and `n` are not coprime.
 
-## Functional
+### Functional
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/funcitonal.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/functional.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/functional.js)
 
@@ -372,3 +366,19 @@ import { Heap } from 'contest.js'
 
 const heap = new Heap()
 ```
+
+## Contribution Guideline
+
+### Code of Conduct
+
+1. Please refer to C++ STL or Java rgarding organizing and naming source files.
+2. Combine inter-dependent files into a single file to facilitate copy/paste.
+2. Place `export` at the bottom of source files, to eliminate the need of removing `export` acrossing the file.
+3. Add corresponding test cases for your source code, and ensure lint, test passes and test coverage is not decreasing.
+4. As long as asymptotic complexity is guaranteed, focus on simplicity and readability instead of performance..
+
+### All Kind of Contribution are Appreciated
+
+- Add a new algorithm / data structure.
+- Improve existing on readability, simplicity or performance.
+- Engineering: improve test coverage, add or translate document in any languate.

@@ -1,4 +1,4 @@
-export class BIT {
+class BIT {
   N: number
   sums: number[]
   nums: number[]
@@ -29,3 +29,5 @@ export class BIT {
     return sum
   }
 }
+
+export { BIT }

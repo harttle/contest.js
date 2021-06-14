@@ -1,6 +1,6 @@
 import { RBTree } from './rbtree'
 
-export class TreeSet<T = number> {
+class TreeSet<T = number> {
   #size: number
   tree: RBTree<T>
   compare: (l: T, r: T) => boolean
@@ -100,7 +100,7 @@ export class TreeSet<T = number> {
   }
 }
 
-export class TreeMultiSet<T = number> {
+class TreeMultiSet<T = number> {
   #size: number
   tree: RBTree<T>
   counts: Map<T, number>
@@ -212,3 +212,5 @@ export class TreeMultiSet<T = number> {
     this.counts.set(val, this.count(val) + 1)
   }
 }
+
+export { TreeSet, TreeMultiSet }

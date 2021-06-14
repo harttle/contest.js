@@ -1,4 +1,4 @@
-export class Heap<T=number> {
+class Heap<T=number> {
   data: Array<T | null>
   lt: (i: number, j: number) => boolean
   constructor ()
@@ -52,7 +52,7 @@ export class Heap<T=number> {
   }
 }
 
-export class RemovableHeap<T> {
+class RemovableHeap<T> {
   heap: Heap<T>
   counts: Map<T, number>
   #invalidCount: number
@@ -109,7 +109,7 @@ export class RemovableHeap<T> {
   }
 }
 
-export class DoubleRemovableHeap<T> {
+class RemovableDoubleHeap<T> {
   min: RemovableHeap<T>
   max: RemovableHeap<T>
   constructor ()
@@ -148,3 +148,5 @@ export class DoubleRemovableHeap<T> {
     this.max.push(num)
   }
 }
+
+export { Heap, RemovableHeap, RemovableDoubleHeap }

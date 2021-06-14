@@ -1,4 +1,4 @@
-export function kmp (s: string, p: string): number {
+function kmp (s: string, p: string): number {
   const N = s.length; const M = p.length; const T = [0]
   for (let i = 1, len = 0; i < M;) {
     if (p[i] === p[len]) T[i++] = ++len
@@ -16,7 +16,7 @@ export function kmp (s: string, p: string): number {
   return -1
 }
 
-export function rabinkarp (s: string, p: string): number {
+function rabinkarp (s: string, p: string): number {
   const N = s.length; const M = p.length; const q = 1e9 + 7
   const D = maxCharCode(s) + 1
   let h = 1
@@ -41,7 +41,7 @@ export function rabinkarp (s: string, p: string): number {
   }
 }
 
-export function maxCharCode (s: string): number {
+function maxCharCode (s: string): number {
   let D = 0
   for (let i = 0; i < s.length; i++) {
     D = Math.max(D, s.charCodeAt(i))
@@ -49,6 +49,8 @@ export function maxCharCode (s: string): number {
   return D
 }
 
-export function code (s: string, i: number): number {
+function code (s: string, i: number): number {
   return s.charCodeAt(i)
 }
+
+export { kmp, rabinkarp, maxCharCode, code }

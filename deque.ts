@@ -71,7 +71,8 @@ class CircularDeque<T> {
     } while (i !== this.end)
   }
 }
-export class Deque<T> {
+
+class Deque<T> {
   head: CircularDeque<T>
   tail: CircularDeque<T>
   #size: number
@@ -165,3 +166,5 @@ export class Deque<T> {
     }
   }
 }
+
+export { CircularDeque, Deque }

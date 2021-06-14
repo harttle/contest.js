@@ -1,4 +1,4 @@
-export class ListNode<T = number> {
+class ListNode<T = number> {
   value: T | undefined
   next: ListNode<T> | null
   constructor (val: T | undefined = undefined, next = null) {
@@ -6,7 +6,7 @@ export class ListNode<T = number> {
     this.next = next
   }
 }
-export class Queue<T=number> {
+class Queue<T=number> {
   lead: ListNode<T>
   tail: ListNode<T>
   #size: number
@@ -52,3 +52,5 @@ export class Queue<T=number> {
     }
   }
 }
+
+export { ListNode, Queue }

@@ -1,4 +1,4 @@
-export class RBTreeNode<T=number> {
+class RBTreeNode<T=number> {
   data: T
   left: RBTreeNode<T> | null
   right: RBTreeNode<T>| null
@@ -21,7 +21,7 @@ export class RBTreeNode<T=number> {
   }
 }
 
-export class RBTree<T> {
+class RBTree<T> {
   root: RBTreeNode<T> | null
   compare: (l: T, r: T) => boolean
   constructor (compare = (l: T, r: T) => l < r) {
@@ -316,3 +316,5 @@ export class RBTree<T> {
     for (const v of this.inOrder(root.right!)) yield v
   }
 }
+
+export { RBTreeNode, RBTree }

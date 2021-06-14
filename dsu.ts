@@ -1,5 +1,5 @@
 // armotized O(m\alpha(n)) for m find/union operations
-export class DSU {
+class DSU {
   parent: number[]
   rank: any[]
   constructor (N: number) {
@@ -29,3 +29,5 @@ export class DSU {
     }
   }
 }
+
+export { DSU }
