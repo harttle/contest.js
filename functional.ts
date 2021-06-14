@@ -8,9 +8,9 @@ export function create3DArray<T> (N: number, M: number, L: number, n: T): T[][][
   return [...Array(N)].map(() => create2DArray(M, L, n))
 }
 
-export function memorized (fn: Function, getKey = (...args: any[]) => args.join(',')): Function {
+export function memorized <Args extends any[], T> (fn: (...args: Args) => T, getKey = (...args: any[]) => args.join(',')): (...args: Parameters<typeof fn>) => T {
   const memo = new Map<string, any>()
-  return function (...args: any[]) {
+  return function (...args: Parameters<typeof fn>): T {
     const key = getKey(...args)
     if (!memo.has(key)) {
       memo.set(key, fn(...args))
