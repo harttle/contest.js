@@ -30,33 +30,33 @@ export class RBTree<T> {
   }
 
   rotateLeft (pt: RBTreeNode<T>): void {
-    const pt_right = pt.right!
-    pt.right = pt_right.left
+    const right = pt.right!
+    pt.right = right.left
 
     if (pt.right) pt.right.parent = pt
-    pt_right.parent = pt.parent
+    right.parent = pt.parent
 
-    if (!pt.parent) this.root = pt_right
-    else if (pt === pt.parent.left) pt.parent.left = pt_right
-    else pt.parent.right = pt_right
+    if (!pt.parent) this.root = right
+    else if (pt === pt.parent.left) pt.parent.left = right
+    else pt.parent.right = right
 
-    pt_right.left = pt
-    pt.parent = pt_right
+    right.left = pt
+    pt.parent = right
   }
 
   rotateRight (pt: RBTreeNode<T>): void {
-    const pt_left = pt.left!
-    pt.left = pt_left.right
+    const left = pt.left!
+    pt.left = left.right
 
     if (pt.left) pt.left.parent = pt
-    pt_left.parent = pt.parent
+    left.parent = pt.parent
 
-    if (!pt.parent) this.root = pt_left
-    else if (pt === pt.parent.left) pt.parent.left = pt_left
-    else pt.parent.right = pt_left
+    if (!pt.parent) this.root = left
+    else if (pt === pt.parent.left) pt.parent.left = left
+    else pt.parent.right = left
 
-    pt_left.right = pt
-    pt.parent = pt_left
+    left.right = pt
+    pt.parent = left
   }
 
   swapColor (p1: RBTreeNode<T>, p2: RBTreeNode<T>): void {
@@ -72,74 +72,74 @@ export class RBTree<T> {
   }
 
   fixAfterInsert (pt: RBTreeNode<T>): void {
-    let parent_pt = null
-    let grand_parent_pt = null
+    let parent = null
+    let grandParent = null
 
     while (pt !== this.root && pt.color !== 1 && pt.parent?.color === 0) {
-      parent_pt = pt.parent
-      grand_parent_pt = pt.parent.parent
+      parent = pt.parent
+      grandParent = pt.parent.parent
 
       /*  Case : A
                 Parent of pt is left child of Grand-parent of pt */
-      if (parent_pt === grand_parent_pt?.left) {
-        const uncle_pt = grand_parent_pt.right
+      if (parent === grandParent?.left) {
+        const uncle = grandParent.right
 
         /* Case : 1
                    The uncle of pt is also red
                    Only Recoloring required */
-        if (uncle_pt && uncle_pt.color === 0) {
-          grand_parent_pt.color = 0
-          parent_pt.color = 1
-          uncle_pt.color = 1
-          pt = grand_parent_pt
+        if (uncle && uncle.color === 0) {
+          grandParent.color = 0
+          parent.color = 1
+          uncle.color = 1
+          pt = grandParent
         } else {
           /* Case : 2
                        pt is right child of its parent
                        Left-rotation required */
-          if (pt === parent_pt.right) {
-            this.rotateLeft(parent_pt)
-            pt = parent_pt
-            parent_pt = pt.parent
+          if (pt === parent.right) {
+            this.rotateLeft(parent)
+            pt = parent
+            parent = pt.parent
           }
 
           /* Case : 3
                        pt is left child of its parent
                        Right-rotation required */
-          this.rotateRight(grand_parent_pt)
-          this.swapColor(parent_pt!, grand_parent_pt)
-          pt = parent_pt!
+          this.rotateRight(grandParent)
+          this.swapColor(parent!, grandParent)
+          pt = parent!
         }
       }
 
       /* Case : B
                Parent of pt is right child of Grand-parent of pt */
       else {
-        const uncle_pt = grand_parent_pt!.left
+        const uncle = grandParent!.left
 
         /*  Case : 1
                     The uncle of pt is also red
                     Only Recoloring required */
-        if ((uncle_pt != null) && (uncle_pt.color === 0)) {
-          grand_parent_pt!.color = 0
-          parent_pt.color = 1
-          uncle_pt.color = 1
-          pt = grand_parent_pt!
+        if ((uncle != null) && (uncle.color === 0)) {
+          grandParent!.color = 0
+          parent.color = 1
+          uncle.color = 1
+          pt = grandParent!
         } else {
           /* Case : 2
                        pt is left child of its parent
                        Right-rotation required */
-          if (pt === parent_pt.left) {
-            this.rotateRight(parent_pt)
-            pt = parent_pt
-            parent_pt = pt.parent
+          if (pt === parent.left) {
+            this.rotateRight(parent)
+            pt = parent
+            parent = pt.parent
           }
 
           /* Case : 3
                        pt is right child of its parent
                        Left-rotation required */
-          this.rotateLeft(grand_parent_pt!)
-          this.swapColor(parent_pt!, grand_parent_pt!)
-          pt = parent_pt!
+          this.rotateLeft(grandParent!)
+          this.swapColor(parent!, grandParent!)
+          pt = parent!
         }
       }
     }

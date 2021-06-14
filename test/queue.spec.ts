@@ -46,8 +46,14 @@ describe('Queue', () => {
     const arr = []
     const data = Array(1e4).fill(0).map(() => Math.floor(1e9 * Math.random()))
     for (const num of data) {
-      if (num % 2 === 0) queue.push(num), arr.push(num)
-      if (num % 2 === 1) queue.shift(), arr.shift()
+      if (num % 2 === 0) {
+        queue.push(num)
+        arr.push(num)
+      }
+      if (num % 2 === 1) {
+        queue.shift()
+        arr.shift()
+      }
     }
     expect(arr).toEqual([...queue.values()])
   })
