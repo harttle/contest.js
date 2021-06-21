@@ -56,5 +56,10 @@ describe('treeset', () => {
       set.add(10)
       expect(set.count(10)).toEqual(2)
     })
+    it('delete should only erase the value when count is 0', () => {
+      const set = new TreeMultiSet([4, 4])
+      set.delete(4)
+      expect(set.values().next().value).toEqual(4)
+    })
   })
 })

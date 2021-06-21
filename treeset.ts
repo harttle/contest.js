@@ -128,8 +128,10 @@ class TreeMultiSet<T = number> {
   }
 
   delete (val: T): void {
-    this.tree.deleteByValue(val)
     this.decrease(val)
+    if (this.count(val) === 0) {
+      this.tree.deleteByValue(val)
+    }
     this.#size--
   }
 
