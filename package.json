@@ -1,6 +1,6 @@
 {
   "name": "contest.js",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Ready for contest use! Data structures and algorithms in pure JavaScript with zero dependency.",
   "main": "lib/index.js",
   "scripts": {

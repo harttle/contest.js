@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/harttle/contest.js/compare/v1.1.0...v1.1.1) (2021-06-21)
+
+
+### Bug Fixes
+
+* TreeMultiSet delete ([249372f](https://github.com/harttle/contest.js/commit/249372f957a1c8368e83a27c34c898685966595c))
+
 # [1.1.0](https://github.com/harttle/contest.js/compare/v1.0.0...v1.1.0) (2021-06-14)
 
 
