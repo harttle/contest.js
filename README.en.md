@@ -23,6 +23,7 @@ Ready for contest use! Data structures and algorithms in pure JavaScript with ze
 - [Primes](#Primes): prime test, sieve, nth prime, etc.
 - [Permutation and Combination](#Permutation%20and%20Combination): factorial, modular factorial, Binomial coefficient, Pascal's Triangle
 - [Euclidean](#Euclidean): euclidean/GCD algorithm, extended-euclidean/extended-GCD algorithm and modular inverse.
+- [Rolling Hash](#Rolling%20Hash): Rolling hash, rolling double hash.
 - [Functional](#Functional): create2DArray, create3DArray, greater, less, valid2D, adjacent2D
 
 ### Algorithm
@@ -324,6 +325,47 @@ for (let [prime, count] of factors) {
 **gcdExtended(a: number, b: number)**: run extended Euclidean algorithm to compute the array `[gcd, x, y]`, in which `gcd` is the greatest common divisor and `gcd === x * a + y * b`.
 
 **modularInverse(a: number, n: number)**: return the modular inverse of `a`, i.e. `a^-1 mod n`. Throws an error if `a` and `n` are not coprime.
+
+# Rolling Hash
+[TypeScript Source](https://github.com/harttle/contest.js/blob/master/rolling-hash.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/rolling-hash.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/rolling-hash.js)
+
+**new RollingHash(L: number, M: number)**: create a rolling hash object. L is the size of rolling window. M is the base, typically should be a prime number greater than the max value to be hashed. Eg. we're hashing numbers in 0-26, M can be 29 or 31.
+
+**.getValue()**: get current hash value.
+
+**.digest(value: number)**: add next number into the rolling hash.
+
+**.degest(value: number)**：remove the first number from rolling hash. This should be done when length is L + 1. So you should call `.digest()` before `.degest()`:
+
+```javascript
+const LEN = 3, hash = new RollingHash(LEN, 29)
+const str = 'abcdabc'
+const arr = [...str].map(c => c.charCodeAt() - 97)
+for (let i = 0; i < arr.length; i++) {
+    hash.digest(arr[i])
+    if (i >= LEN) hash.degest(arr[i - LEN])
+    console.log(hash.getKey())
+}
+// Output the following sequence, note that the two "abc"s have the same hash 31
+0, 1, 31, 902, 1769, 2524, 31
+```
+
+**new BiRollingHash(L: number, M1: number, M2: number)**: create a rolling double hash objct. L is the size of rolling window, M1 is the base of first rolling hash, M2 is the base of second rolling hash.
+
+Methods of BiRollingHash are the same as RollingHash, except that `.getKey()` returns a comma separated string, separating the two hash values.
+
+```javascript
+const LEN = 3, hash = new BiRollingHash(LEN, 29, 31)
+const str = 'abcdabc'
+const arr = [...str].map(c => c.charCodeAt() - 97)
+for (let i = 0; i < arr.length; i++) {
+    hash.digest(arr[i])
+    if (i >= LEN) hash.degest(arr[i - LEN])
+    console.log(hash.getKey())
+}
+// Output the following sequence, note that the two "abc"s have the same hash 31
+'0,0', '1,1', '31,33', '902,1026', '1769,2015', '2524,2884', '31,33'
+```
 
 ### Functional
 

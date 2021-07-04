@@ -25,6 +25,7 @@
 - [质数算法](#质数算法): 质数测试、筛选等。
 - [排列组合](#排列组合): 阶乘、模阶乘、二项式系数、帕斯卡三角。
 - [欧几里得算法](#欧几里得算法): 欧几里得公约数，扩展欧几里得，模拟元。
+- [滚动哈希](#滚动哈希): 滚动哈希，双哈希。
 - [工具](#工具): create2DArray, create3DArray, greater, less, valid2D, adjacent2D。
 
 ### 算法
@@ -327,6 +328,47 @@ for (let [prime, count] of factors) {
 **gcdExtended(a: number, b: number)**：运行扩展欧几里得算法，得到 `[gcd, x, y]` 数组，其中第一个元素 `gcd` 为最大公约数，且 `gcd === x * a + y * b`。
 
 **modularInverse(a: number, n: number)**：返回 `a` 的模逆元，即 `a^-1 mod n`。如果 `a` 和 `n` 不互质则抛出异常。
+
+# 滚动哈希
+[TypeScript Source](https://github.com/harttle/contest.js/blob/master/rolling-hash.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/rolling-hash.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/rolling-hash.js)
+
+**new RollingHash(L: number, M: number)**：创建一个滚动哈希对象。L 是滚动窗口的长度；M 是倍增的进制，通常取大于被哈希数的最大值的一个质数。例如被哈希的是 0-26，该质数可以取 29 或 31。
+
+**.getValue()**：得到当前的哈希值。
+
+**.digest(value: number)**：加一个数到滚动哈希里。
+
+**.degest(value: number)**：退出一个数到滚动哈希里。注意要在刚超过窗口长度时（长度为 L + 1）的时候退出。一般需要调用 `.digest()` 之后调用 `.degest()`。例如：
+
+```javascript
+const LEN = 3, hash = new RollingHash(LEN, 29)
+const str = 'abcdabc'
+const arr = [...str].map(c => c.charCodeAt() - 97)
+for (let i = 0; i < arr.length; i++) {
+    hash.digest(arr[i])
+    if (i >= LEN) hash.degest(arr[i - LEN])
+    console.log(hash.getKey())
+}
+// 输出，注意两次到 c 时哈希值相等
+0, 1, 31, 902, 1769, 2524, 31
+```
+
+**new BiRollingHash(L: number, M1: number, M2: number)**：创建一个滚动哈希对象，其中封装两个 RollingHash。L 是滚动窗口的长度；M1 是第一个哈希的倍增进制，M2 是第二个哈希的倍增进制。
+
+BiRollingHash 的其他接口与 RollingHash 一致，除了 `.getKey()` 返回的是一个字符串，逗号分隔两个哈希值。例如：
+
+```javascript
+const LEN = 3, hash = new BiRollingHash(LEN, 29, 31)
+const str = 'abcdabc'
+const arr = [...str].map(c => c.charCodeAt() - 97)
+for (let i = 0; i < arr.length; i++) {
+    hash.digest(arr[i])
+    if (i >= LEN) hash.degest(arr[i - LEN])
+    console.log(hash.getKey())
+}
+// 输出，注意两次到 c 时哈希值相等
+'0,0', '1,1', '31,33', '902,1026', '1769,2015', '2524,2884', '31,33'
+```
 
 ### 工具
 
