@@ -30,6 +30,7 @@ describe('trie', () => {
       expect(trie.searchPrefix('c')).toEqual(0)
     })
     it('searchMaxXor successfully', () => {
+      // Test cases from: https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/
       test([3, 10, 5, 25, 2, 8], 28)
       test([0], 0)
       test([8, 10, 2], 10)
