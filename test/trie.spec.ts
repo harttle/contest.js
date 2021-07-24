@@ -45,7 +45,7 @@ describe('trie', () => {
           let tmp = 0
           trie.traverse(str, (char, idx, node) => {
             tmp <<= 1
-            if (node.children[reverse(char)]) {
+            if (node.children[reverse(char)]?.countPrefix) {
               tmp += 1
               return reverse(char)
             } else {
