@@ -39,7 +39,7 @@ class Trie {
     for (let i = 0; i < str.length; i++) {
       const retChar = callbackfn.call(thisArg, str[i], i, cur)
       const tmp = cur.children[retChar]
-      if (!tmp || tmp.countPrefix < 0) return
+      if (!tmp || tmp.countPrefix <= 0) return
       cur = tmp
     }
   }
