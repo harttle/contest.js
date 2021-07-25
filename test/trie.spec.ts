@@ -19,7 +19,7 @@ describe('trie', () => {
       expect(trie.count('a')).toEqual(2)
       expect(trie.count('b')).toEqual(1)
     })
-    it('searchPrefix successfully', () => {
+    it('countPrefix successfully', () => {
       const trie = new Trie()
       const arr = ['aaa', 'aab', 'a', 'b', 'a', 'aab']
       arr.forEach((s) => trie.insert(s), trie)
