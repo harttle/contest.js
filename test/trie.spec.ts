@@ -39,9 +39,9 @@ describe('trie', () => {
         const strs = nums.map(num => num.toString(2).padStart(32, '0'))
         const trie = new Trie()
         strs.forEach(x => trie.insert(x))
-        const reverse = (ch: string): string => ch === '1' ? '0' : '1'
-        let ans = 0
-        strs.forEach((str, idx) => {
+
+        function maxXor (str: string): number {
+          const reverse = (ch: string): string => ch === '1' ? '0' : '1'
           let tmp = 0
           trie.traverse(str, (char, idx, node) => {
             tmp <<= 1
@@ -52,8 +52,10 @@ describe('trie', () => {
               return char
             }
           })
-          ans = Math.max(ans, tmp)
-        })
+          return tmp
+        }
+
+        const ans = Math.max(...strs.map(maxXor))
         expect(ans).toEqual(exp)
       }
     })
