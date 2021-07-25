@@ -5,7 +5,7 @@ class TrieNode {
 };
 
 class Trie {
-  readonly trie: TrieNode
+  trie: TrieNode
   /**
    * @description Initialize the trie
    */
