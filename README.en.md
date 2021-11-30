@@ -188,6 +188,10 @@ A worst-case time complexity log(n) set implemented by RedBlackTree (see follows
 
 **.size(): number**: return size of the set.
 
+**.values()**: return an ES6 iterator of values, ordered from front to back.
+
+**.rvalues()**: return an ES6 iterator of values, ordered from back to front.
+
 ### TreeMultiSet
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/treeset.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/treeset.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/treeset.js)
@@ -211,6 +215,10 @@ A worst-case time complexity log(n) multiset implemented by RedBlackTree (see fo
 **.higher(val: any)**: find and return the element greater than `val`, return `undefined` if no such element found.
 
 **.size(): number**: return size of the set.
+
+**.values()**: return an ES6 iterator of values, ordered from front to back.
+
+**.rvalues()**: return an ES6 iterator of values, ordered from back to front.
 
 ### BitSet
 
