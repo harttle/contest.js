@@ -95,8 +95,17 @@ class TreeSet<T = number> {
     for (const val of this.values()) yield val
   }
 
-  * values (): Generator<T, void, void> {
+  * values (): Generator<T, undefined, void> {
     for (const val of this.tree.inOrder()) yield val
+    return undefined
+  }
+
+  /**
+   * Return a generator for reverse order traversing the set
+   */
+  * rvalues (): Generator<T, undefined, void> {
+    for (const val of this.tree.reverseInOrder()) yield val
+    return undefined
   }
 }
 
@@ -199,18 +208,36 @@ class TreeMultiSet<T = number> {
     for (const val of this.values()) yield val
   }
 
-  * values (): Generator<T, void, void> {
+  * values (): Generator<T, undefined, void> {
     for (const val of this.tree.inOrder()) {
       let count = this.count(val)
       while (count--) yield val
     }
+    return undefined
   }
 
-  decrease (val: T): void {
+  /**
+   * Return a generator for reverse order traversing the multi-set
+   */
+  * rvalues (): Generator<T, undefined, void> {
+    for (const val of this.tree.reverseInOrder()) {
+      let count = this.count(val)
+      while (count--) yield val
+    }
+    return undefined
+  }
+
+  /**
+   * Should only be called by `delete` to keep the internal state correct
+   */
+  private decrease (val: T): void {
     this.counts.set(val, this.count(val) - 1)
   }
+  /**
+   * Should only be called by `add` to keep the internal state correct
+   */
 
-  increase (val: T): void {
+  private increase (val: T): void {
     this.counts.set(val, this.count(val) + 1)
   }
 }

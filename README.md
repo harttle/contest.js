@@ -190,6 +190,10 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 
 **.size(): number**：返回集合的大小。
 
+**.values()**：返回从第一个元素到最后一个元素的 ES6 迭代器。
+
+**.rvalues()**：返回从最后一个元素到第一个元素的 ES6 迭代器。
+
 ### TreeMultiSet
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/treeset.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/treeset.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/treeset.js)
@@ -213,6 +217,10 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 **.higher(val: any)**：找到并返回大于 `val` 的元素，如果不存在这样的元素则返回 `undefined`。
 
 **.size(): number**：返回集合的大小。
+
+**.values()**：返回从第一个元素到最后一个元素的 ES6 迭代器。
+
+**.rvalues()**：返回从最后一个元素到第一个元素的 ES6 迭代器。
 
 ### BitSet
 
