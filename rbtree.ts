@@ -315,6 +315,13 @@ class RBTree<T> {
     yield root.data
     for (const v of this.inOrder(root.right!)) yield v
   }
+
+  * reverseInOrder (root: RBTreeNode<T> = this.root!): Generator<T, void, void> {
+    if (!root) return
+    for (const v of this.reverseInOrder(root.right!)) yield v
+    yield root.data
+    for (const v of this.reverseInOrder(root.left!)) yield v
+  }
 }
 
 export { RBTreeNode, RBTree }
