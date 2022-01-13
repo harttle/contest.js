@@ -1,0 +1,29 @@
+name: Update
+on:
+  push:
+    branches:
+      - master
+jobs:
+  update:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Build
+        run: |
+          npm ci
+          npm run build
+      - name: Update mjs files
+        run: |
+          git config --global user.name 'Harttle'
+          git config --global user.email 'harttle@users.noreply.github.com'
+          mv lib/*.mjs src/
+          git add src/*.mjs
+          git commit -am "chore: update mjs [skip ci]"
+          git push 
