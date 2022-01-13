@@ -28,7 +28,7 @@ Ready for contest use! Data structures and algorithms in pure JavaScript with ze
 
 ### Algorithm
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/bit.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bit.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/bit.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs)
 
 #### Modifying the Sequence
 
@@ -69,7 +69,7 @@ console.log(sort(arr))    // [1, 2, 3]
 
 ### String
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/string.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/string.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/string.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/string.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/string.mjs)
 
 **kmp(str: string, pattern: string)**: find index of `pattern` in `str` using KMP method, return `-1` if not found.
 
@@ -85,7 +85,7 @@ rabinkarp('what a wonderful world', 'a wonderful')  // return 5
 
 ### Queue
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/queue.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/queue.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/queue.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/queue.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/queue.mjs)
 
 **new Queue(collection?: Iterable)**: create a queue.
 
@@ -103,7 +103,7 @@ rabinkarp('what a wonderful world', 'a wonderful')  // return 5
 
 ### Deque
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/deque.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/deque.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/deque.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/deque.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/deque.mjs)
 
 **new Deque(collection?: Iterable)**: create a deque.
 
@@ -137,7 +137,7 @@ for (let val of deque) {
 
 ### Heap
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/heap.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/heap.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/heap.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/heap.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/heap.mjs)
 
 **new Heap(collection?: Iterable, compare?: ((l, r) => number) = (l, r) => l - r)**: create a min heap (less elements pop out first) from elements of the `collection`, and compare elements using `compare` (accepts two arguments, return `true` if first argument is less).
 
@@ -166,7 +166,7 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // outputs 3, 2, 1
 
 ### TreeSet
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/treeset.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/treeset.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/treeset.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/treeset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treeset.mjs)
 
 A worst-case time complexity log(n) set implemented by RedBlackTree (see follows).
 
@@ -194,7 +194,7 @@ A worst-case time complexity log(n) set implemented by RedBlackTree (see follows
 
 ### TreeMultiSet
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/treeset.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/treeset.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/treeset.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/treeset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treeset.mjs)
 
 A worst-case time complexity log(n) multiset implemented by RedBlackTree (see follows).
 
@@ -222,7 +222,7 @@ A worst-case time complexity log(n) multiset implemented by RedBlackTree (see fo
 
 ### BitSet
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/bitset.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bitset.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/bitset.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/bitset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bitset.mjs)
 
 A bitset implemented by bigint, which is very space efficient but not efficient for read/write.
 
@@ -252,7 +252,7 @@ A bitset implemented by bigint, which is very space efficient but not efficient 
 
 ### Binary Indexed Tree
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/bit.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bit.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/bit.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs)
 
 A binary indexed tree implementation, also called [Fenwick Tree](https://en.wikipedia.org/wiki/Fenwick_tree).
 
@@ -272,7 +272,7 @@ bit.sum(10) // elements in [1, 10] sums to 10 + 20 + 100 = 130
 ```
 ### Disjoint Union Set
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/dsu.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/dsu.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/dsu.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs)
 
 A disjoint union set implementation supports path compression and union by rank, providing nearly constant time complexity (Inverse Ackermann Function) `find/union` operations.
 
@@ -284,7 +284,7 @@ A disjoint union set implementation supports path compression and union by rank,
 
 ### Primes
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/prime.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/prime.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/prime.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/prime.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/prime.mjs)
 
 **prime(nth: number)**: get nth (1-indexed) prime. e.g. `prime(1)` return `2`
 
@@ -306,7 +306,7 @@ for (let [prime, count] of factors) {
 
 ### Permutation and Combination
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/binomial.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/binomial.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/binomial.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs)
 
 **factorial(n: number)**: factorial of `n`, e.g. `factorial(3)` return `6`.
 
@@ -326,7 +326,7 @@ for (let [prime, count] of factors) {
 
 ### Euclidean
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/euclidean.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/euclidean.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/euclidean.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.mjs)
 
 **gcd(a: number, b: number)**: run Euclidean algorithm to compute the greatest common divisor.
 
@@ -335,7 +335,7 @@ for (let [prime, count] of factors) {
 **modularInverse(a: number, n: number)**: return the modular inverse of `a`, i.e. `a^-1 mod n`. Throws an error if `a` and `n` are not coprime.
 
 # Rolling Hash
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/rolling-hash.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/rolling-hash.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/rolling-hash.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.mjs)
 
 **new RollingHash(L: number, M: number)**: create a rolling hash object. L is the size of rolling window. M is the base, typically should be a prime number greater than the max value to be hashed. Eg. we're hashing numbers in 0-26, M can be 29 or 31.
 
@@ -377,7 +377,7 @@ for (let i = 0; i < arr.length; i++) {
 
 ### Functional
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/funcitonal.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/functional.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/functional.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/funcitonal.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/functional.mjs)
 
 **memorized(fn: Function, getKey? ((...args: any[]) => string) = ((...args) => args.join(',')))**: create a new function memorizing arguments and result for each call, return that result if the same arguments are passed in. A custom `getKey` can be specified to avoid conflict or to be more efficient.
 
@@ -419,16 +419,22 @@ const heap = new Heap()
 
 ## Contribution Guideline
 
-### Code of Conduct
-
-1. Please refer to C++ STL or Java rgarding organizing and naming source files.
-2. Combine inter-dependent files into a single file to facilitate copy/paste.
-2. Place `export` at the bottom of source files, to eliminate the need of removing `export` acrossing the file.
-3. Add corresponding test cases for your source code, and ensure lint, test passes and test coverage is not decreasing.
-4. As long as asymptotic complexity is guaranteed, focus on simplicity and readability instead of performance..
-
-### All Kind of Contribution are Appreciated
+All kind of contributions are appreciated:
 
 - Add a new algorithm / data structure.
 - Improve existing on readability, simplicity or performance.
 - Engineering: improve test coverage, add or translate document in any languate.
+
+### How to add a algorithm/utility?
+
+- How to design the interface/signature?
+    - Is there a similiar ES6 Class or function to refer to? e.g. `BitSet` is designed with reference to `Set`.
+    - Is there an equivalent C++ standard library, STL or Java class? e.g. algorithm.ts contains functionalities in `<algorithm>` C++ lib.
+- How to treat dependencies?
+    - Use less dependencies if possible so each file will be still functional when used alone. e.g. `swap` function is inlined to each file using it.
+    - For functions/classes referencing each other, maybe we need combine them into one single file. But keep each file reasonabily small. e.g. `TreeSet` and `RBTree` are still two separate files.
+- About code style
+    - `npm run lint` will do the trick, mostly.
+    - Please put `export` to the tail of each file, so we don't need to remove them for each name.
+    - Add test cases to ensure test coverage is rising, which will be checked automatically on PR.
+    - For implementations with same asymptotic complexity, use the most simple and easy to read one.

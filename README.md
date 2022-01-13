@@ -30,7 +30,7 @@
 
 ### 算法
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/bit.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bit.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/bit.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs)
 
 #### 数组操作
 
@@ -71,7 +71,7 @@ console.log(sort(arr))    // [1, 2, 3]
 
 ### 字符串
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/string.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/string.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/string.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/string.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/string.mjs)
 
 **kmp(str: string, pattern: string)**：使用 KMP 方法在 `str` 中找到 `pattern` 的下标，如果不存在则返回 `-1`。
 
@@ -87,7 +87,7 @@ rabinkarp('what a wonderful world', 'a wonderful')  // returns 5
 
 ### 队列
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/queue.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/queue.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/queue.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/queue.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/queue.mjs)
 
 **new Queue(collection?: Iterable)**：创建一个队列。
 
@@ -105,7 +105,7 @@ rabinkarp('what a wonderful world', 'a wonderful')  // returns 5
 
 ### 双向队列
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/deque.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/deque.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/deque.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/deque.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/deque.mjs)
 
 **new Deque(collection?: Iterable)**：创建一个双向队列。
 
@@ -139,7 +139,7 @@ for (let val of deque) {
 
 ### 堆
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/heap.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/heap.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/heap.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/heap.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/heap.mjs)
 
 **new Heap(collection?: Iterable, compare?: ((l, r) => number) = (l, r) => l - r)**：从可迭代集合 `collection` 创建一个最小堆（较小的先 pop 出来），使用 `compare` 比较大小（接受两个参数，首个参数较小则返回 `true`，否则返回 `false`，详见示例）。
 
@@ -168,7 +168,7 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 
 ### TreeSet
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/treeset.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/treeset.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/treeset.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/treeset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treeset.mjs)
 
 读写元素最坏情况时间复杂度为 log(n) 的有序集合，由红黑树实现。
 
@@ -196,7 +196,7 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 
 ### TreeMultiSet
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/treeset.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/treeset.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/treeset.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/treeset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treeset.mjs)
 
 读写元素最坏情况时间复杂度为 log(n) 的有序集合，和 `TreeSet` 不同的是它允许多个等价的键存在，由红黑树实现。
 
@@ -224,7 +224,7 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 
 ### BitSet
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/bitset.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bitset.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/bitset.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/bitset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bitset.mjs)
 
 一个动态大小的位集合。由 BigInt 实现，占用空间很小，但独写性能不如数组。
 
@@ -254,7 +254,7 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 
 ### 树状数组
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/bit.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/bit.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/bit.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs)
 
 一个树状数组的实现，也叫 [Fenwick Tree](https://zh.wikipedia.org/zh-hans/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84), Binary Indexed Tree，BIT。
 
@@ -275,7 +275,7 @@ bit.sum(10) // elements in [1, 10] sums to 10 + 20 + 100 = 130
 
 ### 并查集
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/dsu.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/dsu.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/dsu.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs)
 
 支持路径压缩和按秩合并的并查集实现，提供接近常数时间复杂度（Inverse Ackermann Function）的 `find/union` 操作。
 
@@ -287,7 +287,7 @@ bit.sum(10) // elements in [1, 10] sums to 10 + 20 + 100 = 130
 
 ### 质数算法
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/prime.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/prime.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/prime.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/prime.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/prime.mjs)
 
 **prime(n: number)**：返回第 n（从 1 开始）个质数，例如 `prime(1)` 返回 `2`。
 
@@ -309,7 +309,7 @@ for (let [prime, count] of factors) {
 
 ### 排列组合
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/binomial.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/binomial.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/binomial.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs)
 
 **factorial(n: number)**：返回 `n` 的阶乘，例如 `factorial(3)` 返回 `6`。
 
@@ -329,7 +329,7 @@ for (let [prime, count] of factors) {
 
 ### 欧几里得算法
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/euclidean.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/euclidean.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/euclidean.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.mjs)
 
 **gcd(a: number, b: number)**：运行欧几里得算法，得到最大公约数。
 
@@ -338,7 +338,7 @@ for (let [prime, count] of factors) {
 **modularInverse(a: number, n: number)**：返回 `a` 的模逆元，即 `a^-1 mod n`。如果 `a` 和 `n` 不互质则抛出异常。
 
 # 滚动哈希
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/rolling-hash.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/rolling-hash.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/rolling-hash.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.mjs)
 
 **new RollingHash(L: number, M: number)**：创建一个滚动哈希对象。L 是滚动窗口的长度；M 是倍增的进制，通常取大于被哈希数的最大值的一个质数。例如被哈希的是 0-26，该质数可以取 29 或 31。
 
@@ -380,7 +380,7 @@ for (let i = 0; i < arr.length; i++) {
 
 ### 工具
 
-[TypeScript Source](https://github.com/harttle/contest.js/blob/master/funcitonal.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/functional.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/functional.js)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/funcitonal.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/functional.mjs)
 
 **memorized(fn: Function, getKey? ((...args: any[]) => string) = ((...args) => args.join(',')))**：返回一个新的函数，记录并缓存 `fn` 的调用参数和返回值。可以自定义 `getKey` 来避免键的冲突或降低键的空间占用。
 
@@ -425,19 +425,25 @@ const heap = new Heap()
 
 ## 贡献指南
 
-### 行为准则
+### 接受哪些 PR？
 
-1. 参考 C++ STL 或 Java 对算法和数据结构分类和为文件命名。
-2. 互相依赖的模块建议合并一个文件，拷贝出去时不需要找依赖文件。
-2. `export` 请写文件尾部，拷贝上面的内容时不需要逐个删除 `export`。
-3. 添加算法需要添加对应测试用例，请确保 lint, test 可以通过，覆盖率不下降。
-4. 渐进复杂度相同的情况下，优先确保简单性和可读性，而非性能。
-
-### 需要哪些贡献
-
-原则上任何形式和内容的贡献，我都会给予帮助！如果你不知道做什么，下面给个分类：
+欢迎任何形式的贡献，我都会给予帮助！你可以：
 
 - 新增算法：某个门类中缺少的算法/数据结构，或者缺少的门类。
 - 增强既有算法：更可读，更简单，或性能更好。
 - 工程：改善测试覆盖率，补充和翻译文档，中/英/其他。
 - 其他：发挥你的想象力！
+
+### 如何新增一个算法/工具？
+
+- 如何设计接口？
+    - 是否有类似的 ES6 类和方法？参考它们！比如 BitSet 里方法的命名可以参考 Set。
+    - 是否有类似的 C++ 标准库、STL 或 Java 类？参考它们！比如 algorithm.ts 的内容参考 `<algorithm>` 库。
+- 如何解决依赖？
+    - 尽量减少依赖，这样单个文件拷贝出去可以直接使用。例如 `swap` 方法直接写在需要使用的文件里。
+    - 如果有若干方法或类互相依赖，建议合并为一个文件，但单个文件不要太大。例如 `TreeSet` 和 `RBTree` 仍然是两个文件。
+- 关于代码风格
+    - `npm run lint` 可以通过就基本可以了！
+    - `export` 请写文件尾部，拷贝上面的内容时不需要逐个删除 `export`。
+    - 请添加对应的 test，确保覆盖率不下降。
+    - 渐进复杂度相同的情况下，优先确保简单性和可读性，而非性能。
