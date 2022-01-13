@@ -1,4 +1,4 @@
-import { TreeSet, TreeMultiSet } from '../treeset'
+import { TreeSet, TreeMultiSet } from '../src/treeset'
 
 describe('treeset', () => {
   describe('TreeSet', () => {

@@ -1,6 +1,6 @@
-import { RBTreeNode, RBTree } from '../rbtree'
+import { RBTreeNode, RBTree } from '../src/rbtree'
 
-import { shuffle } from '../algorithm'
+import { shuffle } from '../src/algorithm'
 /**
  * Red-Black Tree Properties:
  *

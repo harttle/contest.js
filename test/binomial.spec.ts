@@ -1,7 +1,7 @@
 import {
   factorial, modularFactorial, factorialSequence, modularFactorialSequence,
   pascalsTriangle, modularPascalsTriangle, binomialCoefficient, moduleBinomialCoefficient
-} from '../binomial'
+} from '../src/binomial'
 
 describe('binomial', () => {
   it('.factorial()', () => {

@@ -1,4 +1,4 @@
-import { gcd, gcdExtended } from '../euclidean'
+import { gcd, gcdExtended } from '../src/euclidean'
 
 describe('euclidean', () => {
   it('.gcd()', () => {

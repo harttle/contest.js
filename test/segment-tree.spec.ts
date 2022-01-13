@@ -1,4 +1,4 @@
-import { BinarySegmentTree } from '../segment-tree'
+import { BinarySegmentTree } from '../src/segment-tree'
 
 describe('BinarySegmentTree', () => {
   it('should initial to zeros', () => {

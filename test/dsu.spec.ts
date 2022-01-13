@@ -1,4 +1,4 @@
-import { DSU } from '../dsu'
+import { DSU } from '../src/dsu'
 
 describe('DSU', () => {
   it('should join a simple set', () => {

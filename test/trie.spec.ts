@@ -1,4 +1,4 @@
-import { Trie } from '../trie'
+import { Trie } from '../src/trie'
 
 describe('trie', () => {
   describe('Trie', () => {

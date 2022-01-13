@@ -1,4 +1,4 @@
-import { kmp, rabinkarp } from '../string'
+import { kmp, rabinkarp } from '../src/string'
 
 describe('kmp, rabinkarp', () => {
   it('should return -1 if not found', () => {

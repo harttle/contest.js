@@ -1,4 +1,4 @@
-import { adjacent2D } from '../functional'
+import { adjacent2D } from '../src/functional'
 
 describe('functional', () => {
   describe('adjacent2D', () => {

@@ -1,4 +1,4 @@
-import { Deque } from '../deque'
+import { Deque } from '../src/deque'
 
 describe('Deque', () => {
   it('should support push/pop', () => {

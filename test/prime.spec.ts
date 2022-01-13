@@ -1,4 +1,4 @@
-import { prime, isPrime, primesLeq, primeFactors } from '../prime'
+import { prime, isPrime, primesLeq, primeFactors } from '../src/prime'
 
 describe('primes', () => {
   describe('prime()', () => {

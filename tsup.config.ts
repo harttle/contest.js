@@ -10,7 +10,7 @@ const options: Options = {
   bundle: false,
   dts: true,
   entryPoints: [
-    '*.ts'
+    'src/*.ts'
   ],
   outDir: 'lib',
   esbuildOptions (options, context) {

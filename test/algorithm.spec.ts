@@ -1,4 +1,4 @@
-import { sort, shuffle, nextPermutation, prevPermutation } from '../algorithm'
+import { sort, shuffle, nextPermutation, prevPermutation } from '../src/algorithm'
 
 describe('algorithm', () => {
   describe('shuffle', () => {

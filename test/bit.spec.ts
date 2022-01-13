@@ -1,4 +1,4 @@
-import { BIT } from '../bit'
+import { BIT } from '../src/bit'
 
 describe('BIT', () => {
   it('getSum() should return 0 before any updates', () => {

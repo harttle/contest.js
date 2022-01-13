@@ -1,4 +1,4 @@
-import { BiRollingHash, RollingHash } from '../rolling-hash'
+import { BiRollingHash, RollingHash } from '../src/rolling-hash'
 
 describe('rolling hash', () => {
   describe('RollingHash', () => {

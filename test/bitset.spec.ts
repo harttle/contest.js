@@ -1,4 +1,4 @@
-import { BitSet } from '../bitset'
+import { BitSet } from '../src/bitset'
 
 describe('bitset', () => {
   describe(BitSet.name + '()', () => {

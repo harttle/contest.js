@@ -1,4 +1,4 @@
-import { Heap, RemovableHeap } from '../heap'
+import { Heap, RemovableHeap } from '../src/heap'
 
 describe('heap', () => {
   describe('Heap', () => {
