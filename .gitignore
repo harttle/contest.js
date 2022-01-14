@@ -4,4 +4,4 @@ node_modules
 .vscode
 lib
 coverage
-/.prettierignore
+.prettierignore
