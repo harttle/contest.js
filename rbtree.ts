@@ -1,35 +1,41 @@
-class RBTreeNode<T=number> {
+class RBTreeNode<T = number> {
   data: T
   left: RBTreeNode<T> | null
-  right: RBTreeNode<T>| null
-  parent: RBTreeNode<T>| null
+  right: RBTreeNode<T> | null
+  parent: RBTreeNode<T> | null
   color: number
-  constructor (data: T) {
+  constructor(data: T) {
     this.data = data
     this.left = this.right = this.parent = null
     this.color = 0
   }
 
-  sibling (): RBTreeNode<T> | null {
+  sibling(): RBTreeNode<T> | null {
     if (!this.parent) return null // sibling null if no parent
     return this.isOnLeft() ? this.parent.right : this.parent.left
   }
 
-  isOnLeft (): boolean { return this === this.parent!.left }
-  hasRedChild (): boolean {
-    return Boolean(this.left && this.left.color === 0) || Boolean(this.right && this.right.color === 0)
+  isOnLeft(): boolean {
+    return this === this.parent!.left
+  }
+
+  hasRedChild(): boolean {
+    return (
+      Boolean(this.left && this.left.color === 0) ||
+      Boolean(this.right && this.right.color === 0)
+    )
   }
 }
 
 class RBTree<T> {
   root: RBTreeNode<T> | null
   compare: (l: T, r: T) => boolean
-  constructor (compare = (l: T, r: T) => l < r) {
+  constructor(compare = (l: T, r: T) => l < r) {
     this.root = null
     this.compare = compare
   }
 
-  rotateLeft (pt: RBTreeNode<T>): void {
+  rotateLeft(pt: RBTreeNode<T>): void {
     const right = pt.right!
     pt.right = right.left
 
@@ -44,7 +50,7 @@ class RBTree<T> {
     pt.parent = right
   }
 
-  rotateRight (pt: RBTreeNode<T>): void {
+  rotateRight(pt: RBTreeNode<T>): void {
     const left = pt.left!
     pt.left = left.right
 
@@ -59,19 +65,19 @@ class RBTree<T> {
     pt.parent = left
   }
 
-  swapColor (p1: RBTreeNode<T>, p2: RBTreeNode<T>): void {
+  swapColor(p1: RBTreeNode<T>, p2: RBTreeNode<T>): void {
     const tmp = p1.color
     p1.color = p2.color
     p2.color = tmp
   }
 
-  swapData (p1: RBTreeNode<T>, p2: RBTreeNode<T>): void {
+  swapData(p1: RBTreeNode<T>, p2: RBTreeNode<T>): void {
     const tmp = p1.data
     p1.data = p2.data
     p2.data = tmp
   }
 
-  fixAfterInsert (pt: RBTreeNode<T>): void {
+  fixAfterInsert(pt: RBTreeNode<T>): void {
     let parent = null
     let grandParent = null
 
@@ -109,17 +115,15 @@ class RBTree<T> {
           this.swapColor(parent!, grandParent)
           pt = parent!
         }
-      }
-
-      /* Case : B
+      } else {
+        /* Case : B
                Parent of pt is right child of Grand-parent of pt */
-      else {
         const uncle = grandParent!.left
 
         /*  Case : 1
                     The uncle of pt is also red
                     Only Recoloring required */
-        if ((uncle != null) && (uncle.color === 0)) {
+        if (uncle != null && uncle.color === 0) {
           grandParent!.color = 0
           parent.color = 1
           uncle.color = 1
@@ -146,7 +150,7 @@ class RBTree<T> {
     this.root!.color = 1
   }
 
-  deleteByValue (val: T): boolean {
+  deleteByValue(val: T): boolean {
     const node = this.search(val)
     if (node?.data !== val) return false
     this.deleteNode(node)
@@ -156,7 +160,7 @@ class RBTree<T> {
   // searches for given value
   // if found returns the node (used for delete)
   // else returns the last node while traversing (used in insert)
-  search (val: T): RBTreeNode<T> | null {
+  search(val: T): RBTreeNode<T> | null {
     let p = this.root
     while (p) {
       if (this.compare(val, p.data)) {
@@ -170,7 +174,7 @@ class RBTree<T> {
     return p
   }
 
-  deleteNode (v: RBTreeNode<T>): void {
+  deleteNode(v: RBTreeNode<T>): void {
     const u = BSTreplace(v)
 
     // True when u and v are both black
@@ -179,7 +183,8 @@ class RBTree<T> {
 
     if (!u) {
       // u is null therefore v is leaf
-      if (v === this.root) this.root = null // v is root, making root null
+      if (v === this.root) this.root = null
+      // v is root, making root null
       else {
         if (uvBlack) {
           // u and v both black
@@ -187,9 +192,10 @@ class RBTree<T> {
           this.fixDoubleBlack(v)
         } else {
           // u or v is red
-          if (v.sibling())
-          // sibling is not null, make it red"
-          { v.sibling()!.color = 0 }
+          if (v.sibling()) {
+            // sibling is not null, make it red"
+            v.sibling()!.color = 0
+          }
         }
         // delete v from the tree
         if (v.isOnLeft()) parent.left = null
@@ -209,7 +215,8 @@ class RBTree<T> {
         if (v.isOnLeft()) parent.left = u
         else parent.right = u
         u.parent = parent
-        if (uvBlack) this.fixDoubleBlack(u) // u and v both black, fix double black at u
+        if (uvBlack) this.fixDoubleBlack(u)
+        // u and v both black, fix double black at u
         else u.color = 1 // u or v red, color u black
       }
       return
@@ -220,7 +227,7 @@ class RBTree<T> {
     this.deleteNode(u)
 
     // find node that replaces a deleted node in BST
-    function BSTreplace (x: RBTreeNode<T>): RBTreeNode<T> | null {
+    function BSTreplace(x: RBTreeNode<T>): RBTreeNode<T> | null {
       // when node have 2 children
       if (x.left && x.right) return successor(x.right)
       // when leaf
@@ -230,17 +237,18 @@ class RBTree<T> {
     }
     // find node that do not have a left child
     // in the subtree of the given node
-    function successor (x: RBTreeNode<T>): RBTreeNode<T> {
+    function successor(x: RBTreeNode<T>): RBTreeNode<T> {
       let temp = x
       while (temp.left) temp = temp.left
       return temp
     }
   }
 
-  fixDoubleBlack (x: RBTreeNode<T>): void {
+  fixDoubleBlack(x: RBTreeNode<T>): void {
     if (x === this.root) return // Reached root
 
-    const sibling = x.sibling(); const parent = x.parent!
+    const sibling = x.sibling()
+    const parent = x.parent!
     if (!sibling) {
       // No sibiling, double black pushed up
       this.fixDoubleBlack(parent)
@@ -249,7 +257,8 @@ class RBTree<T> {
         // Sibling red
         parent.color = 0
         sibling.color = 1
-        if (sibling.isOnLeft()) this.rotateRight(parent) // left case
+        if (sibling.isOnLeft()) this.rotateRight(parent)
+        // left case
         else this.rotateLeft(parent) // right case
         this.fixDoubleBlack(x)
       } else {
@@ -292,7 +301,7 @@ class RBTree<T> {
     }
   }
 
-  insert (data: T): boolean {
+  insert(data: T): boolean {
     const node = new RBTreeNode(data)
     const parent = this.search(data)
     if (!parent) this.root = node
@@ -304,19 +313,21 @@ class RBTree<T> {
     return true
   }
 
-  find (data: T): RBTreeNode<T> | null {
+  find(data: T): RBTreeNode<T> | null {
     const node = this.search(data)
     return node && node.data === data ? node : null
   }
 
-  * inOrder (root: RBTreeNode<T> = this.root!): Generator<T, void, void> {
+  *inOrder(root: RBTreeNode<T> = this.root!): Generator<T, undefined, void> {
     if (!root) return
     for (const v of this.inOrder(root.left!)) yield v
     yield root.data
     for (const v of this.inOrder(root.right!)) yield v
   }
 
-  * reverseInOrder (root: RBTreeNode<T> = this.root!): Generator<T, void, void> {
+  *reverseInOrder(
+    root: RBTreeNode<T> = this.root!
+  ): Generator<T, undefined, void> {
     if (!root) return
     for (const v of this.reverseInOrder(root.right!)) yield v
     yield root.data

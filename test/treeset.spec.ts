@@ -36,6 +36,24 @@ describe('treeset', () => {
       expect(set.lower(2)).toEqual(1)
       expect(set.lower(2.5)).toEqual(2)
     })
+    it('should support first', () => {
+      const set = new TreeSet([0, 1, 2, 3, 4, 5])
+      expect(set.first()).toEqual(0)
+    })
+    it('should support last', () => {
+      const set = new TreeSet([0, 1, 2, 3, 4, 5])
+      expect(set.last()).toEqual(5)
+    })
+    it('should support shift', () => {
+      const set = new TreeSet([0, 1, 2, 3, 4, 5])
+      expect(set.shift()).toEqual(0)
+      expect(set.size()).toEqual(5)
+    })
+    it('should support pop', () => {
+      const set = new TreeSet([0, 1, 2, 3, 4, 5])
+      expect(set.pop()).toEqual(5)
+      expect(set.size()).toEqual(5)
+    })
     it('should sort the values correctly', () => {
       for (let i = 0; i < 20; i++) {
         const arr = [...Array(100)].map(() => Math.random())
@@ -45,7 +63,7 @@ describe('treeset', () => {
       }
     })
   })
-  describe('TreeSet', () => {
+  describe('TreeMultiSet', () => {
     it('should construct from array', () => {
       const set = new TreeMultiSet([0, 1, 2, 3, 4, 5])
       expect([...set.values()]).toEqual([0, 1, 2, 3, 4, 5])
@@ -74,6 +92,8 @@ describe('treeset', () => {
       expect(set.size()).toEqual(0)
       set.add(4)
       expect(set.size()).toEqual(1)
+      set.delete(3)
+      expect(set.size()).toEqual(1)
     })
     it('should sort the values correctly', () => {
       for (let i = 0; i < 20; i++) {
@@ -84,6 +104,24 @@ describe('treeset', () => {
         expect([...set.rvalues()]).toEqual(arr.sort((a, b) => b - a))
         expect(set.count(set.rvalues().next().value)).toEqual(2)
       }
+    })
+    it('should support first', () => {
+      const set = new TreeMultiSet([0, 1, 2, 3, 4, 5])
+      expect(set.first()).toEqual(0)
+    })
+    it('should support last', () => {
+      const set = new TreeMultiSet([0, 1, 2, 3, 4, 5])
+      expect(set.last()).toEqual(5)
+    })
+    it('should support shift', () => {
+      const set = new TreeMultiSet([0, 1, 2, 3, 4, 5])
+      expect(set.shift()).toEqual(0)
+      expect(set.size()).toEqual(5)
+    })
+    it('should support pop', () => {
+      const set = new TreeMultiSet([0, 1, 2, 3, 4, 5])
+      expect(set.pop()).toEqual(5)
+      expect(set.size()).toEqual(5)
     })
   })
 })

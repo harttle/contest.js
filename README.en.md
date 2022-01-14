@@ -4,7 +4,7 @@
 
 Ready for contest use! Data structures and algorithms in pure JavaScript with zero dependency. Features:
 
-- Ready to copy! Supports all LTS/* Node.js and has ZERO dependency.
+- Ready to copy! Supports all LTS/\* Node.js and has ZERO dependency.
 - Easy to change! Implemented in simplified code with less abstraction.
 - Available via npm! Can be imported as part of the WORKING code.
 
@@ -41,7 +41,7 @@ A collection of functions especially designed to be used on arrays. As a complim
 ```javascript
 let arr = [1, 2, 3]
 shuffle(arr)
-console.log(arr)    // [1, 3, 2]
+console.log(arr) // [1, 3, 2]
 ```
 
 **reverse(arr: any[], begin = 0, end = arr.length)**: reverse elements between [begin, end) in `arr`.
@@ -49,7 +49,7 @@ console.log(arr)    // [1, 3, 2]
 ```javascript
 let arr = [1, 2, 3, 4, 5]
 reverse(arr, 1)
-console.log(arr)    // [1, 5, 4, 3, 2]
+console.log(arr) // [1, 5, 4, 3, 2]
 ```
 
 #### Sorting
@@ -58,7 +58,7 @@ console.log(arr)    // [1, 5, 4, 3, 2]
 
 ```javascript
 let arr = [1, 3, 2]
-console.log(sort(arr))    // [1, 2, 3]
+console.log(sort(arr)) // [1, 2, 3]
 ```
 
 #### Other
@@ -80,7 +80,7 @@ kmp('what a wonderful world', 'a wonderful') // return 5
 **rabinkarp(str: string, pattern: string)**: find index of `pattern` in `str` using Rabin-Karp method, return `-1` if not found.
 
 ```javascript
-rabinkarp('what a wonderful world', 'a wonderful')  // return 5
+rabinkarp('what a wonderful world', 'a wonderful') // return 5
 ```
 
 ### Queue
@@ -129,9 +129,9 @@ deque.push(4)
 deque.unshift(0)
 deque.pop() // return 4
 deque.pop() // return 3
-deque.shift()   // return 0
+deque.shift() // return 0
 for (let val of deque) {
-    console.log(val)    // outputs 1 and 2
+  console.log(val) // outputs 1 and 2
 }
 ```
 
@@ -154,14 +154,14 @@ let heap = new Heap()
 heap.push(2)
 heap.push(3)
 heap.push(1)
-while(heap.size()) console.log(heap.pop()) // outputs 1, 2, 3
+while (heap.size()) console.log(heap.pop()) // outputs 1, 2, 3
 
 let maxHeap = new Heap((lhs, rhs) => lhs > rhs)
 maxHeap.push(2)
 maxHeap.push(3)
 maxHeap.push(1)
 // Equivelant to: maxHeap = new Heap([2, 3, 1], (lhs, rhs) => rhs - lhs)
-while(maxHeap.size()) console.log(maxHeap.pop()) // outputs 3, 2, 1
+while (maxHeap.size()) console.log(maxHeap.pop()) // outputs 3, 2, 1
 ```
 
 ### TreeSet
@@ -185,6 +185,14 @@ A worst-case time complexity log(n) set implemented by RedBlackTree (see follows
 **.lower(val: any)**: find and return the element less than `val`, return `undefined` if no such element found.
 
 **.higher(val: any)**: find and return the element greater than `val`, return `undefined` if no such element found.
+
+**.fisrt()**：return `first element` of the set, return `undefined` if no such element.
+
+**.last()**：return `last element` of the set, return `undefined` if no such element.
+
+**.shift()**：delete `first element` of the set and return it, return `undefined` if no such element.
+
+**.pop()**：delete `last element` of the set and return it, return `undefined` if no such element.
 
 **.size(): number**: return size of the set.
 
@@ -213,6 +221,14 @@ A worst-case time complexity log(n) multiset implemented by RedBlackTree (see fo
 **.lower(val: any)**: find and return the element less than `val`, return `undefined` if no such element found.
 
 **.higher(val: any)**: find and return the element greater than `val`, return `undefined` if no such element found.
+
+**.fisrt()**：return `first element` of the set, return `undefined` if no such element.
+
+**.last()**：return `last element` of the set, return `undefined` if no such element.
+
+**.shift()**：delete `first element` of the set and return it, return `undefined` if no such element.
+
+**.pop()**：delete `last element` of the set and return it, return `undefined` if no such element.
 
 **.size(): number**: return size of the set.
 
@@ -270,6 +286,7 @@ bit.update(10, 100)
 bit.sum(5) // elements in [1, 5] sums to 10 + 20 = 30
 bit.sum(10) // elements in [1, 10] sums to 10 + 20 + 100 = 130
 ```
+
 ### Disjoint Union Set
 
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/dsu.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/dsu.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/dsu.js)
@@ -295,9 +312,9 @@ A disjoint union set implementation supports path compression and union by rank,
 **primeFactors(n)**: return all prime factors of `n` as a Map with keys being factors and values being the power of the corresponding factor.
 
 ```javascript
-let factors = primeFactors(24)  // 24 = 2*2*2*3 = 2**3 + 3**1
+let factors = primeFactors(24) // 24 = 2*2*2*3 = 2**3 + 3**1
 for (let [prime, count] of factors) {
-    console.log(prime, count)
+  console.log(prime, count)
 }
 // Output
 // 2 3
@@ -335,6 +352,7 @@ for (let [prime, count] of factors) {
 **modularInverse(a: number, n: number)**: return the modular inverse of `a`, i.e. `a^-1 mod n`. Throws an error if `a` and `n` are not coprime.
 
 # Rolling Hash
+
 [TypeScript Source](https://github.com/harttle/contest.js/blob/master/rolling-hash.ts) [TypeScript Raw](https://raw.githubusercontent.com/harttle/contest.js/master/rolling-hash.ts) [JavaScript Raw](https://cdn.jsdelivr.net/npm/contest.js/lib/rolling-hash.js)
 
 **new RollingHash(L: number, M: number)**: create a rolling hash object. L is the size of rolling window. M is the base, typically should be a prime number greater than the max value to be hashed. Eg. we're hashing numbers in 0-26, M can be 29 or 31.
@@ -346,13 +364,14 @@ for (let [prime, count] of factors) {
 **.degest(value: number)**：remove the first number from rolling hash. This should be done when length is L + 1. So you should call `.digest()` before `.degest()`:
 
 ```javascript
-const LEN = 3, hash = new RollingHash(LEN, 29)
+const LEN = 3,
+  hash = new RollingHash(LEN, 29)
 const str = 'abcdabc'
-const arr = [...str].map(c => c.charCodeAt() - 97)
+const arr = [...str].map((c) => c.charCodeAt() - 97)
 for (let i = 0; i < arr.length; i++) {
-    hash.digest(arr[i])
-    if (i >= LEN) hash.degest(arr[i - LEN])
-    console.log(hash.getKey())
+  hash.digest(arr[i])
+  if (i >= LEN) hash.degest(arr[i - LEN])
+  console.log(hash.getKey())
 }
 // Output the following sequence, note that the two "abc"s have the same hash 31
 0, 1, 31, 902, 1769, 2524, 31
@@ -363,13 +382,14 @@ for (let i = 0; i < arr.length; i++) {
 Methods of BiRollingHash are the same as RollingHash, except that `.getKey()` returns a comma separated string, separating the two hash values.
 
 ```javascript
-const LEN = 3, hash = new BiRollingHash(LEN, 29, 31)
+const LEN = 3,
+  hash = new BiRollingHash(LEN, 29, 31)
 const str = 'abcdabc'
-const arr = [...str].map(c => c.charCodeAt() - 97)
+const arr = [...str].map((c) => c.charCodeAt() - 97)
 for (let i = 0; i < arr.length; i++) {
-    hash.digest(arr[i])
-    if (i >= LEN) hash.degest(arr[i - LEN])
-    console.log(hash.getKey())
+  hash.digest(arr[i])
+  if (i >= LEN) hash.degest(arr[i - LEN])
+  console.log(hash.getKey())
 }
 // Output the following sequence, note that the two "abc"s have the same hash 31
 '0,0', '1,1', '31,33', '902,1026', '1769,2015', '2524,2884', '31,33'
@@ -389,12 +409,12 @@ for (let i = 0; i < arr.length; i++) {
 
 ```javascript
 let arr = [
-    [11, 12, 13],
-    [21, 22, 23],
-    [31, 32, 33]
+  [11, 12, 13],
+  [21, 22, 23],
+  [31, 32, 33]
 ]
 for (let [ni, nj] of adjacent2D(arr, 1, 0)) {
-    console.log([ni, nj])   // [0, 0], [1, 1], [2, 0]
+  console.log([ni, nj]) // [0, 0], [1, 1], [2, 0]
 }
 ```
 
@@ -423,9 +443,9 @@ const heap = new Heap()
 
 1. Please refer to C++ STL or Java rgarding organizing and naming source files.
 2. Combine inter-dependent files into a single file to facilitate copy/paste.
-2. Place `export` at the bottom of source files, to eliminate the need of removing `export` acrossing the file.
-3. Add corresponding test cases for your source code, and ensure lint, test passes and test coverage is not decreasing.
-4. As long as asymptotic complexity is guaranteed, focus on simplicity and readability instead of performance..
+3. Place `export` at the bottom of source files, to eliminate the need of removing `export` acrossing the file.
+4. Add corresponding test cases for your source code, and ensure lint, test passes and test coverage is not decreasing.
+5. As long as asymptotic complexity is guaranteed, focus on simplicity and readability instead of performance..
 
 ### All Kind of Contribution are Appreciated
 
