@@ -7,6 +7,7 @@
   "scripts": {
     "check": "npm run test && npm run lint",
     "lint": "eslint .",
+    "fix": "eslint . --fix",
     "dev": "jest --watch",
     "test": "jest",
     "coverage": "jest --coverage",
