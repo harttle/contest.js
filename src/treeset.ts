@@ -1,18 +1,18 @@
 import { RBTree } from './rbtree'
 
 class TreeSet<T = number> {
-  #size: number
+  _size: number
   tree: RBTree<T>
   compare: (l: T, r: T) => boolean
   constructor (collection: T[] = [], compare = (l: T, r: T) => l < r) {
-    this.#size = 0
+    this._size = 0
     this.tree = new RBTree(compare)
     this.compare = compare
     for (const val of collection) this.add(val)
   }
 
   size (): number {
-    return this.#size
+    return this._size
   }
 
   has (val: T): boolean {
@@ -21,13 +21,13 @@ class TreeSet<T = number> {
 
   add (val: T): boolean {
     const added = this.tree.insert(val)
-    this.#size += added ? 1 : 0
+    this._size += added ? 1 : 0
     return added
   }
 
   delete (val: T): boolean {
     const deleted = this.tree.deleteByValue(val)
-    this.#size -= deleted ? 1 : 0
+    this._size -= deleted ? 1 : 0
     return deleted
   }
 
@@ -110,12 +110,12 @@ class TreeSet<T = number> {
 }
 
 class TreeMultiSet<T = number> {
-  #size: number
+  _size: number
   tree: RBTree<T>
   counts: Map<T, number>
   compare: (l: T, r: T) => boolean
   constructor (collection: T[] = [], compare = (l: T, r: T) => l < r) {
-    this.#size = 0
+    this._size = 0
     this.tree = new RBTree(compare)
     this.counts = new Map()
     this.compare = compare
@@ -123,7 +123,7 @@ class TreeMultiSet<T = number> {
   }
 
   size (): number {
-    return this.#size
+    return this._size
   }
 
   has (val: T): boolean {
@@ -133,7 +133,7 @@ class TreeMultiSet<T = number> {
   add (val: T): void {
     this.tree.insert(val)
     this.increase(val)
-    this.#size++
+    this._size++
   }
 
   delete (val: T): void {
@@ -141,7 +141,7 @@ class TreeMultiSet<T = number> {
     if (this.count(val) === 0) {
       this.tree.deleteByValue(val)
     }
-    this.#size--
+    this._size--
   }
 
   count (val: T): number {

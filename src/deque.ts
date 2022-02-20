@@ -75,19 +75,19 @@ class CircularDeque<T> {
 class Deque<T> {
   head: CircularDeque<T>
   tail: CircularDeque<T>
-  #size: number
+  _size: number
   constructor (collection: T[] = []) {
     this.head = new CircularDeque<T>(128)
     this.tail = new CircularDeque<T>(128)
     this.tail.empty = this.head.empty = false
     this.tail.prev = this.head
     this.head.next = this.tail
-    this.#size = 0
+    this._size = 0
     for (const item of collection) this.push(item)
   }
 
   size (): number {
-    return this.#size
+    return this._size
   }
 
   push (val: T): void {
@@ -104,11 +104,11 @@ class Deque<T> {
       last = inserted
     }
     last.push(val)
-    this.#size++
+    this._size++
   }
 
   back (): T | undefined {
-    if (this.#size === 0) return
+    if (this._size === 0) return
     return this.tail.prev!.back()
   }
 
@@ -120,7 +120,7 @@ class Deque<T> {
       this.tail.prev = last.prev
       last.prev!.next = this.tail
     }
-    this.#size--
+    this._size--
     return value
   }
 
@@ -138,7 +138,7 @@ class Deque<T> {
       first = inserted
     }
     first.unshift(val)
-    this.#size++
+    this._size++
   }
 
   shift (): T | undefined {
@@ -149,12 +149,12 @@ class Deque<T> {
       this.head.next = first.next
       first.next!.prev = this.head
     }
-    this.#size--
+    this._size--
     return value
   }
 
   front (): T | undefined {
-    if (this.#size === 0) return undefined
+    if (this._size === 0) return undefined
     return this.head.next!.front()
   }
 
