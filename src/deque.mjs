@@ -1,32 +1,3 @@
-var __accessCheck = (obj, member, msg) => {
-  if (!member.has(obj))
-    throw TypeError("Cannot " + msg);
-};
-var __privateGet = (obj, member, getter) => {
-  __accessCheck(obj, member, "read from private field");
-  return getter ? getter.call(obj) : member.get(obj);
-};
-var __privateAdd = (obj, member, value) => {
-  if (member.has(obj))
-    throw TypeError("Cannot add the same private member more than once");
-  member instanceof WeakSet ? member.add(obj) : member.set(obj, value);
-};
-var __privateSet = (obj, member, value, setter) => {
-  __accessCheck(obj, member, "write to private field");
-  setter ? setter.call(obj, value) : member.set(obj, value);
-  return value;
-};
-var __privateWrapper = (obj, member, setter, getter) => {
-  return {
-    set _(value) {
-      __privateSet(obj, member, value, setter);
-    },
-    get _() {
-      return __privateGet(obj, member, getter);
-    }
-  };
-};
-var _size;
 class CircularDeque {
   constructor(N) {
     this.prev = this.next = null;
@@ -96,18 +67,17 @@ class CircularDeque {
 }
 class Deque {
   constructor(collection = []) {
-    __privateAdd(this, _size, void 0);
     this.head = new CircularDeque(128);
     this.tail = new CircularDeque(128);
     this.tail.empty = this.head.empty = false;
     this.tail.prev = this.head;
     this.head.next = this.tail;
-    __privateSet(this, _size, 0);
+    this._size = 0;
     for (const item of collection)
       this.push(item);
   }
   size() {
-    return __privateGet(this, _size);
+    return this._size;
   }
   push(val) {
     let last = this.tail.prev;
@@ -120,10 +90,10 @@ class Deque {
       last = inserted;
     }
     last.push(val);
-    __privateWrapper(this, _size)._++;
+    this._size++;
   }
   back() {
-    if (__privateGet(this, _size) === 0)
+    if (this._size === 0)
       return;
     return this.tail.prev.back();
   }
@@ -136,7 +106,7 @@ class Deque {
       this.tail.prev = last.prev;
       last.prev.next = this.tail;
     }
-    __privateWrapper(this, _size)._--;
+    this._size--;
     return value;
   }
   unshift(val) {
@@ -150,7 +120,7 @@ class Deque {
       first = inserted;
     }
     first.unshift(val);
-    __privateWrapper(this, _size)._++;
+    this._size++;
   }
   shift() {
     if (this.head.next === this.tail)
@@ -161,11 +131,11 @@ class Deque {
       this.head.next = first.next;
       first.next.prev = this.head;
     }
-    __privateWrapper(this, _size)._--;
+    this._size--;
     return value;
   }
   front() {
-    if (__privateGet(this, _size) === 0)
+    if (this._size === 0)
       return void 0;
     return this.head.next.front();
   }
@@ -178,7 +148,6 @@ class Deque {
     }
   }
 }
-_size = new WeakMap();
 export {
   CircularDeque,
   Deque
