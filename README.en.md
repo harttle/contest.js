@@ -28,7 +28,7 @@ Ready for contest use! Data structures and algorithms in pure JavaScript with ze
 
 ### Algorithm
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.mjs)
 
 #### Modifying the Sequence
 
