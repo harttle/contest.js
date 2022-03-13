@@ -12,7 +12,7 @@
 
 ## 使用手册
 
-- [算法](#算法): shuffle, sort, swap, reverse, partition, nextPermutation 等。
+- [算法](#算法): shuffle, sort, swap, reverse, partition, nextPermutation, dijkstra 等。
 - [字符串](#字符串): KMP, RabinKarp
 - [队列](#队列)
 - [双向队列](#双向队列)
@@ -61,6 +61,42 @@ console.log(arr)    // [1, 5, 4, 3, 2]
 ```javascript
 let arr = [1, 3, 2]
 console.log(sort(arr))    // [1, 2, 3]
+```
+
+#### 图算法
+
+**createGraph(edges)**：从边 `[T, T, number]` 的数组创建有表示向图的二维映射。可用于 `dijkstra` 算法。
+
+```javascript
+const G = createGraph([
+    [0, 1, 10],
+    [1, 0, 30],
+    [1, 2, 50]
+])
+G.get(0)    // Map(1) { 1 => 10 }
+G.get(1)    // Map(2) { 0 => 30, 2 => 50 }
+```
+
+**dijkstra(source, G)**: 单源最短路径算法。`G` 为二维映射，`G.get(u).get(v)` 表示有向图中边 `u` 到 `v` 的权。`source` 和 `G` 的键可以是任意基本类型比如数字、字符串等。返回一个 `dist: Map<T, number>`，`dist[u]` 表示 `source` 到 `u` 的最短路径长度。
+
+```javascript
+const G = new Map()
+G.set(0, new Map([[1, 10]]))
+G.set(1, new Map([[0, 30], [2, 50]]))
+
+dijkstra(0, G) // Map(3) { 0 => 0, 1 => 10, 2 => 60 }
+```
+
+可以借助于 `createGraph()`，上述代码等价于：
+
+```javascript
+const G = new createGraph([
+    [0, 1, 10],
+    [1, 0, 30],
+    [1, 2, 50],
+])
+
+dijkstra(0, G) // Map(3) { 0 => 0, 1 => 10, 2 => 60 }
 ```
 
 #### 其他算法

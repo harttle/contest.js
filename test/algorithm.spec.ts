@@ -1,4 +1,4 @@
-import { sort, shuffle, nextPermutation, prevPermutation } from '../src/algorithm'
+import { createGraph, dijkstra, sort, shuffle, nextPermutation, prevPermutation } from '../src/algorithm'
 
 describe('algorithm', () => {
   describe('shuffle', () => {
@@ -94,6 +94,31 @@ describe('algorithm', () => {
       expect(arr).toEqual([1, 3, 2])
       expect(prevPermutation(arr)).toEqual(true)
       expect(arr).toEqual([1, 2, 3])
+    })
+  })
+  describe('dijkstra()', () => {
+    it('should return empty results for empty graph', () => {
+      const G = new Map()
+      const dist = dijkstra(0, G)
+      expect(dist).toEqual(new Map([[0, 0]]))
+    })
+    it('should support number-typed simple graph', () => {
+      const G = createGraph([
+        [0, 1, 5],
+        [0, 2, 1],
+        [2, 1, 2]
+      ])
+      const dist = dijkstra(0, G)
+      expect(dist).toEqual(new Map([[0, 0], [1, 3], [2, 1]]))
+    })
+    it('should support string-typed simple graph', () => {
+      const G = createGraph([
+        ['a', 'b', 5],
+        ['a', 'c', 1],
+        ['c', 'b', 2]
+      ])
+      const dist = dijkstra('a', G)
+      expect(dist).toEqual(new Map([['a', 0], ['b', 3], ['c', 1]]))
     })
   })
 })

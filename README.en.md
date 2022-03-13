@@ -61,6 +61,42 @@ let arr = [1, 3, 2]
 console.log(sort(arr))    // [1, 2, 3]
 ```
 
+#### Graph Algorithms
+
+**createGraph(edges)**: create a 2d Map representing the graph from an array of edges: `[T, T, number]`. The result can be used as input of `dijkstra` algorithm.
+
+```javascript
+const G = createGraph([
+    [0, 1, 10],
+    [1, 0, 30],
+    [1, 2, 50]
+])
+G.get(0)    // Map(1) { 1 => 10 }
+G.get(1)    // Map(2) { 0 => 30, 2 => 50 }
+```
+
+**dijkstra(source, G)**: return the single source shortest distance. `G.get(u).get(v)` represents the weight of an edge from `u` to `v`. `source` and keys of `G` can be of arbitrary primitive data type, like strings, numbers, etc. Returns the `dist` of type `Map<T, number>`, where `dist[u]` represents the shortest distance from `source` to `u`.
+
+```javascript
+const G = new Map()
+G.set(0, new Map([[1, 10]]))
+G.set(1, new Map([[0, 30], [2, 50]]))
+
+dijkstra(0, G) // Map(3) { 0 => 0, 1 => 10, 2 => 60 }
+```
+
+Make use of `createGraph()`, the above snippet is equivalent to:
+
+```javascript
+const G = new createGraph([
+    [0, 1, 10],
+    [1, 0, 30],
+    [1, 2, 50],
+])
+
+dijkstra(0, G) // Map(3) { 0 => 0, 1 => 10, 2 => 60 }
+```
+
 #### Other
 
 **nextPermutation(arr)**: rearranges arr into the next lexicographically greater permutation. If the function can determine the next higher permutation, it rearranges the elements as such and return `true`. If that was not possible (because it is already at the largest possible permutation), it rearranges the elements according to the first permutation (sorted in ascending order) and return `false`.

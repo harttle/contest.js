@@ -1,3 +1,5 @@
+import { Heap } from './heap'
+
 function nextPermutation <T=number> (arr: T[]): boolean {
   let i = arr.length - 1
   while (i > 0 && arr[i - 1] >= arr[i]) i--
@@ -63,4 +65,36 @@ function partition <T=number> (arr: T[], pred: (val: T) => number, begin = 0, en
   }
 }
 
-export { nextPermutation, prevPermutation, reverse, swap, shuffle, sort, partition }
+function dijkstra<T> (source: T, G: Map<T, Map<T, number>>): Map<T, number> {
+  type PQEntry = [T, number]
+  const dist = new Map()
+  const pq = new Heap((l: PQEntry, r: PQEntry) => l[1] < r[1])
+  dist.set(source, 0)
+  pq.push([source, 0])
+
+  while (pq.size()) {
+    const [u, d] = pq.pop()
+    const edges = G.has(u) ? G.get(u)! : []
+    for (const [v, w] of edges) {
+      const currDist = dist.has(v) ? dist.get(v) : Infinity
+      const nextDist = d + w
+      if (nextDist < currDist) {
+        dist.set(v, nextDist)
+        pq.push([v, nextDist])
+      }
+    }
+  }
+  return dist
+}
+
+function createGraph<T> (edges: Array<[T, T, number]>): Map<T, Map<T, number>> {
+  const G = new Map()
+  for (const [u, v, w] of edges) {
+    if (!G.has(u)) G.set(u, new Map())
+    const currW = G.get(u)!.has(v) ? G.get(u)!.get(v) : Infinity
+    G.get(u).set(v, Math.min(currW, w))
+  }
+  return G
+}
+
+export { createGraph, dijkstra, nextPermutation, prevPermutation, reverse, swap, shuffle, sort, partition }
