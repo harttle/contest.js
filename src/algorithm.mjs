@@ -1,3 +1,4 @@
+import { Heap } from "./heap";
 function nextPermutation(arr) {
   let i = arr.length - 1;
   while (i > 0 && arr[i - 1] >= arr[i])
@@ -72,7 +73,38 @@ function partition(arr, pred, begin = 0, end = arr.length) {
     swap(arr, lo, hi);
   }
 }
+function dijkstra(source, G) {
+  const dist = new Map();
+  const pq = new Heap((l, r) => l[1] < r[1]);
+  dist.set(source, 0);
+  pq.push([source, 0]);
+  while (pq.size()) {
+    const [u, d] = pq.pop();
+    const edges = G.has(u) ? G.get(u) : [];
+    for (const [v, w] of edges) {
+      const currDist = dist.has(v) ? dist.get(v) : Infinity;
+      const nextDist = d + w;
+      if (nextDist < currDist) {
+        dist.set(v, nextDist);
+        pq.push([v, nextDist]);
+      }
+    }
+  }
+  return dist;
+}
+function createGraph(edges) {
+  const G = new Map();
+  for (const [u, v, w] of edges) {
+    if (!G.has(u))
+      G.set(u, new Map());
+    const currW = G.get(u).has(v) ? G.get(u).get(v) : Infinity;
+    G.get(u).set(v, Math.min(currW, w));
+  }
+  return G;
+}
 export {
+  createGraph,
+  dijkstra,
   nextPermutation,
   partition,
   prevPermutation,
