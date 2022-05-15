@@ -10,29 +10,30 @@
 
 支持在 LeetCode 页面提取、执行、判定用例的 Tampermonkey 脚本： https://greasyfork.org/zh-CN/scripts/402276-leetcode-helper-for-javascript
 
-## 使用手册
+**索引**
 
-- [算法](#算法): shuffle, sort, swap, reverse, partition, nextPermutation, dijkstra 等。
-- [字符串](#字符串): KMP, RabinKarp
-- [队列](#队列)
-- [双向队列](#双向队列)
-- [堆](#堆)
-- [TreeSet](#TreeSet)
-- [TreeMultiSet](#TreeMultiSet)
-- [BitSet](#BitSet)
-- [树状数组](#树状数组)
-- [并查集](#并查集): 路径压缩、按秩合并。
-- [质数算法](#质数算法): 质数测试、筛选等。
-- [排列组合](#排列组合): 阶乘、模阶乘、二项式系数、帕斯卡三角。
-- [欧几里得算法](#欧几里得算法): 欧几里得公约数，扩展欧几里得，模拟元。
-- [滚动哈希](#滚动哈希): 滚动哈希，双哈希。
-- [工具](#工具): create2DArray, create3DArray, greater, valid2D, adjacent2D。
+模块 | 内容 | 链接
+---  | ---  | ---
+[算法](#算法) | swap, shuffle, reverse, sort, dijkstra | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/algorithm.spec.ts)
+[字符串](#字符串) | kmp, rabinkarp | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/string.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/string.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/string.spec.ts)
+[队列](#队列) | Queue | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/queue.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/queue.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/queue.spec.ts)
+[双向队列](#双向队列) | Deque | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/deque.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/deque.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/deque.spec.ts)
+[堆](#堆) | Heap, PriorityQueue, RemovableHeap, RemovableDoubleHeap | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/heap.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/heap.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/heap.spec.ts)
+[TreeSet](#TreeSet) | TreeSet, TreeMultiSet | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/treeset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treeset.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/treeset.spec.ts)
+[BitSet](#BitSet) | BitSet | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bitset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bitset.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bitset.spec.ts)
+[树状数组](#树状数组) | BIT | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bit.spec.ts)
+[并查集](#并查集) | 路径压缩、按秩合并 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/dsu.spec.ts)
+[质数算法](#质数算法) | 质数测试、筛选等 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/prime.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/prime.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/prime.spec.ts)
+[排列组合](#排列组合) | 阶乘、模阶乘、二项式系数、帕斯卡三角 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/binomial.spec.ts)
+[欧几里得算法](#欧几里得算法) | 欧几里得公约数，扩展欧几里得，模拟元 |
+[滚动哈希](#滚动哈希) | 滚动哈希，双哈希 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/rolling-hash.spec.ts)
+[工具](#工具) | create2DArray, create3DArray, greater, valid2D, adjacent2D | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/funcitonal.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/functional.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/funcitonal.spec.ts)
 
-### 算法
+## 算法
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/algorithm.spec.ts)
 
-#### 数组操作
+### 数组操作
 
 补充 JavaScript 中一些针对数组的操作。比如 JavaScript 缺少 `swap`，不能对区间进行 `reverse`。
 
@@ -54,7 +55,7 @@ reverse(arr, 1)
 console.log(arr) // [1, 5, 4, 3, 2]
 ```
 
-#### 排序操作
+### 排序操作
 
 **sort(arr: any[], begin = 0, end = arr.length, compare = (l, r) => l - r)**：使用快排堆数组进行原址排序（不稳定），支持对一个区间进行排序，以及自定义 `compare` 方法。
 
@@ -64,7 +65,7 @@ sort(arr) // [1, 2, 3]
 sort(arr, (l, r) => r - l) // [3, 2, 1]
 ```
 
-#### 图算法
+### 图算法
 
 **createGraph(edges)**：从边 `[T, T, number]` 的数组创建有表示向图的二维映射。可用于 `dijkstra` 算法。
 
@@ -100,15 +101,15 @@ const G = new createGraph([
 dijkstra(0, G) // Map(3) { 0 => 0, 1 => 10, 2 => 60 }
 ```
 
-#### 其他算法
+### 其他算法
 
 **nextPermutation(arr)**：重组为下一个字典序排列。如果可以得到更大的排列，就完成排列并返回 `true`。如果无法得到更大的排列，就重排为第一个排列（所有元素都是升序）并返回 `false`。
 
 **prevPermutation(arr)**：重组为上一个字典序排列。如果可以得到更小的排列，就完成排列并返回 `true`。如果无法得到更小的排列，就重排为最后一个排列（所有元素都是降序）并返回 `false`。
 
-### 字符串
+## 字符串
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/string.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/string.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/string.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/string.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/string.spec.ts)
 
 **kmp(str: string, pattern: string)**：使用 KMP 方法在 `str` 中找到 `pattern` 的下标，如果不存在则返回 `-1`。
 
@@ -122,9 +123,9 @@ kmp('what a wonderful world', 'a wonderful') // returns 5
 rabinkarp('what a wonderful world', 'a wonderful') // returns 5
 ```
 
-### 队列
+## 队列
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/queue.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/queue.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/queue.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/queue.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/queue.spec.ts)
 
 **new Queue(collection?: Iterable)**：创建一个队列。
 
@@ -140,9 +141,9 @@ rabinkarp('what a wonderful world', 'a wonderful') // returns 5
 
 **.values()**：返回从第一个元素到最后一个元素的 ES6 迭代器。
 
-### 双向队列
+## 双向队列
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/deque.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/deque.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/deque.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/deque.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/deque.spec.ts)
 
 **new Deque(collection?: Iterable)**：创建一个双向队列。
 
@@ -174,15 +175,17 @@ for (let val of deque) {
 }
 ```
 
-### 堆
+## 堆
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/heap.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/heap.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/heap.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/heap.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/heap.spec.ts)
+
+### Heap
 
 **new Heap(collection?: Iterable, compare?: ((l, r) => number) = (l, r) => l - r)**：从可迭代集合 `collection` 创建一个最小堆（较小的先 pop 出来），使用 `compare` 比较大小（接受两个参数，首个参数较小则返回 `true`，否则返回 `false`，详见示例）。
 
 **.push(element: any)**：把 `element` 加入堆中。
 
-**.pop()**：从堆中弹出一个元素并返回，如果堆是空的则返回 `undefined`。
+**.pop()**：从堆中弹出最小元素并返回，如果堆是空的则返回 `undefined`。
 
 **.top()**：返回堆顶的元素（最小的元素），如果堆是空的则返回 `undefined`。
 
@@ -195,7 +198,7 @@ heap.push(3)
 heap.push(1)
 while (heap.size()) console.log(heap.pop()) // 输出 1, 2, 3
 
-let maxHeap = new Heap((lhs, rhs) => lhs > rhs)
+let maxHeap = new Heap((lhs, rhs) => rhs - lhs)
 maxHeap.push(2)
 maxHeap.push(3)
 maxHeap.push(1)
@@ -203,9 +206,100 @@ maxHeap.push(1)
 while (maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 ```
 
-### TreeSet
+### PriorityQueue
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/treeset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treeset.mjs)
+**new PriorityQueue(collection?: Iterable, compare?: ((l, r) => number) = (l, r) => l - r)**：从可迭代集合 `collection` 创建一个最小堆（较小的先 pop 出来），使用 `compare` 比较大小（接受两个参数，首个参数较小则返回 `true`，否则返回 `false`，详见示例）。
+
+**.offer(element: any)**：把 `element` 加入堆中。
+
+**.push(element: any)**：同上。
+
+**.poll()**：从队列中弹出最小元素并返回，如果堆是空的则返回 `undefined`。
+
+**.pop()**：同上。
+
+**.peek()**：返回队列顶的元素（最小的元素），如果堆是空的则返回 `undefined`。
+
+**.top()**：同上。
+
+**.has(element: any)**：返回布尔值，表示是否包含 `element`。
+
+**.size()**：返回队列里的元素个数。
+
+**.remove(element: any)**：从队列里删除 `element`。
+
+```javascript
+let queue = new PriorityQueue()
+queue.offer(3)
+queue.offer(2)
+queue.offer(1)
+while (heap.size()) console.log(heap.poll()) // 输出 1, 2, 3
+
+queue = new PriorityQueue((lhs, rhs) => rhs - lhs)
+queue.offer(3)
+queue.offer(2)
+queue.offer(1)
+// 等价于 queue = new PriorityQueue([3, 2, 1], (lhs, rhs) => rhs - lhs)
+while (queue.size()) console.log(queue.poll()) // 输出 3, 2, 1
+```
+
+### RemovableHeap
+
+**new RemovableHeap(collection?: Iterable, compare?: ((l, r) => number) = (l, r) => l - r)**：从可迭代集合 `collection` 创建一个最小堆（较小的先 pop 出来），使用 `compare` 比较大小（接受两个参数，首个参数较小则返回 `true`，否则返回 `false`，详见示例）。
+
+**.push(element: any)**：把 `element` 加入堆中。
+
+**.pop()**：从堆中弹出最小元素并返回，如果堆是空的则返回 `undefined`。
+
+**.top()**：返回堆顶的元素（最小的元素），如果堆是空的则返回 `undefined`。
+
+**.has(element: any)**：返回布尔值，表示是否包含 `element`。
+
+**.size()**：返回堆里的元素个数。
+
+**.remove(element: any)**：从堆里删除 `element`。
+
+```javascript
+let heap = new RemovableHeap()
+heap.push(2)
+heap.push(3)
+heap.push(1)
+heap.remove(2)
+while (heap.size()) console.log(heap.pop()) // 输出 1, 3
+```
+
+### RemovableDoubleHeap
+
+**new RemovableHeap(collection?: Iterable, compare?: ((l, r) => number) = (l, r) => l - r)**：从可迭代集合 `collection` 创建一个最小堆（较小的先 pop 出来），使用 `compare` 比较大小（接受两个参数，首个参数较小则返回 `true`，否则返回 `false`，详见示例）。
+
+**.push(element: any)**：把 `element` 加入堆中。
+
+**.popMin()**：从堆中弹出最小元素并返回，如果堆是空的则返回 `undefined`。
+
+**.popMin()**：从堆中弹出最大元素并返回，如果堆是空的则返回 `undefined`。
+
+**.top()**：返回堆顶的元素（最小的元素），如果堆是空的则返回 `undefined`。
+
+**.has(element: any)**：返回布尔值，表示是否包含 `element`。
+
+**.size()**：返回堆里的元素个数。
+
+**.remove(element: any)**：从堆里删除 `element`。
+
+```javascript
+let heap = new RemovableDoubleHeap()
+heap.push(2)
+heap.push(3)
+heap.push(1)
+heap.popMin() // 1
+heap.popMax() // 3
+```
+
+## TreeSet
+
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/treeset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treeset.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/treeset.spec.ts)
+
+**TreeSet**
 
 读写元素最坏情况时间复杂度为 log(n) 的有序集合，由红黑树实现。
 
@@ -251,9 +345,7 @@ set.ceil(4) // 5 is the smallest element >= 4
 set.ceil(5) // 5 is the smallest element >= 5
 ```
 
-### TreeMultiSet
-
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/treeset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treeset.mjs)
+**TreeMultiSet**
 
 读写元素最坏情况时间复杂度为 log(n) 的有序集合，和 `TreeSet` 不同的是它允许多个等价的键存在，由红黑树实现。
 
@@ -287,9 +379,9 @@ set.ceil(5) // 5 is the smallest element >= 5
 
 **.rvalues()**：返回从最后一个元素到第一个元素的 ES6 迭代器。
 
-### BitSet
+## BitSet
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/bitset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bitset.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/bitset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bitset.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bitset.spec.ts)
 
 一个动态大小的位集合。由 BigInt 实现，占用空间很小，但独写性能不如数组。
 
@@ -317,9 +409,9 @@ set.ceil(5) // 5 is the smallest element >= 5
 
 **.negate(rhs: BitSet)**：返回一个新的 `BigSet`，它的值是 `!this`.
 
-### 树状数组
+## 树状数组
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bit.spec.ts)
 
 一个树状数组的实现，也叫 [Fenwick Tree](https://zh.wikipedia.org/zh-hans/%E6%A0%91%E7%8A%B6%E6%95%B0%E7%BB%84), Binary Indexed Tree，BIT。
 
@@ -338,9 +430,9 @@ bit.sum(5) // elements in [1, 5] sums to 10 + 20 = 30
 bit.sum(10) // elements in [1, 10] sums to 10 + 20 + 100 = 130
 ```
 
-### 并查集
+## 并查集
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/dsu.spec.ts)
 
 支持路径压缩和按秩合并的并查集实现，提供接近常数时间复杂度（Inverse Ackermann Function）的 `find/union` 操作。
 
@@ -350,9 +442,9 @@ bit.sum(10) // elements in [1, 10] sums to 10 + 20 + 100 = 130
 
 **.union(x: number, y: number)**：合并 `x` 和 `y` 所属的组并返回 `true`，如果 `x` 和 `y` 已经在同一组则返回 `false`。
 
-### 质数算法
+## 质数算法
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/prime.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/prime.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/prime.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/prime.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/prime.spec.ts)
 
 **prime(n: number)**：返回第 n（从 1 开始）个质数，例如 `prime(1)` 返回 `2`。
 
@@ -372,9 +464,9 @@ for (let [prime, count] of factors) {
 // 3 1
 ```
 
-### 排列组合
+## 排列组合
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/binomial.spec.ts)
 
 **factorial(n: number)**：返回 `n` 的阶乘，例如 `factorial(3)` 返回 `6`。
 
@@ -392,7 +484,7 @@ for (let [prime, count] of factors) {
 
 **moduleBinomialCoefficient(n: number, k: number, MOD: number)**：返回二项式系数，它的值对 `MOD` 取模。
 
-### 欧几里得算法
+## 欧几里得算法
 
 [TypeScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.mjs)
 
@@ -402,8 +494,8 @@ for (let [prime, count] of factors) {
 
 **modularInverse(a: number, n: number)**：返回 `a` 的模逆元，即 `a^-1 mod n`。如果 `a` 和 `n` 不互质则抛出异常。
 
-# 滚动哈希
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.mjs)
+## 滚动哈希
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/rolling-hash.spec.ts)
 
 **new RollingHash(L: number, M: number)**：创建一个滚动哈希对象。L 是滚动窗口的长度；M 是倍增的进制，通常取大于被哈希数的最大值的一个质数。例如被哈希的是 0-26，该质数可以取 29 或 31。
 
@@ -445,9 +537,9 @@ for (let i = 0; i < arr.length; i++) {
 '0,0', '1,1', '31,33', '902,1026', '1769,2015', '2524,2884', '31,33'
 ```
 
-### 工具
+## 工具
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/funcitonal.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/functional.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/funcitonal.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/functional.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/funcitonal.spec.ts)
 
 **memorized(fn: Function, getKey? ((...args: any[]) => string) = ((...args) => args.join(',')))**：返回一个新的函数，记录并缓存 `fn` 的调用参数和返回值。可以自定义 `getKey` 来避免键的冲突或降低键的空间占用。
 

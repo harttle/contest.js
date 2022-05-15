@@ -48,7 +48,11 @@ class Heap<T=number> {
     }
   }
 
-  swap (i: number, j: number): void {
+  clear (): void {
+    this.data = [null]
+  }
+
+  private swap (i: number, j: number): void {
     const d = this.data;
     [d[i], d[j]] = [d[j], d[i]]
   }
@@ -67,6 +71,9 @@ class RemovableHeap<T> {
     this.heap = new Heap<T>(data, cmp)
     this.counts = new Map()
     this._invalidCount = 0
+    for (let i = 1; i < this.heap.data.length; i++) {
+      this._setCount(this.heap.data[i]!, 1)
+    }
   }
 
   size (): number {
@@ -82,28 +89,32 @@ class RemovableHeap<T> {
     this._normalize()
     if (this.heap.size() < 1) return undefined
     const top = this.heap.pop()
-    this._count(top, -1)
+    this._setCount(top, -1)
     return top
   }
 
   push (num: T): void {
-    this._count(num, 1)
+    this._setCount(num, 1)
     this.heap.push(num)
   }
 
   remove (num: T): void {
     if (Number(this.counts.get(num)) > 0) {
-      this._count(num, -1)
+      this._setCount(num, -1)
       this._invalidCount++
     }
   }
 
-  _count (num: T, diff: number): void {
+  has (value: T): boolean {
+    return this.counts.get(value)! > 0
+  }
+
+  private _setCount (num: T, diff: number): void {
     const count = this.counts.get(num) ?? 0
     this.counts.set(num, count + diff)
   }
 
-  _normalize (): void {
+  private _normalize (): void {
     while (this.heap.size() && !this.counts.get(this.heap.top())) {
       this.heap.pop()
       this._invalidCount--
@@ -151,4 +162,18 @@ class RemovableDoubleHeap<T> {
   }
 }
 
-export { Heap, RemovableHeap, RemovableDoubleHeap }
+class PriorityQueue<T> extends RemovableHeap<T> {
+  offer (value: T): void {
+    return this.push(value)
+  }
+
+  poll (): T | undefined {
+    return this.pop()
+  }
+
+  peek (): T | undefined {
+    return this.top()
+  }
+}
+
+export { Heap, RemovableHeap, RemovableDoubleHeap, PriorityQueue }

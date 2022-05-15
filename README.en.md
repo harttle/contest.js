@@ -8,29 +8,31 @@ Ready for contest use! Data structures and algorithms in pure JavaScript with ze
 - Easy to change! Implemented in simplified code with less abstraction.
 - Available via npm! Can be imported as part of the WORKING code.
 
-## User Guide
+**索引**
 
-- [Algorithm](#Algorithm): shuffle, sort, swap, reverse, partition, nextPermutation, etc.
-- [String](#String): KMP, RabinKarp
-- [Queue](#Queue)
-- [Deque](#Deque)
-- [Heap](#Heap)
-- [TreeSet](#TreeSet)
-- [TreeMultiSet](#TreeMultiSet)
-- [BitSet](#BitSet)
-- [Binary Indexed Tree](#Binary%20Indexed%20Tree)
-- [Disjoint Union Set](#Disjoint%20Union%20Set): Path compression, union by rank
-- [Primes](#Primes): prime test, sieve, nth prime, etc.
-- [Permutation and Combination](#Permutation%20and%20Combination): factorial, modular factorial, Binomial coefficient, Pascal's Triangle
-- [Euclidean](#Euclidean): euclidean/GCD algorithm, extended-euclidean/extended-GCD algorithm and modular inverse.
-- [Rolling Hash](#Rolling%20Hash): Rolling hash, rolling double hash.
-- [Functional](#Functional): create2DArray, create3DArray, greater, valid2D, adjacent2D
+模块 | 内容 | 链接
+---  | ---  | ---
+[Algorithm](#Algorithm) | swap, shuffle, reverse, sort, dijkstra | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/algorithm.spec.ts)
+[String](#String) | kmp, rabinkarp | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/string.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/string.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/string.spec.ts)
+[Queue](#Queue) | Queue | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/queue.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/queue.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/queue.spec.ts)
+[Deque](#Deque) | Deque | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/deque.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/deque.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/deque.spec.ts)
+[Heap](#Heap) | Heap, PriorityQueue, RemovableHeap, RemovableDoubleHeap | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/heap.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/heap.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/heap.spec.ts)
+[TreeSet](#TreeSet) | TreeSet, TreeMultiSet | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/treeset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treeset.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/treeset.spec.ts)
+[BitSet](#BitSet) | BitSet | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bitset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bitset.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bitset.spec.ts)
+[Binary Indexed Tree](#Binary%20Indexed%20Tree) | BIT | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bit.spec.ts)
+[Disjoint Union Set](#Disjoint%20Union%20Set) | Path compression, union by rank | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/dsu.spec.ts)
+[Primes](#Primes) | prime test, sieve, nth prime | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/prime.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/prime.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/prime.spec.ts)
+[Permutation and Combination](#Permutation%20and%20Combination) | factorial, modular factorial, Binomial coefficient, Pascal's Triangle | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/binomial.spec.ts)
+[Euclidean](#Euclidean) | euclidean/GCD algorithm, extended-euclidean/extended-GCD algorithm and modular inverse |
+[Rolling Hash](#Rolling%20Hash) | Rolling hash, rolling double hash | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/rolling-hash.spec.ts)
+[Functional](#Functional) | create2DArray, create3DArray, greater, valid2D, adjacent2D | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/funcitonal.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/functional.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/funcitonal.spec.ts)
 
-### Algorithm
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.mjs)
+## Algorithm
 
-#### Modifying the Sequence
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/algorithm.spec.ts)
+
+### Modifying the Sequence
 
 A collection of functions especially designed to be used on arrays. As a compliment to JavaScript Array to `swap`, to `reverse` on an interval.
 
@@ -52,7 +54,7 @@ reverse(arr, 1)
 console.log(arr) // [1, 5, 4, 3, 2]
 ```
 
-#### Sorting
+### Sorting
 
 **sort(arr: any[], begin = 0, end = arr.length, compare = (l, r) => l - r)**: sort the array in-place using quicksort, it's not stable. Support sorting on an specified interval and customize a `compare` function.
 
@@ -63,7 +65,7 @@ sort(arr)    // [1, 2, 3]
 sort(arr, (l, r) => r - l)    // [3, 2, 1]
 ```
 
-#### Graph Algorithms
+### Graph Algorithms
 
 **createGraph(edges)**: create a 2d Map representing the graph from an array of edges: `[T, T, number]`. The result can be used as input of `dijkstra` algorithm.
 
@@ -102,15 +104,15 @@ console.log(sort(arr)) // [1, 2, 3]
 >>>>>>> 93d71ce37411ecbc5ad3efd1973b77ffd9fbcf57
 ```
 
-#### Other
+### Other
 
 **nextPermutation(arr)**: rearranges arr into the next lexicographically greater permutation. If the function can determine the next higher permutation, it rearranges the elements as such and return `true`. If that was not possible (because it is already at the largest possible permutation), it rearranges the elements according to the first permutation (sorted in ascending order) and return `false`.
 
 **prevPermutation(arr)**: rearranges arr into the previous lexicographically-ordered permutation. If the function can determine the previous permutation, it rearranges the elements as such and return `true`. If that was not possible (because it is already at the lowest possible permutation), it rearranges the elements according to the last permutation (sorted in descending order) and return `false`.
 
-### String
+## String
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/string.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/string.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/string.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/string.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/string.spec.ts)
 
 **kmp(str: string, pattern: string)**: find index of `pattern` in `str` using KMP method, return `-1` if not found.
 
@@ -124,9 +126,9 @@ kmp('what a wonderful world', 'a wonderful') // return 5
 rabinkarp('what a wonderful world', 'a wonderful') // return 5
 ```
 
-### Queue
+## Queue
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/queue.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/queue.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/queue.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/queue.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/queue.spec.ts)
 
 **new Queue(collection?: Iterable)**: create a queue.
 
@@ -142,9 +144,9 @@ rabinkarp('what a wonderful world', 'a wonderful') // return 5
 
 **.values()**: return an ES6 iterator of values, ordered from front to back.
 
-### Deque
+## Deque
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/deque.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/deque.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/deque.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/deque.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/deque.spec.ts)
 
 **new Deque(collection?: Iterable)**: create a deque.
 
@@ -176,9 +178,11 @@ for (let val of deque) {
 }
 ```
 
-### Heap
+## Heap
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/heap.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/heap.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/heap.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/heap.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/heap.spec.ts)
+
+### Heap
 
 **new Heap(collection?: Iterable, compare?: ((l, r) => number) = (l, r) => l - r)**: create a min heap (less elements pop out first) from elements of the `collection`, and compare elements using `compare` (accepts two arguments, return a negative number if first argument is less, return a positive number if the second argument is less, return 0 otherwise).
 
@@ -197,17 +201,108 @@ heap.push(3)
 heap.push(1)
 while (heap.size()) console.log(heap.pop()) // outputs 1, 2, 3
 
-let maxHeap = new Heap((lhs, rhs) => lhs > rhs)
+let maxHeap = new Heap((lhs, rhs) => rhs - lhs)
 maxHeap.push(2)
 maxHeap.push(3)
 maxHeap.push(1)
-// Equivelant to: maxHeap = new Heap([2, 3, 1], (lhs, rhs) => rhs - lhs)
+// equivalent to: `maxHeap = new Heap([2, 3, 1], (lhs, rhs) => rhs - lhs)`
 while (maxHeap.size()) console.log(maxHeap.pop()) // outputs 3, 2, 1
 ```
 
-### TreeSet
+### PriorityQueue
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/treeset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treeset.mjs)
+**new RemovableHeap(collection?: Iterable, compare?: ((l, r) => number) = (l, r) => l - r)**: create a min heap (less elements pop out first) from elements of the `collection`, and compare elements using `compare` (accepts two arguments, return a negative number if first argument is less, return a positive number if the second argument is less, return 0 otherwise).
+
+**.offer(element: any)**: push `element` into the heap.
+
+**.push(element: any)**: same as above.
+
+**.poll()**: pop the least element from the heap and return that element, return `undefined` if it's already empty.
+
+**.pop()**: same as above.
+
+**.peek()**: return the most top element (the minimal element), return `undefined` if it's empty.
+
+**.top()**: same as above.
+
+**.has(element: any)**: return a boolean representing whether or not the `element` is in the heap.
+
+**.size()**: return the number of elements in the heap.
+
+**.remove(element: any)**: remove `element` from the heap.
+
+```javascript
+let queue = new PriorityQueue()
+queue.offer(3)
+queue.offer(2)
+queue.offer(1)
+while (heap.size()) console.log(heap.poll()) // outputs 1, 2, 3
+
+queue = new PriorityQueue((lhs, rhs) => rhs - lhs)
+queue.offer(3)
+queue.offer(2)
+queue.offer(1)
+// equivalent to `queue = new PriorityQueue([3, 2, 1], (lhs, rhs) => rhs - lhs)`
+while (queue.size()) console.log(queue.poll()) // outputs 3, 2, 1
+```
+
+### RemovableHeap
+
+**new RemovableHeap(collection?: Iterable, compare?: ((l, r) => number) = (l, r) => l - r)**: create a min heap (less elements pop out first) from elements of the `collection`, and compare elements using `compare` (accepts two arguments, return a negative number if first argument is less, return a positive number if the second argument is less, return 0 otherwise).
+
+**.push(element: any)**: push `element` into the heap.
+
+**.pop()**: pop the least element from the heap and return that element, return `undefined` if it's already empty.
+
+**.top()**: return the most top element (the minimal element), return `undefined` if it's empty.
+
+**.has(element: any)**: return a boolean representing whether or not the `element` is in the heap.
+
+**.size()**: return the number of elements in the heap.
+
+**.remove(element: any)**: remove `element` from the heap.
+
+```javascript
+let heap = new RemovableHeap()
+heap.push(2)
+heap.push(3)
+heap.push(1)
+heap.remove(2)
+while (heap.size()) console.log(heap.pop()) // outputs 1, 3
+```
+
+### RemovableDoubleHeap
+
+**new RemovableDoubleHeap(collection?: Iterable, compare?: ((l, r) => number) = (l, r) => l - r)**: create a min heap (less elements pop out first) from elements of the `collection`, and compare elements using `compare` (accepts two arguments, return a negative number if first argument is less, return a positive number if the second argument is less, return 0 otherwise).
+
+**.push(element: any)**: push `element` into the heap.
+
+**.popMin()**: pop the least element from the heap and return that element, return `undefined` if it's already empty.
+
+**.popMax()**: pop the largest element from the heap and return that element, return `undefined` if it's already empty.
+
+**.top()**: return the most top element (the minimal element), return `undefined` if it's empty.
+
+**.has(element: any)**: return a boolean representing whether or not the `element` is in the heap.
+
+**.size()**: return the number of elements in the heap.
+
+**.remove(element: any)**: remove `element` from the heap.
+
+```javascript
+let heap = new RemovableDoubleHeap()
+heap.push(2)
+heap.push(3)
+heap.push(1)
+heap.popMin() // 1
+heap.popMax() // 3
+```
+
+## TreeSet
+
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/treeset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treeset.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/treeset.spec.ts)
+
+**TreeSet**
 
 A worst-case time complexity log(n) set implemented by RedBlackTree (see follows).
 
@@ -252,9 +347,7 @@ set.add(7)
 set.ceil(4)  // 5 is the smallest element >= 4
 set.ceil(5)  // 5 is the smallest element >= 5
 
-### TreeMultiSet
-
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/treeset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treeset.mjs)
+**TreeMultiSet**
 
 A worst-case time complexity log(n) multiset implemented by RedBlackTree (see follows).
 
@@ -288,9 +381,9 @@ A worst-case time complexity log(n) multiset implemented by RedBlackTree (see fo
 
 **.rvalues()**: return an ES6 iterator of values, ordered from back to front.
 
-### BitSet
+## BitSet
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/bitset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bitset.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/bitset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bitset.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/bitset.spec.ts)
 
 A bitset implemented by bigint, which is very space efficient but not efficient for read/write.
 
@@ -318,9 +411,9 @@ A bitset implemented by bigint, which is very space efficient but not efficient 
 
 **.negate(rhs: BitSet)**: return a new bitset as the result of `!this`.
 
-### Binary Indexed Tree
+## Binary Indexed Tree
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/bit.spec.ts)
 
 A binary indexed tree implementation, also called [Fenwick Tree](https://en.wikipedia.org/wiki/Fenwick_tree).
 
@@ -339,9 +432,9 @@ bit.sum(5) // elements in [1, 5] sums to 10 + 20 = 30
 bit.sum(10) // elements in [1, 10] sums to 10 + 20 + 100 = 130
 ```
 
-### Disjoint Union Set
+## Disjoint Union Set
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/dsu.spec.ts)
 
 A disjoint union set implementation supports path compression and union by rank, providing nearly constant time complexity (Inverse Ackermann Function) `find/union` operations.
 
@@ -351,9 +444,9 @@ A disjoint union set implementation supports path compression and union by rank,
 
 **.union(x: number, y: number)**: union the group of `x` and the group of `y` and return `true`, return `false` if `x` and `y` are already in the same group.
 
-### Primes
+## Primes
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/prime.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/prime.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/prime.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/prime.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/prime.spec.ts)
 
 **prime(nth: number)**: get nth (1-indexed) prime. e.g. `prime(1)` return `2`
 
@@ -373,9 +466,9 @@ for (let [prime, count] of factors) {
 // 3 1
 ```
 
-### Permutation and Combination
+## Permutation and Combination
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/binomial.spec.ts)
 
 **factorial(n: number)**: factorial of `n`, e.g. `factorial(3)` return `6`.
 
@@ -393,9 +486,9 @@ for (let [prime, count] of factors) {
 
 **moduleBinomialCoefficient(n: number, k: number, MOD: number)**: return the binomial coefficient with each value modulo `MOD`.
 
-### Euclidean
+## Euclidean
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/euclidean.spec.ts)
 
 **gcd(a: number, b: number)**: run Euclidean algorithm to compute the greatest common divisor.
 
@@ -404,7 +497,7 @@ for (let [prime, count] of factors) {
 **modularInverse(a: number, n: number)**: return the modular inverse of `a`, i.e. `a^-1 mod n`. Throws an error if `a` and `n` are not coprime.
 
 # Rolling Hash
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/rolling-hash.spec.ts)
 
 **new RollingHash(L: number, M: number)**: create a rolling hash object. L is the size of rolling window. M is the base, typically should be a prime number greater than the max value to be hashed. Eg. we're hashing numbers in 0-26, M can be 29 or 31.
 
@@ -446,9 +539,9 @@ for (let i = 0; i < arr.length; i++) {
 '0,0', '1,1', '31,33', '902,1026', '1769,2015', '2524,2884', '31,33'
 ```
 
-### Functional
+## Functional
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/funcitonal.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/functional.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/funcitonal.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/functional.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/funcitonal.spec.ts)
 
 **memorized(fn: Function, getKey? ((...args: any[]) => string) = ((...args) => args.join(',')))**: create a new function memorizing arguments and result for each call, return that result if the same arguments are passed in. A custom `getKey` can be specified to avoid conflict or to be more efficient.
 
@@ -496,7 +589,7 @@ All kind of contributions are appreciated:
 - Improve existing on readability, simplicity or performance.
 - Engineering: improve test coverage, add or translate document in any languate.
 
-### How to add a algorithm/utility?
+## How to add a algorithm/utility?
 
 - How to design the interface/signature?
     - Is there a similiar ES6 Class or function to refer to? e.g. `BitSet` is designed with reference to `Set`.
