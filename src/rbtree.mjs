@@ -3,6 +3,7 @@ class RBTreeNode {
     this.data = data;
     this.left = this.right = this.parent = null;
     this.color = 0;
+    this.count = 1;
   }
   sibling() {
     if (!this.parent)
@@ -106,30 +107,21 @@ class RBTree {
     }
     this.root.color = 1;
   }
-  deleteByValue(val) {
-    const node = this.search(val);
-    if ((node == null ? void 0 : node.data) !== val)
+  delete(val) {
+    const node = this.find(val);
+    if (!node)
+      return false;
+    node.count--;
+    if (!node.count)
+      this.deleteNode(node);
+    return true;
+  }
+  deleteAll(val) {
+    const node = this.find(val);
+    if (!node)
       return false;
     this.deleteNode(node);
     return true;
-  }
-  search(val) {
-    let p = this.root;
-    while (p) {
-      if (this.lt(val, p.data)) {
-        if (!p.left)
-          break;
-        else
-          p = p.left;
-      } else if (this.lt(p.data, val)) {
-        if (!p.right)
-          break;
-        else
-          p = p.right;
-      } else
-        break;
-    }
-    return p;
   }
   deleteNode(v) {
     const u = BSTreplace(v);
@@ -238,23 +230,47 @@ class RBTree {
     }
   }
   insert(data) {
+    let parent = this.root;
+    while (parent) {
+      if (this.lt(data, parent.data)) {
+        if (!parent.left)
+          break;
+        else
+          parent = parent.left;
+      } else if (this.lt(parent.data, data)) {
+        if (!parent.right)
+          break;
+        else
+          parent = parent.right;
+      } else
+        break;
+    }
     const node = new RBTreeNode(data);
-    const parent = this.search(data);
     if (!parent)
       this.root = node;
     else if (this.lt(node.data, parent.data))
       parent.left = node;
     else if (this.lt(parent.data, node.data))
       parent.right = node;
-    else
+    else {
+      parent.count++;
       return false;
+    }
     node.parent = parent;
     this.fixAfterInsert(node);
     return true;
   }
   find(data) {
-    const node = this.search(data);
-    return node && node.data === data ? node : null;
+    let p = this.root;
+    while (p) {
+      if (this.lt(data, p.data)) {
+        p = p.left;
+      } else if (this.lt(p.data, data)) {
+        p = p.right;
+      } else
+        break;
+    }
+    return p != null ? p : null;
   }
   *inOrder(root = this.root) {
     if (!root)

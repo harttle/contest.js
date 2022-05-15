@@ -18,16 +18,16 @@ class TreeSet {
     return !!this.tree.find(val);
   }
   add(val) {
-    const added = this.tree.insert(val);
-    this._size += added ? 1 : 0;
-    return added;
+    const successful = this.tree.insert(val);
+    this._size += successful ? 1 : 0;
+    return successful;
   }
   delete(val) {
-    const deleted = this.tree.deleteByValue(val);
+    const deleted = this.tree.deleteAll(val);
     this._size -= deleted ? 1 : 0;
     return deleted;
   }
-  ceiling(val) {
+  ceil(val) {
     let p = this.tree.root;
     let higher = null;
     while (p) {
@@ -127,7 +127,6 @@ class TreeMultiSet {
     this._size = 0;
     this.compare = compare;
     this.tree = new RBTree(compare);
-    this.counts = new Map();
     for (const val of collection)
       this.add(val);
   }
@@ -138,26 +137,22 @@ class TreeMultiSet {
     return !!this.tree.find(val);
   }
   add(val) {
-    const added = this.tree.insert(val);
-    this.increase(val);
+    const successful = this.tree.insert(val);
     this._size++;
-    return added;
+    return successful;
   }
   delete(val) {
-    if (!this.has(val))
+    const successful = this.tree.delete(val);
+    if (!successful)
       return false;
-    this.decrease(val);
-    if (this.count(val) === 0) {
-      this.tree.deleteByValue(val);
-    }
     this._size--;
     return true;
   }
   count(val) {
-    var _a;
-    return (_a = this.counts.get(val)) != null ? _a : 0;
+    const node = this.tree.find(val);
+    return node ? node.count : 0;
   }
-  ceiling(val) {
+  ceil(val) {
     let p = this.tree.root;
     let higher = null;
     while (p) {
@@ -251,12 +246,6 @@ class TreeMultiSet {
         yield val;
     }
     return void 0;
-  }
-  decrease(val) {
-    this.counts.set(val, this.count(val) - 1);
-  }
-  increase(val) {
-    this.counts.set(val, this.count(val) + 1);
   }
 }
 export {
