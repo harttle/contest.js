@@ -17,9 +17,9 @@ class RBTreeNode {
   }
 }
 class RBTree {
-  constructor(lt = (l, r) => l < r) {
+  constructor(compare = (l, r) => l < r ? -1 : l > r ? 1 : 0) {
     this.root = null;
-    this.lt = lt;
+    this.lt = (l, r) => compare(l, r) < 0;
   }
   rotateLeft(pt) {
     const right = pt.right;
