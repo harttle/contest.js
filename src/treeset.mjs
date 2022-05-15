@@ -79,6 +79,26 @@ class TreeSet {
     }
     return lower == null ? void 0 : lower.data;
   }
+  first() {
+    return this.tree.inOrder().next().value;
+  }
+  last() {
+    return this.tree.reverseInOrder().next().value;
+  }
+  shift() {
+    const first = this.first();
+    if (first === void 0)
+      return void 0;
+    this.delete(first);
+    return first;
+  }
+  pop() {
+    const last = this.last();
+    if (last === void 0)
+      return void 0;
+    this.delete(last);
+    return last;
+  }
   *[Symbol.iterator]() {
     for (const val of this.values())
       yield val;
@@ -118,16 +138,20 @@ class TreeMultiSet {
     return !!this.tree.find(val);
   }
   add(val) {
-    this.tree.insert(val);
+    const added = this.tree.insert(val);
     this.increase(val);
     this._size++;
+    return added;
   }
   delete(val) {
+    if (!this.has(val))
+      return false;
     this.decrease(val);
     if (this.count(val) === 0) {
       this.tree.deleteByValue(val);
     }
     this._size--;
+    return true;
   }
   count(val) {
     var _a;
@@ -184,6 +208,29 @@ class TreeMultiSet {
       }
     }
     return lower == null ? void 0 : lower.data;
+  }
+  first() {
+    return this.tree.inOrder().next().value;
+  }
+  last() {
+    return this.tree.reverseInOrder().next().value;
+  }
+  shift() {
+    const first = this.first();
+    if (first === void 0)
+      return void 0;
+    this.delete(first);
+    return first;
+  }
+  pop() {
+    const last = this.last();
+    if (last === void 0)
+      return void 0;
+    this.delete(last);
+    return last;
+  }
+  *[Symbol.iterator]() {
+    yield* this.values();
   }
   *keys() {
     for (const val of this.values())
