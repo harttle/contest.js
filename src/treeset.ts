@@ -92,6 +92,28 @@ class TreeSet<T = number> {
     return lower?.data
   }
 
+  first (): T | undefined {
+    return this.tree.inOrder().next().value
+  }
+
+  last (): T | undefined {
+    return this.tree.reverseInOrder().next().value
+  }
+
+  shift (): T | undefined {
+    const first = this.first()
+    if (first === undefined) return undefined
+    this.delete(first)
+    return first
+  }
+
+  pop (): T | undefined {
+    const last = this.last()
+    if (last === undefined) return undefined
+    this.delete(last)
+    return last
+  }
+
   * [Symbol.iterator] (): Generator<T, void, void> {
     for (const val of this.values()) yield val
   }
@@ -139,18 +161,21 @@ class TreeMultiSet<T = number> {
     return !!this.tree.find(val)
   }
 
-  add (val: T): void {
-    this.tree.insert(val)
+  add (val: T): boolean {
+    const added = this.tree.insert(val)
     this.increase(val)
     this._size++
+    return added
   }
 
-  delete (val: T): void {
+  delete (val: T): boolean {
+    if (!this.has(val)) return false
     this.decrease(val)
     if (this.count(val) === 0) {
       this.tree.deleteByValue(val)
     }
     this._size--
+    return true
   }
 
   count (val: T): number {
@@ -211,6 +236,32 @@ class TreeMultiSet<T = number> {
       }
     }
     return lower?.data
+  }
+
+  first (): T | undefined {
+    return this.tree.inOrder().next().value
+  }
+
+  last (): T | undefined {
+    return this.tree.reverseInOrder().next().value
+  }
+
+  shift (): T | undefined {
+    const first = this.first()
+    if (first === undefined) return undefined
+    this.delete(first)
+    return first
+  }
+
+  pop (): T | undefined {
+    const last = this.last()
+    if (last === undefined) return undefined
+    this.delete(last)
+    return last
+  }
+
+  * [Symbol.iterator] (): Generator<T, void, void> {
+    yield * this.values()
   }
 
   * keys (): Generator<T, void, void> {

@@ -4,7 +4,7 @@
 
 纯 JavaScript 实现的数据结构和算法，主要是方便用于比赛、教学和白板，尽可能缓解 JavaScript 在竞赛上的劣势，特点：
 
-- **拷来即用**。支持所有 LTS/* Node.js 且零依赖。
+- **拷来即用**。支持所有 LTS/\* Node.js 且零依赖。
 - **容易更改**。采用简化的实现，尽量少的抽象层级。
 - **支持 npm**。加一句 require，即可写出可以工作的代码。
 
@@ -43,7 +43,7 @@
 ```javascript
 let arr = [1, 2, 3]
 shuffle(arr)
-console.log(arr)    // [1, 3, 2]
+console.log(arr) // [1, 3, 2]
 ```
 
 **reverse(arr: any[], begin = 0, end = arr.length)**：反转数组 `arr` 里的 [begin, end) 之间的元素。
@@ -51,7 +51,7 @@ console.log(arr)    // [1, 3, 2]
 ```javascript
 let arr = [1, 2, 3, 4, 5]
 reverse(arr, 1)
-console.log(arr)    // [1, 5, 4, 3, 2]
+console.log(arr) // [1, 5, 4, 3, 2]
 ```
 
 #### 排序操作
@@ -60,8 +60,8 @@ console.log(arr)    // [1, 5, 4, 3, 2]
 
 ```javascript
 let arr = [1, 3, 2]
-sort(arr)    // [1, 2, 3]
-sort(arr, (l, r) => r - l)    // [3, 2, 1]
+sort(arr) // [1, 2, 3]
+sort(arr, (l, r) => r - l) // [3, 2, 1]
 ```
 
 #### 图算法
@@ -74,8 +74,8 @@ const G = createGraph([
     [1, 0, 30],
     [1, 2, 50]
 ])
-G.get(0)    // Map(1) { 1 => 10 }
-G.get(1)    // Map(2) { 0 => 30, 2 => 50 }
+G.get(0) // Map(1) { 1 => 10 }
+G.get(1) // Map(2) { 0 => 30, 2 => 50 }
 ```
 
 **dijkstra(source, G)**: 单源最短路径算法。`G` 为二维映射，`G.get(u).get(v)` 表示有向图中边 `u` 到 `v` 的权。`source` 和 `G` 的键可以是任意基本类型比如数字、字符串等。返回一个 `dist: Map<T, number>`，`dist[u]` 表示 `source` 到 `u` 的最短路径长度。
@@ -119,7 +119,7 @@ kmp('what a wonderful world', 'a wonderful') // returns 5
 **rabinkarp(str: string, pattern: string)**：使用 Rabin-Karp 方法在 `str` 中找到 `pattern` 的下标，如果不存在则返回 `-1`。
 
 ```javascript
-rabinkarp('what a wonderful world', 'a wonderful')  // returns 5
+rabinkarp('what a wonderful world', 'a wonderful') // returns 5
 ```
 
 ### 队列
@@ -168,9 +168,9 @@ deque.push(4)
 deque.unshift(0)
 deque.pop() // returns 4
 deque.pop() // returns 3
-deque.shift()   // returns 0
+deque.shift() // returns 0
 for (let val of deque) {
-    console.log(val)    // outputs 1 and 2
+  console.log(val) // outputs 1 and 2
 }
 ```
 
@@ -193,14 +193,14 @@ let heap = new Heap()
 heap.push(2)
 heap.push(3)
 heap.push(1)
-while(heap.size()) console.log(heap.pop()) // 输出 1, 2, 3
+while (heap.size()) console.log(heap.pop()) // 输出 1, 2, 3
 
 let maxHeap = new Heap((lhs, rhs) => lhs > rhs)
 maxHeap.push(2)
 maxHeap.push(3)
 maxHeap.push(1)
 // 等价于 maxHeap = new Heap([2, 3, 1], (lhs, rhs) => rhs - lhs)
-while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
+while (maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 ```
 
 ### TreeSet
@@ -225,6 +225,14 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 
 **.higher(val: any)**：找到并返回大于 `val` 的最小元素，如果不存在这样的元素则返回 `undefined`。
 
+**.fisrt()**：返回集合中`第一个`元素，如果不存在这样的元素则返回 `undefined`。
+
+**.last()**：返回集合中`最后一个`元素，如果不存在这样的元素则返回 `undefined`。
+
+**.shift()**：删除集合中`第一个`元素并返回被删除元素的值，如果不存在这样的元素则返回 `undefined`。
+
+**.pop()**：删除集合中`最后一个`元素并返回被删除元素的值，如果不存在这样的元素则返回 `undefined`。
+
 **.size(): number**：返回集合的大小。
 
 **.values()**：返回从第一个元素到最后一个元素的 ES6 迭代器。
@@ -239,8 +247,8 @@ set.add(7)
 // 等价于
 // const set = new TreeSet([3, 5, 7], (l, r) => l - r);
 
-set.ceil(4)  // 5 is the smallest element >= 4
-set.ceil(5)  // 5 is the smallest element >= 5
+set.ceil(4) // 5 is the smallest element >= 4
+set.ceil(5) // 5 is the smallest element >= 5
 ```
 
 ### TreeMultiSet
@@ -264,6 +272,14 @@ set.ceil(5)  // 5 is the smallest element >= 5
 **.lower(val: any)**：找到并返回小于 `val` 的最大元素，如果不存在这样的元素则返回 `undefined`。
 
 **.higher(val: any)**：找到并返回大于 `val` 的最小元素，如果不存在这样的元素则返回 `undefined`。
+
+**.fisrt()**：返回集合中`第一个`元素，如果不存在这样的元素则返回 `undefined`。
+
+**.last()**：返回集合中`最后一个`元素，如果不存在这样的元素则返回 `undefined`。
+
+**.shift()**：删除集合中`第一个`元素并返回被删除元素的值，如果不存在这样的元素则返回 `undefined`。
+
+**.pop()**：删除集合中`最后一个`元素并返回被删除元素的值，如果不存在这样的元素则返回 `undefined`。
 
 **.size(): number**：返回集合的大小。
 
@@ -347,9 +363,9 @@ bit.sum(10) // elements in [1, 10] sums to 10 + 20 + 100 = 130
 **primeFactors(n)**：返回 `n` 的所有质数因子，键为质数，值为因子的指数。
 
 ```javascript
-let factors = primeFactors(24)  // 24 = 2*2*2*3 = 2**3 + 3**1
+let factors = primeFactors(24) // 24 = 2*2*2*3 = 2**3 + 3**1
 for (let [prime, count] of factors) {
-    console.log(prime, count)
+  console.log(prime, count)
 }
 // 输出
 // 2 3
@@ -398,13 +414,14 @@ for (let [prime, count] of factors) {
 **.degest(value: number)**：退出一个数到滚动哈希里。注意要在刚超过窗口长度时（长度为 L + 1）的时候退出。一般需要调用 `.digest()` 之后调用 `.degest()`。例如：
 
 ```javascript
-const LEN = 3, hash = new RollingHash(LEN, 29)
+const LEN = 3,
+  hash = new RollingHash(LEN, 29)
 const str = 'abcdabc'
-const arr = [...str].map(c => c.charCodeAt() - 97)
+const arr = [...str].map((c) => c.charCodeAt() - 97)
 for (let i = 0; i < arr.length; i++) {
-    hash.digest(arr[i])
-    if (i >= LEN) hash.degest(arr[i - LEN])
-    console.log(hash.getKey())
+  hash.digest(arr[i])
+  if (i >= LEN) hash.degest(arr[i - LEN])
+  console.log(hash.getKey())
 }
 // 输出，注意两次到 c 时哈希值相等
 0, 1, 31, 902, 1769, 2524, 31
@@ -415,13 +432,14 @@ for (let i = 0; i < arr.length; i++) {
 BiRollingHash 的其他接口与 RollingHash 一致，除了 `.getKey()` 返回的是一个字符串，逗号分隔两个哈希值。例如：
 
 ```javascript
-const LEN = 3, hash = new BiRollingHash(LEN, 29, 31)
+const LEN = 3,
+  hash = new BiRollingHash(LEN, 29, 31)
 const str = 'abcdabc'
-const arr = [...str].map(c => c.charCodeAt() - 97)
+const arr = [...str].map((c) => c.charCodeAt() - 97)
 for (let i = 0; i < arr.length; i++) {
-    hash.digest(arr[i])
-    if (i >= LEN) hash.degest(arr[i - LEN])
-    console.log(hash.getKey())
+  hash.digest(arr[i])
+  if (i >= LEN) hash.degest(arr[i - LEN])
+  console.log(hash.getKey())
 }
 // 输出，注意两次到 c 时哈希值相等
 '0,0', '1,1', '31,33', '902,1026', '1769,2015', '2524,2884', '31,33'
@@ -441,12 +459,12 @@ for (let i = 0; i < arr.length; i++) {
 
 ```javascript
 let arr = [
-    [11, 12, 13],
-    [21, 22, 23],
-    [31, 32, 33]
+  [11, 12, 13],
+  [21, 22, 23],
+  [31, 32, 33]
 ]
 for (let [ni, nj] of adjacent2D(arr, 1, 0)) {
-    console.log([ni, nj])   // [0, 0], [1, 1], [2, 0]
+  console.log([ni, nj]) // [0, 0], [1, 1], [2, 0]
 }
 ```
 
@@ -470,7 +488,6 @@ import { Heap } from 'contest.js'
 
 const heap = new Heap()
 ```
-
 
 ## 贡献指南
 

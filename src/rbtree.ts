@@ -1,10 +1,10 @@
 import { Compare } from './functional'
 
-class RBTreeNode<T=number> {
+class RBTreeNode<T = number> {
   data: T
   left: RBTreeNode<T> | null
-  right: RBTreeNode<T>| null
-  parent: RBTreeNode<T>| null
+  right: RBTreeNode<T> | null
+  parent: RBTreeNode<T> | null
   color: number
   constructor (data: T) {
     this.data = data
@@ -17,9 +17,15 @@ class RBTreeNode<T=number> {
     return this.isOnLeft() ? this.parent.right : this.parent.left
   }
 
-  isOnLeft (): boolean { return this === this.parent!.left }
+  isOnLeft (): boolean {
+    return this === this.parent!.left
+  }
+
   hasRedChild (): boolean {
-    return Boolean(this.left && this.left.color === 0) || Boolean(this.right && this.right.color === 0)
+    return (
+      Boolean(this.left && this.left.color === 0) ||
+      Boolean(this.right && this.right.color === 0)
+    )
   }
 }
 
@@ -111,17 +117,15 @@ class RBTree<T> {
           this.swapColor(parent!, grandParent)
           pt = parent!
         }
-      }
-
-      /* Case : B
+      } else {
+        /* Case : B
                Parent of pt is right child of Grand-parent of pt */
-      else {
         const uncle = grandParent!.left
 
         /*  Case : 1
                     The uncle of pt is also red
                     Only Recoloring required */
-        if ((uncle != null) && (uncle.color === 0)) {
+        if (uncle != null && uncle.color === 0) {
           grandParent!.color = 0
           parent.color = 1
           uncle.color = 1
@@ -181,7 +185,8 @@ class RBTree<T> {
 
     if (!u) {
       // u is null therefore v is leaf
-      if (v === this.root) this.root = null // v is root, making root null
+      if (v === this.root) this.root = null
+      // v is root, making root null
       else {
         if (uvBlack) {
           // u and v both black
@@ -189,9 +194,10 @@ class RBTree<T> {
           this.fixDoubleBlack(v)
         } else {
           // u or v is red
-          if (v.sibling())
-          // sibling is not null, make it red"
-          { v.sibling()!.color = 0 }
+          if (v.sibling()) {
+            // sibling is not null, make it red"
+            v.sibling()!.color = 0
+          }
         }
         // delete v from the tree
         if (v.isOnLeft()) parent.left = null
@@ -211,7 +217,8 @@ class RBTree<T> {
         if (v.isOnLeft()) parent.left = u
         else parent.right = u
         u.parent = parent
-        if (uvBlack) this.fixDoubleBlack(u) // u and v both black, fix double black at u
+        if (uvBlack) this.fixDoubleBlack(u)
+        // u and v both black, fix double black at u
         else u.color = 1 // u or v red, color u black
       }
       return
@@ -242,7 +249,8 @@ class RBTree<T> {
   fixDoubleBlack (x: RBTreeNode<T>): void {
     if (x === this.root) return // Reached root
 
-    const sibling = x.sibling(); const parent = x.parent!
+    const sibling = x.sibling()
+    const parent = x.parent!
     if (!sibling) {
       // No sibiling, double black pushed up
       this.fixDoubleBlack(parent)
@@ -251,7 +259,8 @@ class RBTree<T> {
         // Sibling red
         parent.color = 0
         sibling.color = 1
-        if (sibling.isOnLeft()) this.rotateRight(parent) // left case
+        if (sibling.isOnLeft()) this.rotateRight(parent)
+        // left case
         else this.rotateLeft(parent) // right case
         this.fixDoubleBlack(x)
       } else {
@@ -311,14 +320,16 @@ class RBTree<T> {
     return node && node.data === data ? node : null
   }
 
-  * inOrder (root: RBTreeNode<T> = this.root!): Generator<T, void, void> {
+  * inOrder (root: RBTreeNode<T> = this.root!): Generator<T, undefined, void> {
     if (!root) return
     for (const v of this.inOrder(root.left!)) yield v
     yield root.data
     for (const v of this.inOrder(root.right!)) yield v
   }
 
-  * reverseInOrder (root: RBTreeNode<T> = this.root!): Generator<T, void, void> {
+  * reverseInOrder (
+    root: RBTreeNode<T> = this.root!
+  ): Generator<T, undefined, void> {
     if (!root) return
     for (const v of this.reverseInOrder(root.right!)) yield v
     yield root.data

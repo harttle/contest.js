@@ -1,3 +1,6 @@
+/**
+ * @type {import('@typescript-eslint/experimental-utils').TSESLint.Linter.Config}
+ */
 module.exports = {
   extends: 'standard-with-typescript',
   parserOptions: {
