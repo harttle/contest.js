@@ -81,7 +81,7 @@ describe('treeset', () => {
       expect(set.lower(2)).toEqual(3)
       expect(set.lower(2.5)).toEqual(3)
     })
-    it('objects equal to each other should be deemed as same item', () => {
+    it('should treat items as equal ones when `compare` returns 0', () => {
       const s = new TreeSet<[number, number]>([], (a: [number, number], b: [number, number]) => {
         if (a[0] !== b[0]) return a[0] - b[0]
         return a[1] - b[1]
@@ -180,7 +180,7 @@ describe('treeset', () => {
       expect(set.pop()).toEqual(5)
       expect(set.size()).toEqual(5)
     })
-    it('objects equal to each other should be deemed as different items', () => {
+    it('should treat items as equal ones when `compare` returns 0', () => {
       const s = new TreeMultiSet<[number, number]>([], (a: [number, number], b: [number, number]) => {
         if (a[0] !== b[0]) return a[0] - b[0]
         return a[1] - b[1]
