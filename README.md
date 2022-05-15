@@ -26,7 +26,7 @@
 - [排列组合](#排列组合): 阶乘、模阶乘、二项式系数、帕斯卡三角。
 - [欧几里得算法](#欧几里得算法): 欧几里得公约数，扩展欧几里得，模拟元。
 - [滚动哈希](#滚动哈希): 滚动哈希，双哈希。
-- [工具](#工具): create2DArray, create3DArray, greater, less, valid2D, adjacent2D。
+- [工具](#工具): create2DArray, create3DArray, greater, valid2D, adjacent2D。
 
 ### 算法
 
@@ -60,7 +60,8 @@ console.log(arr)    // [1, 5, 4, 3, 2]
 
 ```javascript
 let arr = [1, 3, 2]
-console.log(sort(arr))    // [1, 2, 3]
+sort(arr)    // [1, 2, 3]
+sort(arr, (l, r) => r - l)    // [3, 2, 1]
 ```
 
 #### 图算法
@@ -208,7 +209,7 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 
 读写元素最坏情况时间复杂度为 log(n) 的有序集合，由红黑树实现。
 
-**new TreeSet(collection?: any[], compare?: ((l: any, r: any) => boolean) = ((l, r) => l < r))**：创建一个集合，添加所有 `collection` 里的元素，并按照 `compare` 来比较元素大小（默认为升序）。
+**new TreeSet(collection?: any[], compare?: ((l: any, r: any) => boolean) = ((l, r) => l - r))**：创建一个集合，添加所有 `collection` 里的元素，并按照 `compare` 来比较元素大小（默认为升序）。
 
 **.add(val: any)**：把元素 `val` 插入集合，如果 `val` 已存在则移除它。
 
@@ -216,19 +217,31 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 
 **.delete(val: any)**：从集合删除元素 `val`。
 
-**.floor(val: any)**：找到并返回小于等于 `val` 的元素，如果不存在这样的元素则返回 `undefined`。
+**.floor(val: any)**：找到并返回小于等于 `val` 的最大元素，如果不存在这样的元素则返回 `undefined`。
 
-**.ceiling(val: any)**：找到并返回大于等于 `val` 的元素，如果不存在这样的元素则返回 `undefined`。
+**.ceil(val: any)**：找到并返回大于等于 `val` 的最小元素，如果不存在这样的元素则返回 `undefined`。
 
-**.lower(val: any)**：找到并返回小于 `val` 的元素，如果不存在这样的元素则返回 `undefined`。
+**.lower(val: any)**：找到并返回小于 `val` 的最大元素，如果不存在这样的元素则返回 `undefined`。
 
-**.higher(val: any)**：找到并返回大于 `val` 的元素，如果不存在这样的元素则返回 `undefined`。
+**.higher(val: any)**：找到并返回大于 `val` 的最小元素，如果不存在这样的元素则返回 `undefined`。
 
 **.size(): number**：返回集合的大小。
 
 **.values()**：返回从第一个元素到最后一个元素的 ES6 迭代器。
 
 **.rvalues()**：返回从最后一个元素到第一个元素的 ES6 迭代器。
+
+```javascript
+const set = new TreeSet()
+set.add(3)
+set.add(5)
+set.add(7)
+// 等价于
+// const set = new TreeSet([3, 5, 7], (l, r) => l - r);
+
+set.ceil(4)  // 5 is the smallest element >= 4
+set.ceil(5)  // 5 is the smallest element >= 5
+```
 
 ### TreeMultiSet
 
@@ -244,13 +257,13 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // 输出 3, 2, 1
 
 **.delete(val: any)**：从集合删除元素 `val`。
 
-**.floor(val: any)**：找到并返回小于等于 `val` 的元素，如果不存在这样的元素则返回 `undefined`。
+**.floor(val: any)**：找到并返回小于等于 `val` 的最大元素，如果不存在这样的元素则返回 `undefined`。
 
-**.ceiling(val: any)**：找到并返回大于等于 `val` 的元素，如果不存在这样的元素则返回 `undefined`。
+**.ceil(val: any)**：找到并返回大于等于 `val` 的最小元素，如果不存在这样的元素则返回 `undefined`。
 
-**.lower(val: any)**：找到并返回小于 `val` 的元素，如果不存在这样的元素则返回 `undefined`。
+**.lower(val: any)**：找到并返回小于 `val` 的最大元素，如果不存在这样的元素则返回 `undefined`。
 
-**.higher(val: any)**：找到并返回大于 `val` 的元素，如果不存在这样的元素则返回 `undefined`。
+**.higher(val: any)**：找到并返回大于 `val` 的最小元素，如果不存在这样的元素则返回 `undefined`。
 
 **.size(): number**：返回集合的大小。
 

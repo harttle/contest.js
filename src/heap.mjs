@@ -1,11 +1,11 @@
 class Heap {
-  constructor(data = [], cmp = (lhs, rhs) => lhs < rhs) {
+  constructor(data = [], compare = (lhs, rhs) => lhs < rhs ? -1 : lhs > rhs ? 1 : 0) {
     if (typeof data === "function") {
-      cmp = data;
+      compare = data;
       data = [];
     }
     this.data = [null, ...data];
-    this.lt = (i, j) => cmp(this.data[i], this.data[j]);
+    this.lt = (i, j) => compare(this.data[i], this.data[j]) < 0;
     for (let i = this.size(); i > 0; i--)
       this.heapify(i);
   }
@@ -48,7 +48,7 @@ class Heap {
   }
 }
 class RemovableHeap {
-  constructor(data = [], cmp = (lhs, rhs) => lhs < rhs) {
+  constructor(data = [], cmp) {
     this.heap = new Heap(data, cmp);
     this.counts = new Map();
     this._invalidCount = 0;
@@ -91,9 +91,9 @@ class RemovableHeap {
   }
 }
 class RemovableDoubleHeap {
-  constructor(data = [], cmp = (lhs, rhs) => lhs < rhs) {
+  constructor(data = [], cmp = (lhs, rhs) => lhs < rhs ? -1 : lhs > rhs ? 1 : 0) {
     this.min = new RemovableHeap(data, cmp);
-    this.max = new RemovableHeap(data, (lhs, rhs) => !cmp(lhs, rhs));
+    this.max = new RemovableHeap(data, (lhs, rhs) => -cmp(lhs, rhs));
   }
   popMin() {
     const min = this.min.pop();

@@ -17,9 +17,9 @@ class RBTreeNode {
   }
 }
 class RBTree {
-  constructor(compare = (l, r) => l < r) {
+  constructor(lt = (l, r) => l < r) {
     this.root = null;
-    this.compare = compare;
+    this.lt = lt;
   }
   rotateLeft(pt) {
     const right = pt.right;
@@ -116,12 +116,12 @@ class RBTree {
   search(val) {
     let p = this.root;
     while (p) {
-      if (this.compare(val, p.data)) {
+      if (this.lt(val, p.data)) {
         if (!p.left)
           break;
         else
           p = p.left;
-      } else if (this.compare(p.data, val)) {
+      } else if (this.lt(p.data, val)) {
         if (!p.right)
           break;
         else
@@ -242,9 +242,9 @@ class RBTree {
     const parent = this.search(data);
     if (!parent)
       this.root = node;
-    else if (this.compare(node.data, parent.data))
+    else if (this.lt(node.data, parent.data))
       parent.left = node;
-    else if (this.compare(parent.data, node.data))
+    else if (this.lt(parent.data, node.data))
       parent.right = node;
     else
       return false;

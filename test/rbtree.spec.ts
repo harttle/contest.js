@@ -91,7 +91,7 @@ describe('RBTree', () => {
     }
   })
   it('should support costom compare', () => {
-    const t = new RBTree((lhs: number, rhs: number) => rhs < lhs)
+    const t = new RBTree((lhs: number, rhs: number) => rhs - lhs)
     for (let i = 0; i < 10; i++) t.insert(i)
     expect([...t.inOrder()]).toEqual([9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
   })

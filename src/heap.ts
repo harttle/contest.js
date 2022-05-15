@@ -1,18 +1,20 @@
+import { Compare } from './functional'
+
 class Heap<T=number> {
   data: Array<T | null>
   lt: (i: number, j: number) => boolean
   constructor ()
   constructor (data: T[])
-  constructor (cmp: (lhs: T, rhs: T) => boolean)
-  constructor (data: T[], cmp: (lhs: T, rhs: T) => boolean)
-  constructor (data: (T[] | ((lhs: T, rhs: T) => boolean)), cmp: (lhs: T, rhs: T) => boolean)
-  constructor (data: (T[] | ((lhs: T, rhs: T) => boolean)) = [], cmp = (lhs: T, rhs: T) => lhs < rhs) {
+  constructor (compare: Compare<T>)
+  constructor (data: T[], compare: Compare<T>)
+  constructor (data: (T[] | Compare<T>), compare?: (lhs: T, rhs: T) => number)
+  constructor (data: (T[] | Compare<T>) = [], compare: Compare<T> = (lhs: T, rhs: T) => lhs < rhs ? -1 : (lhs > rhs ? 1 : 0)) {
     if (typeof data === 'function') {
-      cmp = data
+      compare = data
       data = []
     }
     this.data = [null, ...data]
-    this.lt = (i, j) => cmp(this.data[i]!, this.data[j]!)
+    this.lt = (i, j) => compare(this.data[i]!, this.data[j]!) < 0
     for (let i = this.size(); i > 0; i--) this.heapify(i)
   }
 
@@ -58,10 +60,10 @@ class RemovableHeap<T> {
   _invalidCount: number
   constructor ()
   constructor (data: T[])
-  constructor (cmp: (lhs: T, rhs: T) => boolean)
-  constructor (data: T[], cmp: (lhs: T, rhs: T) => boolean)
-  constructor (data: (T[] | ((lhs: T, rhs: T) => boolean)), cmp: (lhs: T, rhs: T) => boolean)
-  constructor (data: (T[] | ((lhs: T, rhs: T) => boolean)) = [], cmp = (lhs: T, rhs: T) => lhs < rhs) {
+  constructor (cmp: Compare<T>)
+  constructor (data: T[], cmp: Compare<T>)
+  constructor (data: (T[] | Compare<T>), cmp: Compare<T>)
+  constructor (data: (T[] | Compare<T>) = [], cmp?: Compare<T>) {
     this.heap = new Heap<T>(data, cmp)
     this.counts = new Map()
     this._invalidCount = 0
@@ -114,12 +116,12 @@ class RemovableDoubleHeap<T> {
   max: RemovableHeap<T>
   constructor ()
   constructor (data: T[])
-  constructor (cmp: (lhs: T, rhs: T) => boolean)
-  constructor (data: T[], cmp: (lhs: T, rhs: T) => boolean)
-  constructor (data: (T[] | ((lhs: T, rhs: T) => boolean)), cmp: (lhs: T, rhs: T) => boolean)
-  constructor (data: (T[] | ((lhs: T, rhs: T) => boolean)) = [], cmp = (lhs: T, rhs: T) => lhs < rhs) {
+  constructor (cmp: Compare<T>)
+  constructor (data: T[], cmp: Compare<T>)
+  constructor (data: (T[] | (Compare<T>)), cmp: Compare<T>)
+  constructor (data: (T[] | (Compare<T>)) = [], cmp: Compare<T> = (lhs: T, rhs: T) => lhs < rhs ? -1 : (lhs > rhs ? 1 : 0)) {
     this.min = new RemovableHeap(data, cmp)
-    this.max = new RemovableHeap(data, (lhs, rhs) => !cmp(lhs, rhs))
+    this.max = new RemovableHeap(data, (lhs, rhs) => -cmp(lhs, rhs))
   }
 
   popMin (): T {

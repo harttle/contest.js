@@ -24,7 +24,7 @@ Ready for contest use! Data structures and algorithms in pure JavaScript with ze
 - [Permutation and Combination](#Permutation%20and%20Combination): factorial, modular factorial, Binomial coefficient, Pascal's Triangle
 - [Euclidean](#Euclidean): euclidean/GCD algorithm, extended-euclidean/extended-GCD algorithm and modular inverse.
 - [Rolling Hash](#Rolling%20Hash): Rolling hash, rolling double hash.
-- [Functional](#Functional): create2DArray, create3DArray, greater, less, valid2D, adjacent2D
+- [Functional](#Functional): create2DArray, create3DArray, greater, valid2D, adjacent2D
 
 ### Algorithm
 
@@ -58,7 +58,8 @@ console.log(arr)    // [1, 5, 4, 3, 2]
 
 ```javascript
 let arr = [1, 3, 2]
-console.log(sort(arr))    // [1, 2, 3]
+sort(arr)    // [1, 2, 3]
+sort(arr, (l, r) => r - l)    // [3, 2, 1]
 ```
 
 #### Graph Algorithms
@@ -175,7 +176,7 @@ for (let val of deque) {
 
 [TypeScript](https://github.com/harttle/contest.js/blob/master/src/heap.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/heap.mjs)
 
-**new Heap(collection?: Iterable, compare?: ((l, r) => number) = (l, r) => l - r)**: create a min heap (less elements pop out first) from elements of the `collection`, and compare elements using `compare` (accepts two arguments, return `true` if first argument is less).
+**new Heap(collection?: Iterable, compare?: ((l, r) => number) = (l, r) => l - r)**: create a min heap (less elements pop out first) from elements of the `collection`, and compare elements using `compare` (accepts two arguments, return a negative number if first argument is less, return a positive number if the second argument is less, return 0 otherwise).
 
 **.push(element: any)**: push `element` into the heap.
 
@@ -206,7 +207,7 @@ while(maxHeap.size()) console.log(maxHeap.pop()) // outputs 3, 2, 1
 
 A worst-case time complexity log(n) set implemented by RedBlackTree (see follows).
 
-**new TreeSet(collection?: any[], compare?: ((l: any, r: any) => boolean) = ((l, r) => l < r))**: create a `TreeSet`, add values from `collection`, compare elements using `compare`, which is increasing order by default.
+**new TreeSet(collection?: any[], compare?: ((l: any, r: any) => boolean) = ((l, r) => l - r))**: create a `TreeSet`, add values from `collection`, compare elements using `compare`, increasing order by default.
 
 **.add(val: any)**: add element `val` into the set, the existing element with value `val` will be override, if any.
 
@@ -214,13 +215,13 @@ A worst-case time complexity log(n) set implemented by RedBlackTree (see follows
 
 **.delete(val: any)**: delete `val` from the set.
 
-**.floor(val: any)**: find and return the element less than or equal to `val`, return `undefined` if no such element found.
+**.floor(val: any)**: find and return the largest element that is less than or equal to `val`, return `undefined` if no such element found.
 
-**.ceiling(val: any)**: find and return the element greater than or equal to `val`, return `undefined` if no such element found.
+**.ceil(val: any)**: find and return the smallest element that is greater than or equal to `val`, return `undefined` if no such element found.
 
-**.lower(val: any)**: find and return the element less than `val`, return `undefined` if no such element found.
+**.lower(val: any)**: find and return the largest element that is less than `val`, return `undefined` if no such element found.
 
-**.higher(val: any)**: find and return the element greater than `val`, return `undefined` if no such element found.
+**.higher(val: any)**: find and return the smallest element that is greater than `val`, return `undefined` if no such element found.
 
 **.size(): number**: return size of the set.
 
@@ -228,13 +229,24 @@ A worst-case time complexity log(n) set implemented by RedBlackTree (see follows
 
 **.rvalues()**: return an ES6 iterator of values, ordered from back to front.
 
+```javascript
+const set = new TreeSet()
+set.add(3)
+set.add(5)
+set.add(7)
+// equivalent to:
+// const set = new TreeSet([3, 5, 7], (l, r) => l - r);
+
+set.ceil(4)  // 5 is the smallest element >= 4
+set.ceil(5)  // 5 is the smallest element >= 5
+
 ### TreeMultiSet
 
 [TypeScript](https://github.com/harttle/contest.js/blob/master/src/treeset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treeset.mjs)
 
 A worst-case time complexity log(n) multiset implemented by RedBlackTree (see follows).
 
-**new TreeSet(collection?: any[], compare?: ((l: any, r: any) => boolean) = ((l, r) => l < r))**: create a `TreeMultiSet`, add values from `collection`, compare elements using `compare`, which is increasing order by default.
+**new TreeSet(collection?: any[], compare?: ((l: any, r: any) => boolean) = ((l, r) => l - r))**: create a `TreeMultiSet`, add values from `collection`, compare elements using `compare`, increasing order by default.
 
 **.add(val: any)**: add element `val` into the set.
 
@@ -242,13 +254,13 @@ A worst-case time complexity log(n) multiset implemented by RedBlackTree (see fo
 
 **.delete(val: any)**: delete `val` from the set.
 
-**.floor(val: any)**: find and return the element less than or equal to `val`, return `undefined` if no such element found.
+**.floor(val: any)**: find and return the largest element that is less than or equal to `val`, return `undefined` if no such element found.
 
-**.ceiling(val: any)**: find and return the element greater than or equal to `val`, return `undefined` if no such element found.
+**.ceil(val: any)**: find and return the smallest element that is greater than or equal to `val`, return `undefined` if no such element found.
 
-**.lower(val: any)**: find and return the element less than `val`, return `undefined` if no such element found.
+**.lower(val: any)**: find and return the largest element that is less than `val`, return `undefined` if no such element found.
 
-**.higher(val: any)**: find and return the element greater than `val`, return `undefined` if no such element found.
+**.higher(val: any)**: find and return the smallest element that is greater than `val`, return `undefined` if no such element found.
 
 **.size(): number**: return size of the set.
 

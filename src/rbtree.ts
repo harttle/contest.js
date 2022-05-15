@@ -1,3 +1,5 @@
+import { Compare } from './functional'
+
 class RBTreeNode<T=number> {
   data: T
   left: RBTreeNode<T> | null
@@ -23,10 +25,10 @@ class RBTreeNode<T=number> {
 
 class RBTree<T> {
   root: RBTreeNode<T> | null
-  compare: (l: T, r: T) => boolean
-  constructor (compare = (l: T, r: T) => l < r) {
+  lt: (l: T, r: T) => boolean
+  constructor (compare: Compare<T> = (l: T, r: T) => l < r ? -1 : (l > r ? 1 : 0)) {
     this.root = null
-    this.compare = compare
+    this.lt = (l: T, r: T) => compare(l, r) < 0
   }
 
   rotateLeft (pt: RBTreeNode<T>): void {
@@ -159,10 +161,10 @@ class RBTree<T> {
   search (val: T): RBTreeNode<T> | null {
     let p = this.root
     while (p) {
-      if (this.compare(val, p.data)) {
+      if (this.lt(val, p.data)) {
         if (!p.left) break
         else p = p.left
-      } else if (this.compare(p.data, val)) {
+      } else if (this.lt(p.data, val)) {
         if (!p.right) break
         else p = p.right
       } else break
@@ -296,8 +298,8 @@ class RBTree<T> {
     const node = new RBTreeNode(data)
     const parent = this.search(data)
     if (!parent) this.root = node
-    else if (this.compare(node.data, parent.data)) parent.left = node
-    else if (this.compare(parent.data, node.data)) parent.right = node
+    else if (this.lt(node.data, parent.data)) parent.left = node
+    else if (this.lt(parent.data, node.data)) parent.right = node
     else return false
     node.parent = parent
     this.fixAfterInsert(node)

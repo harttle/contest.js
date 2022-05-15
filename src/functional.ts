@@ -1,3 +1,5 @@
+export type Compare<T> = (lhs: T, rhs: T) => number
+
 function create2DArray<T> (N: number, M: number, n: T): T[][] {
   // https://stackoverflow.com/a/39879146/8242705
   // `empty` will be skipped in `map`, so we need destruct & create an `undefined` array

@@ -1,9 +1,13 @@
 import { RBTree } from "./rbtree";
 class TreeSet {
-  constructor(collection = [], compare = (l, r) => l < r) {
+  constructor(collection = [], compare = (l, r) => l < r ? -1 : l > r ? 1 : 0) {
+    if (typeof collection === "function") {
+      compare = collection;
+      collection = [];
+    }
     this._size = 0;
-    this.tree = new RBTree(compare);
-    this.compare = compare;
+    this.lt = (l, r) => compare(l, r) < 0;
+    this.tree = new RBTree(this.lt);
     for (const val of collection)
       this.add(val);
   }
@@ -27,7 +31,7 @@ class TreeSet {
     let p = this.tree.root;
     let higher = null;
     while (p) {
-      if (!this.compare(p.data, val)) {
+      if (!this.lt(p.data, val)) {
         higher = p;
         p = p.left;
       } else {
@@ -40,7 +44,7 @@ class TreeSet {
     let p = this.tree.root;
     let lower = null;
     while (p) {
-      if (!this.compare(val, p.data)) {
+      if (!this.lt(val, p.data)) {
         lower = p;
         p = p.right;
       } else {
@@ -53,7 +57,7 @@ class TreeSet {
     let p = this.tree.root;
     let higher = null;
     while (p) {
-      if (this.compare(val, p.data)) {
+      if (this.lt(val, p.data)) {
         higher = p;
         p = p.left;
       } else {
@@ -66,7 +70,7 @@ class TreeSet {
     let p = this.tree.root;
     let lower = null;
     while (p) {
-      if (this.compare(p.data, val)) {
+      if (this.lt(p.data, val)) {
         lower = p;
         p = p.right;
       } else {
@@ -95,11 +99,15 @@ class TreeSet {
   }
 }
 class TreeMultiSet {
-  constructor(collection = [], compare = (l, r) => l < r) {
+  constructor(collection = [], compare = (l, r) => l < r ? -1 : l > r ? 1 : 0) {
+    if (typeof collection === "function") {
+      compare = collection;
+      collection = [];
+    }
     this._size = 0;
-    this.tree = new RBTree(compare);
+    this.lt = (l, r) => compare(l, r) < 0;
+    this.tree = new RBTree(this.lt);
     this.counts = new Map();
-    this.compare = compare;
     for (const val of collection)
       this.add(val);
   }
@@ -129,7 +137,7 @@ class TreeMultiSet {
     let p = this.tree.root;
     let higher = null;
     while (p) {
-      if (!this.compare(p.data, val)) {
+      if (!this.lt(p.data, val)) {
         higher = p;
         p = p.left;
       } else {
@@ -142,7 +150,7 @@ class TreeMultiSet {
     let p = this.tree.root;
     let lower = null;
     while (p) {
-      if (!this.compare(val, p.data)) {
+      if (!this.lt(val, p.data)) {
         lower = p;
         p = p.right;
       } else {
@@ -155,7 +163,7 @@ class TreeMultiSet {
     let p = this.tree.root;
     let higher = null;
     while (p) {
-      if (this.compare(val, p.data)) {
+      if (this.lt(val, p.data)) {
         higher = p;
         p = p.left;
       } else {
@@ -168,7 +176,7 @@ class TreeMultiSet {
     let p = this.tree.root;
     let lower = null;
     while (p) {
-      if (this.compare(p.data, val)) {
+      if (this.lt(p.data, val)) {
         lower = p;
         p = p.right;
       } else {

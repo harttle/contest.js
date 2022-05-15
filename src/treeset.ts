@@ -1,13 +1,18 @@
 import { RBTree } from './rbtree'
+import { Compare } from './functional'
 
 class TreeSet<T = number> {
   _size: number
   tree: RBTree<T>
-  compare: (l: T, r: T) => boolean
-  constructor (collection: T[] = [], compare = (l: T, r: T) => l < r) {
+  compare: Compare<T>
+  constructor (collection: (T[] | Compare<T>) = [], compare: Compare<T> = (l: T, r: T) => l < r ? -1 : (l > r ? 1 : 0)) {
+    if (typeof collection === 'function') {
+      compare = collection
+      collection = []
+    }
     this._size = 0
-    this.tree = new RBTree(compare)
     this.compare = compare
+    this.tree = new RBTree(compare)
     for (const val of collection) this.add(val)
   }
 
@@ -35,7 +40,7 @@ class TreeSet<T = number> {
     let p = this.tree.root
     let higher = null
     while (p) {
-      if (!this.compare(p.data, val)) {
+      if (this.compare(p.data, val) >= 0) {
         higher = p
         p = p.left
       } else {
@@ -49,7 +54,7 @@ class TreeSet<T = number> {
     let p = this.tree.root
     let lower = null
     while (p) {
-      if (!this.compare(val, p.data)) {
+      if (this.compare(val, p.data) >= 0) {
         lower = p
         p = p.right
       } else {
@@ -63,7 +68,7 @@ class TreeSet<T = number> {
     let p = this.tree.root
     let higher = null
     while (p) {
-      if (this.compare(val, p.data)) {
+      if (this.compare(val, p.data) < 0) {
         higher = p
         p = p.left
       } else {
@@ -77,7 +82,7 @@ class TreeSet<T = number> {
     let p = this.tree.root
     let lower = null
     while (p) {
-      if (this.compare(p.data, val)) {
+      if (this.compare(p.data, val) < 0) {
         lower = p
         p = p.right
       } else {
@@ -113,12 +118,16 @@ class TreeMultiSet<T = number> {
   _size: number
   tree: RBTree<T>
   counts: Map<T, number>
-  compare: (l: T, r: T) => boolean
-  constructor (collection: T[] = [], compare = (l: T, r: T) => l < r) {
+  compare: Compare<T>
+  constructor (collection: (T[] | Compare<T>) = [], compare: Compare<T> = (l: T, r: T) => l < r ? -1 : (l > r ? 1 : 0)) {
+    if (typeof collection === 'function') {
+      compare = collection
+      collection = []
+    }
     this._size = 0
+    this.compare = compare
     this.tree = new RBTree(compare)
     this.counts = new Map()
-    this.compare = compare
     for (const val of collection) this.add(val)
   }
 
@@ -152,7 +161,7 @@ class TreeMultiSet<T = number> {
     let p = this.tree.root
     let higher = null
     while (p) {
-      if (!this.compare(p.data, val)) {
+      if (this.compare(p.data, val) >= 0) {
         higher = p
         p = p.left
       } else {
@@ -166,7 +175,7 @@ class TreeMultiSet<T = number> {
     let p = this.tree.root
     let lower = null
     while (p) {
-      if (!this.compare(val, p.data)) {
+      if (this.compare(val, p.data) >= 0) {
         lower = p
         p = p.right
       } else {
@@ -180,7 +189,7 @@ class TreeMultiSet<T = number> {
     let p = this.tree.root
     let higher = null
     while (p) {
-      if (this.compare(val, p.data)) {
+      if (this.compare(val, p.data) < 0) {
         higher = p
         p = p.left
       } else {
@@ -194,7 +203,7 @@ class TreeMultiSet<T = number> {
     let p = this.tree.root
     let lower = null
     while (p) {
-      if (this.compare(p.data, val)) {
+      if (this.compare(p.data, val) < 0) {
         lower = p
         p = p.right
       } else {

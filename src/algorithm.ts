@@ -68,7 +68,7 @@ function partition <T=number> (arr: T[], pred: (val: T) => number, begin = 0, en
 function dijkstra<T> (source: T, G: Map<T, Map<T, number>>): Map<T, number> {
   type PQEntry = [T, number]
   const dist = new Map()
-  const pq = new Heap((l: PQEntry, r: PQEntry) => l[1] < r[1])
+  const pq = new Heap((l: PQEntry, r: PQEntry) => l[1] - r[1])
   dist.set(source, 0)
   pq.push([source, 0])
 

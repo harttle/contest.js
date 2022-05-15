@@ -41,7 +41,7 @@ describe('heap', () => {
       expect(ans).toEqual('001122334455')
     })
     it('should support custom less', () => {
-      const heap = new Heap<number>((l, r) => l > r)
+      const heap = new Heap<number>((l, r) => r - l)
       for (let i = 0; i <= 5; i++) heap.push(i)
       let ans = ''
       for (let i = 0; i <= 5; i++) {

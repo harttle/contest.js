@@ -44,8 +44,27 @@ describe('treeset', () => {
         expect([...set.rvalues()]).toEqual(arr.sort((a, b) => b - a))
       }
     })
+    it('should support optional data', () => {
+      const set = new TreeSet()
+      set.add(2)
+      set.add(3)
+      expect(set.lower(3)).toEqual(2)
+      expect(set.lower(2.5)).toEqual(2)
+    })
+    it('should support customize compare', () => {
+      const set = new TreeSet([0, 1, 2, 3, 4, 5], (l, r) => r - l)
+      expect(set.lower(2)).toEqual(3)
+      expect(set.lower(2.5)).toEqual(3)
+    })
+    it('should support customize compare without data', () => {
+      const set = new TreeSet((l, r) => r - l)
+      set.add(2)
+      set.add(3)
+      expect(set.lower(2)).toEqual(3)
+      expect(set.lower(2.5)).toEqual(3)
+    })
   })
-  describe('TreeSet', () => {
+  describe('TreeMultiSet', () => {
     it('should construct from array', () => {
       const set = new TreeMultiSet([0, 1, 2, 3, 4, 5])
       expect([...set.values()]).toEqual([0, 1, 2, 3, 4, 5])
@@ -84,6 +103,30 @@ describe('treeset', () => {
         expect([...set.rvalues()]).toEqual(arr.sort((a, b) => b - a))
         expect(set.count(set.rvalues().next().value)).toEqual(2)
       }
+    })
+    it('should support lower', () => {
+      const set = new TreeMultiSet([1, 2, 3, 4, 5])
+      expect(set.lower(2)).toEqual(1)
+      expect(set.lower(2.5)).toEqual(2)
+    })
+    it('should support optional data', () => {
+      const set = new TreeSet()
+      set.add(2)
+      set.add(3)
+      expect(set.lower(3)).toEqual(2)
+      expect(set.lower(2.5)).toEqual(2)
+    })
+    it('should support customize compare', () => {
+      const set = new TreeMultiSet([0, 1, 2, 3, 4, 5], (l, r) => r - l)
+      expect(set.lower(2)).toEqual(3)
+      expect(set.lower(2.5)).toEqual(3)
+    })
+    it('should support customize compare without data', () => {
+      const set = new TreeMultiSet((l, r) => r - l)
+      set.add(2)
+      set.add(3)
+      expect(set.lower(2)).toEqual(3)
+      expect(set.lower(2.5)).toEqual(3)
     })
   })
 })

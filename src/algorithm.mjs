@@ -75,7 +75,7 @@ function partition(arr, pred, begin = 0, end = arr.length) {
 }
 function dijkstra(source, G) {
   const dist = new Map();
-  const pq = new Heap((l, r) => l[1] < r[1]);
+  const pq = new Heap((l, r) => l[1] - r[1]);
   dist.set(source, 0);
   pq.push([source, 0]);
   while (pq.size()) {
