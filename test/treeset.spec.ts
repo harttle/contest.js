@@ -16,10 +16,10 @@ describe('treeset', () => {
       expect(set.has(10)).toEqual(false)
       expect(set.has(-10)).toEqual(false)
     })
-    it('should support ceiling', () => {
+    it('should support ceil', () => {
       const set = new TreeSet([0, 1, 2, 3, 4, 5])
-      expect(set.ceiling(1)).toEqual(1)
-      expect(set.ceiling(0.5)).toEqual(1)
+      expect(set.ceil(1)).toEqual(1)
+      expect(set.ceil(0.5)).toEqual(1)
     })
     it('should support higher', () => {
       const set = new TreeSet([0, 1, 2, 3, 4, 5])

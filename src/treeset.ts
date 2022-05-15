@@ -36,7 +36,7 @@ class TreeSet<T = number> {
     return deleted
   }
 
-  ceiling (val: T): T | undefined {
+  ceil (val: T): T | undefined {
     let p = this.tree.root
     let higher = null
     while (p) {
@@ -182,7 +182,7 @@ class TreeMultiSet<T = number> {
     return this.counts.get(val) ?? 0
   }
 
-  ceiling (val: T): T | undefined {
+  ceil (val: T): T | undefined {
     let p = this.tree.root
     let higher = null
     while (p) {
