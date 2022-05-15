@@ -2,6 +2,7 @@ import { Compare } from './functional'
 
 class RBTreeNode<T = number> {
   data: T
+  count: number
   left: RBTreeNode<T> | null
   right: RBTreeNode<T> | null
   parent: RBTreeNode<T> | null
@@ -10,6 +11,7 @@ class RBTreeNode<T = number> {
     this.data = data
     this.left = this.right = this.parent = null
     this.color = 0
+    this.count = 1
   }
 
   sibling (): RBTreeNode<T> | null {
@@ -152,28 +154,19 @@ class RBTree<T> {
     this.root!.color = 1
   }
 
-  deleteByValue (val: T): boolean {
-    const node = this.search(val)
-    if (node?.data !== val) return false
-    this.deleteNode(node)
+  delete (val: T): boolean {
+    const node = this.find(val)
+    if (!node) return false
+    node.count--
+    if (!node.count) this.deleteNode(node)
     return true
   }
 
-  // searches for given value
-  // if found returns the node (used for delete)
-  // else returns the last node while traversing (used in insert)
-  search (val: T): RBTreeNode<T> | null {
-    let p = this.root
-    while (p) {
-      if (this.lt(val, p.data)) {
-        if (!p.left) break
-        else p = p.left
-      } else if (this.lt(p.data, val)) {
-        if (!p.right) break
-        else p = p.right
-      } else break
-    }
-    return p
+  deleteAll (val: T): boolean {
+    const node = this.find(val)
+    if (!node) return false
+    this.deleteNode(node)
+    return true
   }
 
   deleteNode (v: RBTreeNode<T>): void {
@@ -304,20 +297,42 @@ class RBTree<T> {
   }
 
   insert (data: T): boolean {
+    // search for a position to insert
+    let parent = this.root
+    while (parent) {
+      if (this.lt(data, parent.data)) {
+        if (!parent.left) break
+        else parent = parent.left
+      } else if (this.lt(parent.data, data)) {
+        if (!parent.right) break
+        else parent = parent.right
+      } else break
+    }
+
+    // insert node into parent
     const node = new RBTreeNode(data)
-    const parent = this.search(data)
     if (!parent) this.root = node
     else if (this.lt(node.data, parent.data)) parent.left = node
     else if (this.lt(parent.data, node.data)) parent.right = node
-    else return false
+    else {
+      parent.count++
+      return false
+    }
     node.parent = parent
     this.fixAfterInsert(node)
     return true
   }
 
   find (data: T): RBTreeNode<T> | null {
-    const node = this.search(data)
-    return node && node.data === data ? node : null
+    let p = this.root
+    while (p) {
+      if (this.lt(data, p.data)) {
+        p = p.left
+      } else if (this.lt(p.data, data)) {
+        p = p.right
+      } else break
+    }
+    return p ?? null
   }
 
   * inOrder (root: RBTreeNode<T> = this.root!): Generator<T, undefined, void> {

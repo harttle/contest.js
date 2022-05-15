@@ -81,6 +81,15 @@ describe('treeset', () => {
       expect(set.lower(2)).toEqual(3)
       expect(set.lower(2.5)).toEqual(3)
     })
+    it('objects equal to each other should be deemed as same item', () => {
+      const s = new TreeSet<[number, number]>([], (a: [number, number], b: [number, number]) => {
+        if (a[0] !== b[0]) return a[0] - b[0]
+        return a[1] - b[1]
+      })
+      s.add([1, 2])
+      s.add([1, 2])
+      expect(s.size()).toEqual(1)
+    })
   })
   describe('TreeMultiSet', () => {
     it('should construct from array', () => {
@@ -100,6 +109,11 @@ describe('treeset', () => {
       expect(set.count(10)).toEqual(1)
       set.add(10)
       expect(set.count(10)).toEqual(2)
+    })
+    it('should support has', () => {
+      const set = new TreeMultiSet([0, 1, 1, 3, 4, 5])
+      expect(set.has(3)).toEqual(true)
+      expect(set.has(10)).toEqual(false)
     })
     it('delete should only erase the value when count is 0', () => {
       const set = new TreeMultiSet([4, 4])
@@ -165,6 +179,15 @@ describe('treeset', () => {
       const set = new TreeMultiSet([0, 1, 2, 3, 4, 5])
       expect(set.pop()).toEqual(5)
       expect(set.size()).toEqual(5)
+    })
+    it('objects equal to each other should be deemed as different items', () => {
+      const s = new TreeMultiSet<[number, number]>([], (a: [number, number], b: [number, number]) => {
+        if (a[0] !== b[0]) return a[0] - b[0]
+        return a[1] - b[1]
+      })
+      s.add([1, 2])
+      s.add([1, 2])
+      expect(s.count([1, 2])).toEqual(2)
     })
   })
 })

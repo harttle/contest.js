@@ -24,16 +24,16 @@ describe('RBTree', () => {
     expect(t.find(-1)).toBeNull()
     expect(t.find(10)).toBeNull()
   })
-  it('should deleteByValue inserted data', () => {
+  it('should deleteAll inserted data', () => {
     const t = new RBTree()
     const data = shuffle(Array(10).fill(0).map((v, i) => i))
     for (const d of data) t.insert(d)
 
-    t.deleteByValue(1)
+    t.deleteAll(1)
     expect(t.find(1)).toBeNull()
-    t.deleteByValue(2)
+    t.deleteAll(2)
     expect(t.find(2)).toBeNull()
-    t.deleteByValue(9)
+    t.deleteAll(9)
     expect(t.find(9)).toBeNull()
   })
   it('prop2: root is always black', () => {
@@ -83,7 +83,7 @@ describe('RBTree', () => {
     const arr = shuffle([...s])
     for (let i = 0; i < arr.length; i++) {
       if (i < arr.length / 2) {
-        t.deleteByValue(arr[i])
+        t.deleteAll(arr[i])
         expect(t.find(arr[i])).toBeNull()
       } else {
         expect(t.find(arr[i])).toHaveProperty('data', arr[i])

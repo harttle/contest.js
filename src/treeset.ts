@@ -25,13 +25,13 @@ class TreeSet<T = number> {
   }
 
   add (val: T): boolean {
-    const added = this.tree.insert(val)
-    this._size += added ? 1 : 0
-    return added
+    const successful = this.tree.insert(val)
+    this._size += successful ? 1 : 0
+    return successful
   }
 
   delete (val: T): boolean {
-    const deleted = this.tree.deleteByValue(val)
+    const deleted = this.tree.deleteAll(val)
     this._size -= deleted ? 1 : 0
     return deleted
   }
@@ -139,7 +139,6 @@ class TreeSet<T = number> {
 class TreeMultiSet<T = number> {
   _size: number
   tree: RBTree<T>
-  counts: Map<T, number>
   compare: Compare<T>
   constructor (collection: (T[] | Compare<T>) = [], compare: Compare<T> = (l: T, r: T) => l < r ? -1 : (l > r ? 1 : 0)) {
     if (typeof collection === 'function') {
@@ -149,7 +148,6 @@ class TreeMultiSet<T = number> {
     this._size = 0
     this.compare = compare
     this.tree = new RBTree(compare)
-    this.counts = new Map()
     for (const val of collection) this.add(val)
   }
 
@@ -162,24 +160,21 @@ class TreeMultiSet<T = number> {
   }
 
   add (val: T): boolean {
-    const added = this.tree.insert(val)
-    this.increase(val)
+    const successful = this.tree.insert(val)
     this._size++
-    return added
+    return successful
   }
 
   delete (val: T): boolean {
-    if (!this.has(val)) return false
-    this.decrease(val)
-    if (this.count(val) === 0) {
-      this.tree.deleteByValue(val)
-    }
+    const successful = this.tree.delete(val)
+    if (!successful) return false
     this._size--
     return true
   }
 
   count (val: T): number {
-    return this.counts.get(val) ?? 0
+    const node = this.tree.find(val)
+    return node ? node.count : 0
   }
 
   ceil (val: T): T | undefined {
@@ -285,20 +280,6 @@ class TreeMultiSet<T = number> {
       while (count--) yield val
     }
     return undefined
-  }
-
-  /**
-   * Should only be called by `delete` to keep the internal state correct
-   */
-  private decrease (val: T): void {
-    this.counts.set(val, this.count(val) - 1)
-  }
-  /**
-   * Should only be called by `add` to keep the internal state correct
-   */
-
-  private increase (val: T): void {
-    this.counts.set(val, this.count(val) + 1)
   }
 }
 
