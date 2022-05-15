@@ -42,6 +42,9 @@ class Heap {
         break;
     }
   }
+  clear() {
+    this.data = [null];
+  }
   swap(i, j) {
     const d = this.data;
     [d[i], d[j]] = [d[j], d[i]];
@@ -52,6 +55,9 @@ class RemovableHeap {
     this.heap = new Heap(data, cmp);
     this.counts = new Map();
     this._invalidCount = 0;
+    for (let i = 1; i < this.heap.data.length; i++) {
+      this._setCount(this.heap.data[i], 1);
+    }
   }
   size() {
     return this.heap.size() - this._invalidCount;
@@ -65,20 +71,23 @@ class RemovableHeap {
     if (this.heap.size() < 1)
       return void 0;
     const top = this.heap.pop();
-    this._count(top, -1);
+    this._setCount(top, -1);
     return top;
   }
   push(num) {
-    this._count(num, 1);
+    this._setCount(num, 1);
     this.heap.push(num);
   }
   remove(num) {
     if (Number(this.counts.get(num)) > 0) {
-      this._count(num, -1);
+      this._setCount(num, -1);
       this._invalidCount++;
     }
   }
-  _count(num, diff) {
+  has(value) {
+    return this.counts.get(value) > 0;
+  }
+  _setCount(num, diff) {
     var _a;
     const count = (_a = this.counts.get(num)) != null ? _a : 0;
     this.counts.set(num, count + diff);
@@ -117,8 +126,20 @@ class RemovableDoubleHeap {
     this.max.push(num);
   }
 }
+class PriorityQueue extends RemovableHeap {
+  offer(value) {
+    return this.push(value);
+  }
+  poll() {
+    return this.pop();
+  }
+  peek() {
+    return this.top();
+  }
+}
 export {
   Heap,
+  PriorityQueue,
   RemovableDoubleHeap,
   RemovableHeap
 };
