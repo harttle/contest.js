@@ -25,5 +25,9 @@ jobs:
           git config --global user.email 'harttle@users.noreply.github.com'
           mv lib/*.mjs src/
           git add src/*.mjs
-          git commit -am "chore: update mjs [skip ci]"
-          git push 
+          if [[ $(git diff HEAD) != '' ]]; then
+            git commit -am "chore: update mjs [skip ci]"
+            git push 
+          else
+            echo 'already in sync, nothing to update'
+          fi
