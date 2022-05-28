@@ -1,65 +1,77 @@
-class BinarySegmentTree {
-  data: number[]
-  height: number
+type Aggregate<T> = (left: T, right: T) => T
+type Predicate<T> = (value: T, target: T) => boolean
 
-  /**
-     * @param {number} height The height of the tree,
-     *     corresponding to decisions to make or digits to map
-     * @example
-     *     height: 1
-     *     tree: [0, 2, 1, 1] (4 elements with 1 placeholder)
-     */
-  constructor (height: number) {
-    this.data = Array(2 ** (height + 1)).fill(0)
-    this.height = height
+class SegmentTree<T = number> {
+  public readonly N: number
+  public readonly aggregate: Aggregate<T>
+  public readonly values: T[]
+  public readonly tree: T[]
+
+  constructor (N: number, aggregate: Aggregate<T> = ((a: number, b: number) => a + b) as any, initial: T = 0 as any) {
+    this.N = N
+    this.values = Array(N).fill(initial)
+    // # of nodes = 2**(h-1)-1, h = ceil(logN) => # of nodes < 4N - 1
+    this.tree = Array(N * 4).fill(initial)
+    this.aggregate = aggregate
   }
 
-  /**
-     * Add value to the specified key
-     *
-     * @param {number} key The binary key to which `val` is added
-     * @param {number} val The value to add
-     */
-  add (key: number, val = 1): void {
-    let root = 1
-    this.data[root] += val
+  public update (i: number, value: T): void {
+    this.values[i] = value
+    this._update(0, this.N - 1, 1, i)
+  }
 
-    for (let i = this.height - 1; i >= 0; i--) {
-      const bit = 1 << i
-      const kBit = bit & key
-      root = kBit ? this.right(root) : this.left(root)
-      this.data[root] += val
+  public prefix (i: number): T {
+    return this._prefix(0, this.N - 1, 1, i)
+  }
+
+  public higher (target: T): number {
+    return this._prefixSearch(0, this.N - 1, 1, target, (value, target) => value > target)
+  }
+
+  public ceil (target: T): number {
+    return this._prefixSearch(0, this.N - 1, 1, target, (value, target) => value >= target)
+  }
+
+  public lower (target: T): number {
+    return this.ceil(target) - 1
+  }
+
+  public floor (target: T): number {
+    return this.higher(target) - 1
+  }
+
+  public valueAt (i: number): T {
+    return this.values[i]
+  }
+
+  protected _update (l: number, r: number, ti: number, i: number): void {
+    const m = (l + r) >> 1
+    if (l === r) {
+      this.tree[ti] = this.values[i]
+      return
     }
+    if (i <= m) this._update(l, m, ti * 2, i)
+    else this._update(m + 1, r, ti * 2 + 1, i)
+    this.tree[ti] = this.aggregate(this.tree[ti * 2], this.tree[ti * 2 + 1])
   }
 
-  /**
-     * Query the sum of values with key <= `key`
-     *
-     * @param {number} key The upper limit to query
-     */
-  leq (key: number): number {
-    let sum = 0; let root = 1
-    for (let i = this.height - 1; i >= 0; i--) {
-      const bit = 1 << i
-      const kBit = key & bit
-      if (kBit) {
-        sum += this.data[this.left(root)]
-        root = this.right(root)
-      } else {
-        root = this.left(root)
-      }
+  protected _prefix (l: number, r: number, ti: number, i: number): T {
+    if (l === r) {
+      return this.tree[ti]
     }
-    sum += this.data[root]
-    return sum
+    const m = (l + r) >> 1
+    if (i <= m) return this._prefix(l, m, ti * 2, i)
+    return this.aggregate(this.tree[ti * 2], this._prefix(m + 1, r, ti * 2 + 1, i))
   }
 
-  left (i: number): number {
-    return i * 2
-  }
-
-  right (i: number): number {
-    return i * 2 + 1
+  protected _prefixSearch (l: number, r: number, ti: number, target: T, predicate: Predicate<T>): number {
+    if (l === r) {
+      return predicate(this.tree[ti], target) ? l : Infinity
+    }
+    const m = (l + r) >> 1
+    if (predicate(this.tree[ti * 2], target)) return this._prefixSearch(l, m, ti * 2, target, predicate)
+    return this._prefixSearch(m + 1, r, ti * 2 + 1, (target as any) - (this.tree[ti * 2] as any) as any, predicate)
   }
 }
 
-export { BinarySegmentTree }
+export { SegmentTree }

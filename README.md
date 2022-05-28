@@ -22,6 +22,7 @@
 [TreeSet](#TreeSet) | TreeSet, TreeMultiSet | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/treeset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treeset.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/treeset.spec.ts)
 [BitSet](#BitSet) | BitSet | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bitset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bitset.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bitset.spec.ts)
 [树状数组](#树状数组) | BIT | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bit.spec.ts)
+[线段树](#线段树) | SegmentTree | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/segment-tree.spec.ts)
 [并查集](#并查集) | 路径压缩、按秩合并 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/dsu.spec.ts)
 [质数算法](#质数算法) | 质数测试、筛选等 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/prime.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/prime.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/prime.spec.ts)
 [排列组合](#排列组合) | 阶乘、模阶乘、二项式系数、帕斯卡三角 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/binomial.spec.ts)
@@ -319,7 +320,7 @@ heap.popMax() // 3
 
 **.higher(val: any)**：找到并返回大于 `val` 的最小元素，如果不存在这样的元素则返回 `undefined`。
 
-**.fisrt()**：返回集合中`第一个`元素，如果不存在这样的元素则返回 `undefined`。
+**.first()**：返回集合中`第一个`元素，如果不存在这样的元素则返回 `undefined`。
 
 **.last()**：返回集合中`最后一个`元素，如果不存在这样的元素则返回 `undefined`。
 
@@ -428,6 +429,57 @@ bit.update(2, 20)
 bit.update(10, 100)
 bit.sum(5) // elements in [1, 5] sums to 10 + 20 = 30
 bit.sum(10) // elements in [1, 10] sums to 10 + 20 + 100 = 130
+```
+
+## 线段树
+
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/segment-tree.spec.ts)
+
+一个数组二叉树实现的线段树，聚合方式默认为前缀和。
+
+**new SegmentTree<T>(N: number, aggregate = (a, b) => a + b, initial = 0)**：创建一个大小为 `N` 的线段树，采用 `aggregate` 进行聚合，初始值为 `initial`。
+
+**.update(index: number, value: T)**：更新下标（从 0 开始）`index` 处的值为 `value`。
+
+**.prefix(index: number)**: 求 `[0, index]` 范围内的前缀和，注意包含 `index` 元素。
+
+**.valueAt(index: number)**：返回下标 `index` 处的元素。
+
+**.floor(val: any)**：找到并返回小于等于 `val` 的最大元素下标，如果不存在这样的元素则返回 `-1`。
+
+**.ceil(val: any)**：找到并返回大于等于 `val` 的最小元素下标，如果不存在这样的元素则返回 Infinity。
+
+**.lower(val: any)**：找到并返回小于 `val` 的最大元素下标，如果不存在这样的元素则返回 `-1`。
+
+**.higher(val: any)**：找到并返回大于 `val` 的最小元素下标，如果不存在这样的元素则返回 `Infinity`。
+
+```javascript
+const sumTree = new SegmentTree(5)
+sumTree.update(0, 1)
+sumTree.update(1, 2)
+sumTree.update(2, 3)
+sumTree.update(3, 4)
+
+sumTree.prefix(0) // 1
+sumTree.prefix(1) // 3
+sumTree.prefix(2) // 6
+sumTree.prefix(3) // 10
+
+sumTree.ceil(7) // 3
+sumTree.ceil(6) // 2
+sumTree.ceil(5) // 2
+sumTree.ceil(11) // Infinity
+
+const maxTree = new SegmentTree(5, Math.max)
+maxTree.update(0, 1)
+maxTree.prefix(0) // 1
+
+maxTree.update(1, 3)
+maxTree.prefix(1) // 3
+maxTree.prefix(2) // 3
+
+maxTree.update(2, 2)
+maxTree.prefix(2) // 3
 ```
 
 ## 并查集

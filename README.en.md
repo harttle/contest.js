@@ -20,6 +20,7 @@ Ready for contest use! Data structures and algorithms in pure JavaScript with ze
 [TreeSet](#TreeSet) | TreeSet, TreeMultiSet | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/treeset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treeset.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/treeset.spec.ts)
 [BitSet](#BitSet) | BitSet | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bitset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bitset.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bitset.spec.ts)
 [Binary Indexed Tree](#Binary%20Indexed%20Tree) | BIT | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bit.spec.ts)
+[Segment Tree](#Segment%20Tree) | SegmentTree | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/segment-tree.spec.ts)
 [Disjoint Union Set](#Disjoint%20Union%20Set) | Path compression, union by rank | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/dsu.spec.ts)
 [Primes](#Primes) | prime test, sieve, nth prime | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/prime.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/prime.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/prime.spec.ts)
 [Permutation and Combination](#Permutation%20and%20Combination) | factorial, modular factorial, Binomial coefficient, Pascal's Triangle | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/binomial.spec.ts)
@@ -322,7 +323,7 @@ A worst-case time complexity log(n) set implemented by RedBlackTree (see follows
 
 **.higher(val: any)**: find and return the smallest element that is greater than `val`, return `undefined` if no such element found.
 
-**.fisrt()**：return `first element` of the set, return `undefined` if no such element.
+**.first()**：return `first element` of the set, return `undefined` if no such element.
 
 **.last()**：return `last element` of the set, return `undefined` if no such element.
 
@@ -430,6 +431,57 @@ bit.update(2, 20)
 bit.update(10, 100)
 bit.sum(5) // elements in [1, 5] sums to 10 + 20 = 30
 bit.sum(10) // elements in [1, 10] sums to 10 + 20 + 100 = 130
+```
+
+## Segment Tree
+
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/segment-tree.spec.ts)
+
+A segment tree implementation using binary tree represented by `Array`, default aggregation is presum.
+
+**new SegmentTree<T>(N: number, aggregate = (a, b) => a + b, initial = 0)**: create a segment tree of size `N`, use `aggregate` to produce parent value, init values to `initial`.
+
+**.update(index: number, value: T)**: update element at (begins at 0 ) `index` to `value`.
+
+**.prefix(index: number)**: return presum of `[0, index]`, note: element at `index` is included.
+
+**.valueAt(index: number)**: return the element at `index`.
+
+**.floor(val: any)**: find and return the index of largest element `<= val`, return `-1` if no such element exists.
+
+**.ceil(val: any)**: find and return the index of smallest element `>= val`, return `Infinity` if no such element exists.
+
+**.lower(val: any)**: find and return the index of largest element `< val`, return `-1` if no such element exists.
+
+**.higher(val: any)**: find and return the index of smallest element `> val`, return `Infinity` if no such element exists.
+
+```javascript
+const sumTree = new SegmentTree(5)
+sumTree.update(0, 1)
+sumTree.update(1, 2)
+sumTree.update(2, 3)
+sumTree.update(3, 4)
+
+sumTree.prefix(0) // 1
+sumTree.prefix(1) // 3
+sumTree.prefix(2) // 6
+sumTree.prefix(3) // 10
+
+sumTree.ceil(7) // 3
+sumTree.ceil(6) // 2
+sumTree.ceil(5) // 2
+sumTree.ceil(11) // Infinity
+
+const maxTree = new SegmentTree(5, Math.max)
+maxTree.update(0, 1)
+maxTree.prefix(0) // 1
+
+maxTree.update(1, 3)
+maxTree.prefix(1) // 3
+maxTree.prefix(2) // 3
+
+maxTree.update(2, 2)
+maxTree.prefix(2) // 3
 ```
 
 ## Disjoint Union Set
