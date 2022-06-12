@@ -8,9 +8,9 @@ Ready for contest use! Data structures and algorithms in pure JavaScript with ze
 - Easy to change! Implemented in simplified code with less abstraction.
 - Available via npm! Can be imported as part of the WORKING code.
 
-**索引**
+**Table of Contents**
 
-模块 | 内容 | 链接
+Module | Content | Links
 ---  | ---  | ---
 [Algorithm](#Algorithm) | swap, shuffle, reverse, sort, dijkstra | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/algorithm.spec.ts)
 [String](#String) | kmp, rabinkarp | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/string.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/string.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/string.spec.ts)
