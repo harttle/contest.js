@@ -80,6 +80,8 @@ function dijkstra(source, G) {
   pq.push([source, 0]);
   while (pq.size()) {
     const [u, d] = pq.pop();
+    if (d !== dist.get(u))
+      continue;
     const edges = G.has(u) ? G.get(u) : [];
     for (const [v, w] of edges) {
       const currDist = dist.has(v) ? dist.get(v) : Infinity;
