@@ -74,6 +74,7 @@ function dijkstra<T> (source: T, G: Map<T, Map<T, number>>): Map<T, number> {
 
   while (pq.size()) {
     const [u, d] = pq.pop()
+    if (d !== dist.get(u)) continue
     const edges = G.has(u) ? G.get(u)! : []
     for (const [v, w] of edges) {
       const currDist = dist.has(v) ? dist.get(v) : Infinity
