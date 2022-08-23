@@ -26,7 +26,7 @@
 [并查集](#并查集) | 路径压缩、按秩合并 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/dsu.spec.ts)
 [质数算法](#质数算法) | 质数测试、筛选等 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/prime.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/prime.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/prime.spec.ts)
 [排列组合](#排列组合) | 阶乘、模阶乘、二项式系数、帕斯卡三角 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/binomial.spec.ts)
-[欧几里得算法](#欧几里得算法) | 欧几里得公约数，扩展欧几里得，模拟元 |
+[欧几里得算法](#欧几里得算法) | 欧几里得公约数，扩展欧几里得，模拟元 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/euclidean.spec.ts)
 [滚动哈希](#滚动哈希) | 滚动哈希，双哈希 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/rolling-hash.spec.ts)
 [工具](#工具) | create2DArray, create3DArray, greater, valid2D, adjacent2D | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/funcitonal.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/functional.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/funcitonal.spec.ts)
 
@@ -538,7 +538,7 @@ for (let [prime, count] of factors) {
 
 ## 欧几里得算法
 
-[TypeScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.mjs)
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/euclidean.spec.ts)
 
 **gcd(a: number, b: number)**：运行欧几里得算法，得到最大公约数。
 
