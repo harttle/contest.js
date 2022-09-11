@@ -6,9 +6,11 @@ class SegmentTree<T = number> {
   public readonly aggregate: Aggregate<T>
   public readonly values: T[]
   public readonly tree: T[]
+  public initial: T
 
   constructor (N: number, aggregate: Aggregate<T> = ((a: number, b: number) => a + b) as any, initial: T = 0 as any) {
     this.N = N
+    this.initial = initial
     this.values = Array(N).fill(initial)
     // # of nodes = 2**(h-1)-1, h = ceil(logN) => # of nodes < 4N - 1
     this.tree = Array(N * 4).fill(initial)
@@ -21,15 +23,19 @@ class SegmentTree<T = number> {
   }
 
   public prefix (i: number): T {
-    return this._prefix(0, this.N - 1, 1, i)
+    return this._query(0, this.N - 1, 1, 0, i)
+  }
+
+  public query (l: number, r: number): T {
+    return this._query(0, this.N - 1, 1, l, r)
   }
 
   public higher (target: T): number {
-    return this._prefixSearch(0, this.N - 1, 1, target, (value, target) => value > target)
+    return this._queryIndex(0, this.N - 1, 1, target, (value, target) => value > target)
   }
 
   public ceil (target: T): number {
-    return this._prefixSearch(0, this.N - 1, 1, target, (value, target) => value >= target)
+    return this._queryIndex(0, this.N - 1, 1, target, (value, target) => value >= target)
   }
 
   public lower (target: T): number {
@@ -55,22 +61,30 @@ class SegmentTree<T = number> {
     this.tree[ti] = this.aggregate(this.tree[ti * 2], this.tree[ti * 2 + 1])
   }
 
-  protected _prefix (l: number, r: number, ti: number, i: number): T {
-    if (l === r) {
-      return this.tree[ti]
-    }
-    const m = (l + r) >> 1
-    if (i <= m) return this._prefix(l, m, ti * 2, i)
-    return this.aggregate(this.tree[ti * 2], this._prefix(m + 1, r, ti * 2 + 1, i))
-  }
-
-  protected _prefixSearch (l: number, r: number, ti: number, target: T, predicate: Predicate<T>): number {
+  protected _queryIndex (l: number, r: number, ti: number, target: T, predicate: Predicate<T>): number {
     if (l === r) {
       return predicate(this.tree[ti], target) ? l : Infinity
     }
     const m = (l + r) >> 1
-    if (predicate(this.tree[ti * 2], target)) return this._prefixSearch(l, m, ti * 2, target, predicate)
-    return this._prefixSearch(m + 1, r, ti * 2 + 1, (target as any) - (this.tree[ti * 2] as any) as any, predicate)
+    if (predicate(this.tree[ti * 2], target)) return this._queryIndex(l, m, ti * 2, target, predicate)
+    return this._queryIndex(m + 1, r, ti * 2 + 1, (target as any) - (this.tree[ti * 2] as any) as any, predicate)
+  }
+
+  protected _query (l: number, r: number, ti: number, li: number, ri: number): T {
+    if (l === r || (l === li && r === ri)) {
+      return this.tree[ti]
+    }
+    const m = l + r >> 1
+    const r1 = [li, Math.min(m, ri)]
+    const r2 = [Math.max(m + 1, li), ri]
+    let ans = this.initial
+    if (r1[0] <= r1[1]) {
+      ans = this.aggregate(ans, this._query(l, m, ti * 2, r1[0], r1[1]))
+    }
+    if (r2[0] <= r2[1]) {
+      ans = this.aggregate(ans, this._query(m + 1, r, ti * 2 + 1, r2[0], r2[1]))
+    }
+    return ans
   }
 }
 

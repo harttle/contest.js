@@ -17,7 +17,7 @@ describe('SegmentTree', () => {
     })
   })
   describe('.prefix()', () => {
-    it('should default value to 1', () => {
+    it('should default value to 0', () => {
       const tree = new SegmentTree(5)
       expect(tree.prefix(0)).toEqual(0)
       expect(tree.prefix(1)).toEqual(0)
@@ -70,6 +70,43 @@ describe('SegmentTree', () => {
       expect(tree.floor(6)).toEqual(2)
       expect(tree.floor(5)).toEqual(1)
       expect(tree.floor(0)).toEqual(-1)
+    })
+  })
+
+  describe('.query()', () => {
+    it('should default value to 0', () => {
+      const tree = new SegmentTree(5)
+      expect(tree.query(0, 0)).toEqual(0)
+      expect(tree.query(0, 4)).toEqual(0)
+    })
+    it('should handle invalid query', () => {
+      const tree = new SegmentTree(5)
+      tree.update(0, 1)
+      tree.update(1, 2)
+      expect(tree.query(-1, 5)).toEqual(3)
+      expect(tree.query(3, 0)).toEqual(0)
+    })
+    it('should support sum query', () => {
+      const tree = new SegmentTree(4)
+      tree.update(0, 1)
+      tree.update(1, 2)
+      tree.update(2, 1)
+      tree.update(3, 8)
+      expect(tree.query(0, 0)).toEqual(1)
+      expect(tree.query(3, 3)).toEqual(8)
+      expect(tree.query(0, 3)).toEqual(12)
+      expect(tree.query(1, 2)).toEqual(3)
+    })
+    it('should support customize query', () => {
+      const tree = new SegmentTree(4, (a, b) => Math.max(a, b))
+      tree.update(0, 1)
+      tree.update(1, 2)
+      tree.update(2, 1)
+      tree.update(3, 8)
+      expect(tree.query(0, 0)).toEqual(1)
+      expect(tree.query(3, 3)).toEqual(8)
+      expect(tree.query(0, 3)).toEqual(8)
+      expect(tree.query(1, 2)).toEqual(2)
     })
   })
   describe('customize aggregate', () => {

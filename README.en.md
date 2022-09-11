@@ -443,7 +443,9 @@ A segment tree implementation using binary tree represented by `Array`, default 
 
 **.update(index: number, value: T)**: update element at (begins at 0 ) `index` to `value`.
 
-**.prefix(index: number)**: return presum of `[0, index]`, note: element at `index` is included.
+**.query(l: number, r: number)**: return aggregate of `[l, r]`, note: elements at `l` and `r` are included.
+
+**.prefix(index: number)**: equivalent to `.query(0, index)`, return presum of `[0, index]`, note: element at `index` is included.
 
 **.valueAt(index: number)**: return the element at `index`.
 
@@ -462,6 +464,7 @@ sumTree.update(1, 2)
 sumTree.update(2, 3)
 sumTree.update(3, 4)
 
+sumTree.query(0, 2) // 6
 sumTree.prefix(0) // 1
 sumTree.prefix(1) // 3
 sumTree.prefix(2) // 6

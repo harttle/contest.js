@@ -441,17 +441,19 @@ bit.sum(10) // elements in [1, 10] sums to 10 + 20 + 100 = 130
 
 **.update(index: number, value: T)**：更新下标（从 0 开始）`index` 处的值为 `value`。
 
-**.prefix(index: number)**: 求 `[0, index]` 范围内的前缀和，注意包含 `index` 元素。
+**.query(l: number, r: number)**: 求 `[l, r]` 范围的聚合，注意包含 `l` 和 `r` 处的元素。
+
+**.prefix(index: number)**: 相当于 `.query(0, index)`，求 `[0, index]` 范围内的前缀和，注意包含 `index` 元素。
 
 **.valueAt(index: number)**：返回下标 `index` 处的元素。
 
-**.floor(val: any)**：找到并返回小于等于 `val` 的最大元素下标，如果不存在这样的元素则返回 `-1`。
+**.floor(val: any)**：找到并返回聚合值小于等于 `val` 的最大元素下标，如果不存在这样的元素则返回 `-1`。
 
-**.ceil(val: any)**：找到并返回大于等于 `val` 的最小元素下标，如果不存在这样的元素则返回 Infinity。
+**.ceil(val: any)**：找到并返回聚合值大于等于 `val` 的最小元素下标，如果不存在这样的元素则返回 Infinity。
 
-**.lower(val: any)**：找到并返回小于 `val` 的最大元素下标，如果不存在这样的元素则返回 `-1`。
+**.lower(val: any)**：找到并返回聚合值小于 `val` 的最大元素下标，如果不存在这样的元素则返回 `-1`。
 
-**.higher(val: any)**：找到并返回大于 `val` 的最小元素下标，如果不存在这样的元素则返回 `Infinity`。
+**.higher(val: any)**：找到并返回聚合值大于 `val` 的最小元素下标，如果不存在这样的元素则返回 `Infinity`。
 
 ```javascript
 const sumTree = new SegmentTree(5)
@@ -460,6 +462,7 @@ sumTree.update(1, 2)
 sumTree.update(2, 3)
 sumTree.update(3, 4)
 
+sumTree.query(0, 2) // 6
 sumTree.prefix(0) // 1
 sumTree.prefix(1) // 3
 sumTree.prefix(2) // 6
