@@ -1,6 +1,7 @@
 class SegmentTree {
   constructor(N, aggregate = (a, b) => a + b, initial = 0) {
     this.N = N;
+    this.initial = initial;
     this.values = Array(N).fill(initial);
     this.tree = Array(N * 4).fill(initial);
     this.aggregate = aggregate;
@@ -10,13 +11,16 @@ class SegmentTree {
     this._update(0, this.N - 1, 1, i);
   }
   prefix(i) {
-    return this._prefix(0, this.N - 1, 1, i);
+    return this._query(0, this.N - 1, 1, 0, i);
+  }
+  query(l, r) {
+    return this._query(0, this.N - 1, 1, l, r);
   }
   higher(target) {
-    return this._prefixSearch(0, this.N - 1, 1, target, (value, target2) => value > target2);
+    return this._queryIndex(0, this.N - 1, 1, target, (value, target2) => value > target2);
   }
   ceil(target) {
-    return this._prefixSearch(0, this.N - 1, 1, target, (value, target2) => value >= target2);
+    return this._queryIndex(0, this.N - 1, 1, target, (value, target2) => value >= target2);
   }
   lower(target) {
     return this.ceil(target) - 1;
@@ -39,23 +43,30 @@ class SegmentTree {
       this._update(m + 1, r, ti * 2 + 1, i);
     this.tree[ti] = this.aggregate(this.tree[ti * 2], this.tree[ti * 2 + 1]);
   }
-  _prefix(l, r, ti, i) {
-    if (l === r) {
-      return this.tree[ti];
-    }
-    const m = l + r >> 1;
-    if (i <= m)
-      return this._prefix(l, m, ti * 2, i);
-    return this.aggregate(this.tree[ti * 2], this._prefix(m + 1, r, ti * 2 + 1, i));
-  }
-  _prefixSearch(l, r, ti, target, predicate) {
+  _queryIndex(l, r, ti, target, predicate) {
     if (l === r) {
       return predicate(this.tree[ti], target) ? l : Infinity;
     }
     const m = l + r >> 1;
     if (predicate(this.tree[ti * 2], target))
-      return this._prefixSearch(l, m, ti * 2, target, predicate);
-    return this._prefixSearch(m + 1, r, ti * 2 + 1, target - this.tree[ti * 2], predicate);
+      return this._queryIndex(l, m, ti * 2, target, predicate);
+    return this._queryIndex(m + 1, r, ti * 2 + 1, target - this.tree[ti * 2], predicate);
+  }
+  _query(l, r, ti, li, ri) {
+    if (l === r || l === li && r === ri) {
+      return this.tree[ti];
+    }
+    const m = l + r >> 1;
+    const r1 = [li, Math.min(m, ri)];
+    const r2 = [Math.max(m + 1, li), ri];
+    let ans = this.initial;
+    if (r1[0] <= r1[1]) {
+      ans = this.aggregate(ans, this._query(l, m, ti * 2, r1[0], r1[1]));
+    }
+    if (r2[0] <= r2[1]) {
+      ans = this.aggregate(ans, this._query(m + 1, r, ti * 2 + 1, r2[0], r2[1]));
+    }
+    return ans;
   }
 }
 export {
