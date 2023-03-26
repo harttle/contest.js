@@ -23,6 +23,7 @@
 [BitSet](#BitSet) | BitSet | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bitset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bitset.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bitset.spec.ts)
 [树状数组](#树状数组) | BIT | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bit.spec.ts)
 [线段树](#线段树) | SegmentTree | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/segment-tree.spec.ts)
+[图](#图) | Graph | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/graph.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/graph.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/graph.spec.ts)
 [并查集](#并查集) | 路径压缩、按秩合并 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/dsu.spec.ts)
 [质数算法](#质数算法) | 质数测试、筛选等 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/prime.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/prime.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/prime.spec.ts)
 [排列组合](#排列组合) | 阶乘、模阶乘、二项式系数、帕斯卡三角 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/binomial.spec.ts)
@@ -485,6 +486,54 @@ maxTree.update(2, 2)
 maxTree.prefix(2) // 3
 ```
 
+## 图
+
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/graph.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/graph.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/graph.spec.ts)
+
+提供 `DirectedGraph` 和 `UndirectedGraph`，用 `Map` 实现，支持稀疏图。
+
+### DirectedGraph
+
+**new DirectedGraph(N: number)**：创建一个有 `N` 个节点的有向图。
+
+**.addEdge(u, v, dist?)**：添加一条从 `u` 到 `v` 的边，距离为 `dist`。
+
+**.removeEdge(u, v)**：移除一条边。
+
+**.removeNode(u)**：移除一个节点，会同时移除它的所有边。
+
+**.size(): number**：返回图的节点数目。
+
+**.getLeaves(): IterableIterator<TNode>**：返回叶节点的数目（入度小于等于1），迭代期间移除边导致的新叶节点会加入迭代。
+
+**.getDistance(u, v): number**：返回 `u` 和 `v` 节点的距离，如果没有直接连接起来则返回 `Infinity`。
+
+**.getChildren(u): IterableIterator<TNode>**：返回迭代器，包括 `u` 的所有子节点。
+
+**.getParents(u): IterableIterator<TNode>**：返回迭代器，包括 `u` 的所有父节点。
+
+**.getAllEdges(): IterableIterator<[TNode, TNode, number]>**: 返回迭代器，包括图中的所有边。
+
+### UndirectedGraph
+
+**new UndirectedGraph(N: number)**：创建一个有 `N` 个节点的无向图。
+
+**.addEdge(u, v, dist?)**：同 `DirectedGraph`。
+
+**.removeEdge(u, v)**：同 `DirectedGraph`。
+
+**.removeNode(u)**：同 `DirectedGraph`。
+
+**.size(): number**：同 `DirectedGraph`。
+
+**.getLeaves(): IterableIterator<TNode>**：同 `DirectedGraph`。
+
+**.getDistance(u, v): number**：同 `DirectedGraph`。
+
+**.getAdjacent(u): IterableIterator<TNode>**：同 `DirectedGraph#getChildren()`。
+
+**.getAllEdges(): IterableIterator<[TNode, TNode, number]>**: 同 `DirectedGraph`。
+
 ## 并查集
 
 [TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/dsu.spec.ts)
@@ -642,10 +691,11 @@ const heap = new Heap()
 
 欢迎任何形式的贡献，我都会给予帮助！你可以：
 
-- 新增算法：某个门类中缺少的算法/数据结构，或者缺少的门类。
-- 增强既有算法：更可读，更简单，或性能更好。
-- 工程：改善测试覆盖率，补充和翻译文档，中/英/其他。
-- 其他：发挥你的想象力！
+- 代码：
+  - 新增算法：某个门类中缺少的算法/数据结构，或者缺少的门类。
+  - 增强既有算法：更可读，更简单，或性能更好。
+- 测试：补充测试 case，改善测试覆盖率。
+- 文档：文档中有不少描述不清或缺失的地方，比如漏了某个 `public` 方法的描述、英文和中文不同步、标点空格使用错误或不一致、例子可以再丰富或方便理解一些。
 
 ### 如何新增一个算法/工具？
 

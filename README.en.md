@@ -21,6 +21,7 @@ Module | Content | Links
 [BitSet](#BitSet) | BitSet | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bitset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bitset.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bitset.spec.ts)
 [Binary Indexed Tree](#Binary%20Indexed%20Tree) | BIT | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bit.spec.ts)
 [Segment Tree](#Segment%20Tree) | SegmentTree | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/segment-tree.spec.ts)
+[Graph](#Graph) | Graph | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/graph.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/graph.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/graph.spec.ts)
 [Disjoint Union Set](#Disjoint%20Union%20Set) | Path compression, union by rank | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/dsu.spec.ts)
 [Primes](#Primes) | prime test, sieve, nth prime | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/prime.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/prime.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/prime.spec.ts)
 [Permutation and Combination](#Permutation%20and%20Combination) | factorial, modular factorial, Binomial coefficient, Pascal's Triangle | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/binomial.spec.ts)
@@ -486,6 +487,54 @@ maxTree.prefix(2) // 3
 maxTree.update(2, 2)
 maxTree.prefix(2) // 3
 ```
+
+## Graph
+
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/graph.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/graph.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/graph.spec.ts)
+
+Provides `DirectedGraph` and `UndirectedGraph`, implemented by `Map`, especially useful for sparse graph.
+
+### DirectedGraph
+
+**new DirectedGraph(N: number)**：create a directed graph with `N` nodes.
+
+**`.addEdge(u, v, dist?)`**：add an edge from `u` to `v` with distance `dist`。
+
+**`.removeEdge(u, v)`**：remove an edge.
+
+**`.removeNode(u)`**：remove node `u` and all its edges.
+
+**`.size(): number`**：return the count of nodes.
+
+**`.getLeaves(): IterableIterator<TNode>`**：iterate over leave nodes (in degree <= 1), removing edges during iteration may cause new nodes added into iteration.
+
+**`.getDistance(u, v): number`**：return distance between `u` and `v` if there is an edge between them, `Infinity` otherwise.
+
+**`.getChildren(u): IterableIterator<TNode>`**：iterate over all child nodes of `u`.
+
+**`.getParents(u): IterableIterator<TNode>`**：iterate over all parent nodes of `u`.
+
+**`.getAllEdges(): IterableIterator<[TNode, TNode, number]>`**: iterate over all edges in graph.
+
+### UndirectedGraph
+
+**`new UndirectedGraph(N: number)`**：create an undirected graph with `N` nodes.
+
+**`.addEdge(u, v, dist?)`**：same as `DirectedGraph`.
+
+**`.removeEdge(u, v)`**：same as `DirectedGraph`.
+
+**`.removeNode(u)`**：same as `DirectedGraph`.
+
+**`.size(): number`**：same as `DirectedGraph`.
+
+**`.getLeaves(): IterableIterator<TNode>`**：same as `DirectedGraph`.
+
+**`.getDistance(u, v): number`**：same as `DirectedGraph`.
+
+**`.getAdjacent(u): IterableIterator<TNode>`**：same as `DirectedGraph#getChildren()`.
+
+**`.getAllEdges(): IterableIterator<[TNode, TNode, number]>`**: same as `DirectedGraph`.
 
 ## Disjoint Union Set
 
