@@ -69,18 +69,17 @@ function dijkstra<T> (source: T, G: Map<T, Map<T, number>>): Map<T, number> {
   type PQEntry = [T, number]
   const dist = new Map()
   const pq = new Heap((l: PQEntry, r: PQEntry) => l[1] - r[1])
-  dist.set(source, 0)
   pq.push([source, 0])
 
   while (pq.size()) {
     const [u, d] = pq.pop()
-    if (d !== dist.get(u)) continue
+    if (dist.has(u)) continue
+    dist.set(u, d)
     const edges = G.has(u) ? G.get(u)! : []
     for (const [v, w] of edges) {
       const currDist = dist.has(v) ? dist.get(v) : Infinity
       const nextDist = d + w
       if (nextDist < currDist) {
-        dist.set(v, nextDist)
         pq.push([v, nextDist])
       }
     }
