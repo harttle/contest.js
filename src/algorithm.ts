@@ -97,4 +97,33 @@ function createGraph<T> (edges: Array<[T, T, number]>): Map<T, Map<T, number>> {
   return G
 }
 
-export { createGraph, dijkstra, nextPermutation, prevPermutation, reverse, swap, shuffle, sort, partition }
+interface TreeNode {
+  index: number
+  children: Map<TreeNode, number>
+  depth: number
+  parent?: TreeNode
+}
+function createTree (N: number, edges: Array<[number, number, number] | [number, number]>): TreeNode[] {
+  const nodes: TreeNode[] = Array(N).fill(0).map((x, index) => ({ index, children: new Map(), depth: 0, parent: undefined }))
+  const G = Array(N).fill(0).map(x => new Map())
+  for (const [u, v, w = 1] of edges) {
+    G[u].set(v, w)
+    G[v].set(u, w)
+  }
+  const root = nodes[0]
+
+  const added = new Set([root])
+  for (const node of added) {
+    for (const [j, w] of G[node.index]) {
+      if (!added.has(nodes[j])) {
+        node.children.set(nodes[j], w)
+        nodes[j].parent = node
+        nodes[j].depth = node.depth + 1
+        added.add(nodes[j])
+      }
+    }
+  }
+  return nodes
+}
+
+export { TreeNode, createGraph, createTree, dijkstra, nextPermutation, prevPermutation, reverse, swap, shuffle, sort, partition }
