@@ -76,18 +76,17 @@ function partition(arr, pred, begin = 0, end = arr.length) {
 function dijkstra(source, G) {
   const dist = new Map();
   const pq = new Heap((l, r) => l[1] - r[1]);
-  dist.set(source, 0);
   pq.push([source, 0]);
   while (pq.size()) {
     const [u, d] = pq.pop();
-    if (d !== dist.get(u))
+    if (dist.has(u))
       continue;
+    dist.set(u, d);
     const edges = G.has(u) ? G.get(u) : [];
     for (const [v, w] of edges) {
       const currDist = dist.has(v) ? dist.get(v) : Infinity;
       const nextDist = d + w;
       if (nextDist < currDist) {
-        dist.set(v, nextDist);
         pq.push([v, nextDist]);
       }
     }
@@ -104,8 +103,30 @@ function createGraph(edges) {
   }
   return G;
 }
+function createTree(N, edges) {
+  const nodes = Array(N).fill(0).map((x, index) => ({ index, children: new Map(), depth: 0, parent: void 0 }));
+  const G = Array(N).fill(0).map((x) => new Map());
+  for (const [u, v, w = 1] of edges) {
+    G[u].set(v, w);
+    G[v].set(u, w);
+  }
+  const root = nodes[0];
+  const added = new Set([root]);
+  for (const node of added) {
+    for (const [j, w] of G[node.index]) {
+      if (!added.has(nodes[j])) {
+        node.children.set(nodes[j], w);
+        nodes[j].parent = node;
+        nodes[j].depth = node.depth + 1;
+        added.add(nodes[j]);
+      }
+    }
+  }
+  return nodes;
+}
 export {
   createGraph,
+  createTree,
   dijkstra,
   nextPermutation,
   partition,
