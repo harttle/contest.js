@@ -323,6 +323,20 @@ class RBTree<T> {
     return true
   }
 
+  search (predicate: (val: T) => boolean, direction: 'left' | 'right'): T | undefined {
+    let p = this.root
+    let result = null
+    while (p) {
+      if (predicate(p.data)) {
+        result = p
+        p = p[direction]
+      } else {
+        p = p[direction === 'left' ? 'right' : 'left']
+      }
+    }
+    return result?.data
+  }
+
   find (data: T): RBTreeNode<T> | null {
     let p = this.root
     while (p) {
@@ -333,6 +347,11 @@ class RBTree<T> {
       } else break
     }
     return p ?? null
+  }
+
+  count (data: T): number {
+    const node = this.find(data)
+    return node ? node.count : 0
   }
 
   * inOrder (root: RBTreeNode<T> = this.root!): Generator<T, undefined, void> {

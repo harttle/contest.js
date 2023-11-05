@@ -20,6 +20,7 @@
 [双向队列](#双向队列) | Deque | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/deque.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/deque.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/deque.spec.ts)
 [堆](#堆) | Heap, PriorityQueue, RemovableHeap, RemovableDoubleHeap | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/heap.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/heap.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/heap.spec.ts)
 [TreeSet](#TreeSet) | TreeSet, TreeMultiSet | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/treeset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treeset.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/treeset.spec.ts)
+[TreeMap](#TreeMap) | TreeMap | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/treemap.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treemap.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/treemap.spec.ts)
 [BitSet](#BitSet) | BitSet | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bitset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bitset.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bitset.spec.ts)
 [树状数组](#树状数组) | BIT | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bit.spec.ts)
 [线段树](#线段树) | SegmentTree | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/segment-tree.spec.ts)
@@ -91,7 +92,7 @@ G.set(1, new Map([[0, 30], [2, 50]]))
 dijkstra(0, G) // Map(3) { 0 => 0, 1 => 10, 2 => 60 }
 ```
 
-可以借助于 `createGraph()`，上述代码等价于：
+<!-- 可以借助于 `createGraph()`，上述代码等价于： -->
 
 ```javascript
 const G = new createGraph([
@@ -101,6 +102,26 @@ const G = new createGraph([
 ])
 
 dijkstra(0, G) // Map(3) { 0 => 0, 1 => 10, 2 => 60 }
+```
+
+### createTree
+
+**createTree(N: number, edges: [number, number][] | [number, number, number][]): TreeNode[]**: 从边的数组 `[number, number, number]` 生成一棵树，返回节点列表，其中第一个节点为树的根节点。
+
+```javascript
+const nodes = createTree(3, [[0, 1], [0, 2]])
+console.log(nodes[0]) // { index: 0, children: Map{[{index: 1, ...}, 1], [{index: 2, ...}, 1]}, depth: 0 }
+console.log(nodes[1]) // { index: 1, children: Map{}, parent: {index: 0, ...}, depth: 1 }
+console.log(nodes[2]) // { index: 2, children: Map{}, parent: {index: 0, ...}, depth: 1 }
+```
+
+对于有权边的树，每条边增加一个表示权重的数字即可：
+
+```javascript
+const nodes = createTree(3, [[0, 1, 10], [0, 2, 20]])
+console.log(nodes[0]) // { index: 0, children: Map{[{index: 1, ...}, 10], [{index: 2, ...}, 20]}, depth: 0 }
+console.log(nodes[1]) // { index: 1, children: Map{}, parent: {index: 0, ...}, depth: 1 }
+console.log(nodes[2]) // { index: 2, children: Map{}, parent: {index: 0, ...}, depth: 1 }
 ```
 
 ### 其他算法
@@ -321,13 +342,13 @@ heap.popMax() // 3
 
 **.higher(val: any)**：找到并返回大于 `val` 的最小元素，如果不存在这样的元素则返回 `undefined`。
 
-**.first()**：返回集合中`第一个`元素，如果不存在这样的元素则返回 `undefined`。
+**.first()**：返回集合中第一个元素，如果不存在这样的元素则返回 `undefined`。
 
-**.last()**：返回集合中`最后一个`元素，如果不存在这样的元素则返回 `undefined`。
+**.last()**：返回集合中最后一个元素，如果不存在这样的元素则返回 `undefined`。
 
-**.shift()**：删除集合中`第一个`元素并返回被删除元素的值，如果不存在这样的元素则返回 `undefined`。
+**.shift()**：删除集合中第一个元素并返回被删除元素的值，如果不存在这样的元素则返回 `undefined`。
 
-**.pop()**：删除集合中`最后一个`元素并返回被删除元素的值，如果不存在这样的元素则返回 `undefined`。
+**.pop()**：删除集合中最后一个元素并返回被删除元素的值，如果不存在这样的元素则返回 `undefined`。
 
 **.size(): number**：返回集合的大小。
 
@@ -380,6 +401,58 @@ set.ceil(5) // 5 is the smallest element >= 5
 **.values()**：返回从第一个元素到最后一个元素的 ES6 迭代器。
 
 **.rvalues()**：返回从最后一个元素到第一个元素的 ES6 迭代器。
+
+## TreeMap
+
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/treemap.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treemap.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/treemap.spec.ts)
+
+读写元素最坏情况时间复杂度为 log(n) 的有序映射，由红黑树实现。
+
+**new TreeMap<K, V>(collection?: [K, V][], compare?: ((lhs: K, rhs: K) => boolean) = ((l, r) => l - r))**：创建一个映射，添加所有 `collection` 里的元素，并按照 `compare` 来比较元素大小（默认为升序）。
+
+**.set(key: K, value: V)**：把键值对 `key`, `value` 插入映射，如果 `key` 已存在则移除它。
+
+**.has(key: K): boolean**：如果 `key` 存在则返回 `true`，否则返回 `false`。
+
+**.delete(key: K)**：从映射删除元素 `key`。
+
+**.floor(key: K): [K, V]**：找到并返回小于等于 `key` 的最大键值对，如果不存在这样的元素则返回 `undefined`。
+
+**.ceil(key: K): [K, V]**：找到并返回大于等于 `key` 的最小键值对，如果不存在这样的元素则返回 `undefined`。
+
+**.lower(key: K): [K, V]**：找到并返回小于 `key` 的最大键值对，如果不存在这样的元素则返回 `undefined`。
+
+**.higher(key: K): [K, V]**：找到并返回大于 `key` 的最小键值对，如果不存在这样的元素则返回 `undefined`。
+
+**.first(): [K, V]**：返回映射中`第一个`键值对，如果不存在这样的元素则返回 `undefined`。
+
+**.last(): [K, V]**：返回映射中`最后一个`键值对，如果不存在这样的元素则返回 `undefined`。
+
+**.shift(): [K, V]**：删除映射中`第一个`键值对并返回被删除元素的值，如果不存在这样的元素则返回 `undefined`。
+
+**.pop(): [K, V]**：删除映射中`最后一个`键值对并返回被删除元素的值，如果不存在这样的元素则返回 `undefined`。
+
+**.size(): number**：返回映射的大小。
+
+**.keys()**：返回从第一个键到最后一个键的 ES6 迭代器。
+
+**.rkeys()**：返回从最后一个键到第一个键的 ES6 迭代器。
+
+**.values()**：返回从第一个值到最后一个值的 ES6 迭代器。
+
+**.rvalues()**：返回从最后一个值到第一个值的 ES6 迭代器。
+
+```javascript
+const map = new TreeMap()
+map.set(3, 'c')
+map.set(5, 'e')
+map.set(7, 'g')
+// 等价于
+// const map = new TreeMap([[3, 'c'], [5, 'e'], [7, 'g']], (l, r) => l - r);
+
+map.ceil(4) // [5, 'e] is the smallest element >= 4
+map.ceil(5) // [5, 'e'] is the smallest element >= 5
+```
 
 ## BitSet
 

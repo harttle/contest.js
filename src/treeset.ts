@@ -36,60 +36,20 @@ class TreeSet<T = number> {
     return deleted
   }
 
-  ceil (val: T): T | undefined {
-    let p = this.tree.root
-    let higher = null
-    while (p) {
-      if (this.compare(p.data, val) >= 0) {
-        higher = p
-        p = p.left
-      } else {
-        p = p.right
-      }
-    }
-    return higher?.data
+  ceil (target: T): T | undefined {
+    return this.tree.search(val => this.compare(val, target) >= 0, 'left')
   }
 
-  floor (val: T): T | undefined {
-    let p = this.tree.root
-    let lower = null
-    while (p) {
-      if (this.compare(val, p.data) >= 0) {
-        lower = p
-        p = p.right
-      } else {
-        p = p.left
-      }
-    }
-    return lower?.data
+  floor (target: T): T | undefined {
+    return this.tree.search(val => this.compare(val, target) <= 0, 'right')
   }
 
-  higher (val: T): T | undefined {
-    let p = this.tree.root
-    let higher = null
-    while (p) {
-      if (this.compare(val, p.data) < 0) {
-        higher = p
-        p = p.left
-      } else {
-        p = p.right
-      }
-    }
-    return higher?.data
+  higher (target: T): T | undefined {
+    return this.tree.search(val => this.compare(val, target) > 0, 'left')
   }
 
-  lower (val: T): T | undefined {
-    let p = this.tree.root
-    let lower = null
-    while (p) {
-      if (this.compare(p.data, val) < 0) {
-        lower = p
-        p = p.right
-      } else {
-        p = p.left
-      }
-    }
-    return lower?.data
+  lower (target: T): T | undefined {
+    return this.tree.search(val => this.compare(val, target) < 0, 'right')
   }
 
   first (): T | undefined {
@@ -177,60 +137,20 @@ class TreeMultiSet<T = number> {
     return node ? node.count : 0
   }
 
-  ceil (val: T): T | undefined {
-    let p = this.tree.root
-    let higher = null
-    while (p) {
-      if (this.compare(p.data, val) >= 0) {
-        higher = p
-        p = p.left
-      } else {
-        p = p.right
-      }
-    }
-    return higher?.data
+  ceil (target: T): T | undefined {
+    return this.tree.search(val => this.compare(val, target) >= 0, 'left')
   }
 
-  floor (val: T): T | undefined {
-    let p = this.tree.root
-    let lower = null
-    while (p) {
-      if (this.compare(val, p.data) >= 0) {
-        lower = p
-        p = p.right
-      } else {
-        p = p.left
-      }
-    }
-    return lower?.data
+  floor (target: T): T | undefined {
+    return this.tree.search(val => this.compare(val, target) <= 0, 'right')
   }
 
-  higher (val: T): T | undefined {
-    let p = this.tree.root
-    let higher = null
-    while (p) {
-      if (this.compare(val, p.data) < 0) {
-        higher = p
-        p = p.left
-      } else {
-        p = p.right
-      }
-    }
-    return higher?.data
+  higher (target: T): T | undefined {
+    return this.tree.search(val => this.compare(val, target) > 0, 'left')
   }
 
-  lower (val: T): T | undefined {
-    let p = this.tree.root
-    let lower = null
-    while (p) {
-      if (this.compare(p.data, val) < 0) {
-        lower = p
-        p = p.right
-      } else {
-        p = p.left
-      }
-    }
-    return lower?.data
+  lower (target: T): T | undefined {
+    return this.tree.search(val => this.compare(val, target) < 0, 'right')
   }
 
   first (): T | undefined {

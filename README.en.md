@@ -12,12 +12,13 @@ Ready for contest use! Data structures and algorithms in pure JavaScript with ze
 
 Module | Content | Links
 ---  | ---  | ---
-[Algorithm](#Algorithm) | swap, shuffle, reverse, sort, dijkstra | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/algorithm.spec.ts)
+[Algorithm](#Algorithm) | swap, shuffle, reverse, sort, dijkstra, createTree, createGraph | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/algorithm.spec.ts)
 [String](#String) | kmp, rabinkarp | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/string.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/string.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/string.spec.ts)
 [Queue](#Queue) | Queue | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/queue.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/queue.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/queue.spec.ts)
 [Deque](#Deque) | Deque | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/deque.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/deque.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/deque.spec.ts)
 [Heap](#Heap) | Heap, PriorityQueue, RemovableHeap, RemovableDoubleHeap | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/heap.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/heap.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/heap.spec.ts)
 [TreeSet](#TreeSet) | TreeSet, TreeMultiSet | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/treeset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treeset.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/treeset.spec.ts)
+[TreeMap](#TreeMap) | TreeMap | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/treemap.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treemap.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/treemap.spec.ts)
 [BitSet](#BitSet) | BitSet | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bitset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bitset.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bitset.spec.ts)
 [Binary Indexed Tree](#Binary%20Indexed%20Tree) | BIT | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bit.spec.ts)
 [Segment Tree](#Segment%20Tree) | SegmentTree | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/segment-tree.spec.ts)
@@ -62,7 +63,6 @@ console.log(arr) // [1, 5, 4, 3, 2]
 
 ```javascript
 let arr = [1, 3, 2]
-<<<<<<< HEAD
 sort(arr)    // [1, 2, 3]
 sort(arr, (l, r) => r - l)    // [3, 2, 1]
 ```
@@ -101,9 +101,26 @@ const G = new createGraph([
 ])
 
 dijkstra(0, G) // Map(3) { 0 => 0, 1 => 10, 2 => 60 }
-=======
-console.log(sort(arr)) // [1, 2, 3]
->>>>>>> 93d71ce37411ecbc5ad3efd1973b77ffd9fbcf57
+```
+
+### createTree
+
+**createTree(N: number, edges: [number, number][] | [number, number, number][]): TreeNode[]**: create a tree from an array of edges: `[number, number, number]`. Returns a node array with first node to be root.
+
+```javascript
+const nodes = createTree(3, [[0, 1], [0, 2]])
+console.log(nodes[0]) // { index: 0, children: Map{[{index: 1, ...}, 1], [{index: 2, ...}, 1]}, depth: 0 }
+console.log(nodes[1]) // { index: 1, children: Map{}, parent: {index: 0, ...}, depth: 1 }
+console.log(nodes[2]) // { index: 2, children: Map{}, parent: {index: 0, ...}, depth: 1 }
+```
+
+For weighted tree, add another number representing weight for each edge
+
+```javascript
+const nodes = createTree(3, [[0, 1, 10], [0, 2, 20]])
+console.log(nodes[0]) // { index: 0, children: Map{[{index: 1, ...}, 10], [{index: 2, ...}, 20]}, depth: 0 }
+console.log(nodes[1]) // { index: 1, children: Map{}, parent: {index: 0, ...}, depth: 1 }
+console.log(nodes[2]) // { index: 2, children: Map{}, parent: {index: 0, ...}, depth: 1 }
 ```
 
 ### Other
@@ -348,6 +365,7 @@ set.add(7)
 
 set.ceil(4)  // 5 is the smallest element >= 4
 set.ceil(5)  // 5 is the smallest element >= 5
+```
 
 **TreeMultiSet**
 
@@ -382,6 +400,58 @@ A worst-case time complexity log(n) multiset implemented by RedBlackTree (see fo
 **.values()**: return an ES6 iterator of values, ordered from front to back.
 
 **.rvalues()**: return an ES6 iterator of values, ordered from back to front.
+
+## TreeMap
+
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/treemap.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/treemap.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/treemap.spec.ts)
+
+<!-- A worst-case time complexity log(n) map implemented by RedBlackTree (see follows). -->
+
+**new TreeMap<K, V>(collection?: [K, V][], compare?: ((l: K, r: K) => boolean) = ((l, r) => l - r))**: create a `TreeMap`, add values from `collection`, compare elements using `compare`, increasing order by default.
+
+**.set(key: K, value: V)**: add key-value pair `key`, 'value' into the map, the existing `key` will be override, if any.
+
+**.has(key: K): boolean**: return `true` if the given `key` exists, return false if not.
+
+**.delete(key: K)**: delete `key` from the map.
+
+**.floor(key: K): [K, V]**: find and return the largest key-value pair that is less than or equal to `key`, return `undefined` if no such key found.
+
+**.ceil(key: K): [K, V]**: find and return the smallest key-value pair that is greater than or equal to `key`, return `undefined` if no such key found.
+
+**.lower(key: K): [K, V]**: find and return the largest key-value pair that is less than `key`, return `undefined` if no such key found.
+
+**.higher(key: K): [K, V]**: find and return the smallest key-value pair that is greater than `key`, return `undefined` if no such key found.
+
+**.first(): [K, V]**：return first key-value pair of the map, return `undefined` if no such key.
+
+**.last(): [K, V]**：return last key-value pair of the map, return `undefined` if no such key.
+
+**.shift(): [K, V]**：delete first key-value pair of the map and return it, return `undefined` if no such key.
+
+**.pop(): [K, V]**：delete last key-value pair of the map and return it, return `undefined` if no such key.
+
+**.size(): number**: return size of the map.
+
+**.keys()**: return an ES6 iterator of keys, ordered from front to back.
+
+**.rkeys()**: return an ES6 iterator of keys, ordered from back to front.
+
+**.values()**: return an ES6 iterator of values, ordered from front to back.
+
+**.rvalues()**: return an ES6 iterator of values, ordered from back to front.
+
+```javascript
+const map = new TreeMap()
+map.set(3, 'c')
+map.set(5, 'e')
+map.set(7, 'g')
+// equivalent to:
+// const map = new TreeMap([[3, 'c'], [5, 'e'], [7, 'g']], (l, r) => l - r);
+
+map.ceil(4)  // [5, 'e'] is the smallest element >= 4
+map.ceil(5)  // [5, 'e'] is the smallest element >= 5
+```
 
 ## BitSet
 

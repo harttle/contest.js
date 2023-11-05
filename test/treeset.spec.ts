@@ -62,7 +62,7 @@ describe('treeset', () => {
         expect([...set.rvalues()]).toEqual(arr.sort((a, b) => b - a))
       }
     })
-    it('should support optional data', () => {
+    it('should support empty data', () => {
       const set = new TreeSet()
       set.add(2)
       set.add(3)

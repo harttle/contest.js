@@ -1,4 +1,4 @@
-import { createGraph, dijkstra, sort, shuffle, nextPermutation, prevPermutation } from '../src/algorithm'
+import { createGraph, dijkstra, sort, shuffle, nextPermutation, prevPermutation, createTree } from '../src/algorithm'
 
 describe('algorithm', () => {
   describe('shuffle', () => {
@@ -119,6 +119,26 @@ describe('algorithm', () => {
       ])
       const dist = dijkstra('a', G)
       expect(dist).toEqual(new Map([['a', 0], ['b', 3], ['c', 1]]))
+    })
+  })
+
+  describe('createTree()', () => {
+    it('should be able to create a single node tree', () => {
+      expect(createTree(1, [])).toEqual([{ index: 0, children: new Map(), parent: undefined, depth: 0 }])
+    })
+    it('should be able to create a tree with 3 nodes', () => {
+      const b = { index: 1, children: new Map(), parent: undefined, depth: 1 }
+      const c = { index: 2, children: new Map(), parent: undefined, depth: 1 }
+      const a = { index: 0, children: new Map([[b, 1], [c, 1]]), parent: undefined, depth: 0 }
+      b.parent = c.parent = a
+      expect(createTree(3, [[0, 1], [0, 2]])).toEqual([a, b, c])
+    })
+    it('should be able to create a weighted tree', () => {
+      const b = { index: 1, children: new Map(), parent: undefined, depth: 1 }
+      const c = { index: 2, children: new Map(), parent: undefined, depth: 1 }
+      const a = { index: 0, children: new Map([[b, 2], [c, 3]]), parent: undefined, depth: 0 }
+      b.parent = c.parent = a
+      expect(createTree(3, [[0, 1, 2], [0, 2, 3]])).toEqual([a, b, c])
     })
   })
 })
