@@ -27,57 +27,17 @@ class TreeSet {
     this._size -= deleted ? 1 : 0;
     return deleted;
   }
-  ceil(val) {
-    let p = this.tree.root;
-    let higher = null;
-    while (p) {
-      if (this.compare(p.data, val) >= 0) {
-        higher = p;
-        p = p.left;
-      } else {
-        p = p.right;
-      }
-    }
-    return higher == null ? void 0 : higher.data;
+  ceil(target) {
+    return this.tree.search((val) => this.compare(val, target) >= 0, "left");
   }
-  floor(val) {
-    let p = this.tree.root;
-    let lower = null;
-    while (p) {
-      if (this.compare(val, p.data) >= 0) {
-        lower = p;
-        p = p.right;
-      } else {
-        p = p.left;
-      }
-    }
-    return lower == null ? void 0 : lower.data;
+  floor(target) {
+    return this.tree.search((val) => this.compare(val, target) <= 0, "right");
   }
-  higher(val) {
-    let p = this.tree.root;
-    let higher = null;
-    while (p) {
-      if (this.compare(val, p.data) < 0) {
-        higher = p;
-        p = p.left;
-      } else {
-        p = p.right;
-      }
-    }
-    return higher == null ? void 0 : higher.data;
+  higher(target) {
+    return this.tree.search((val) => this.compare(val, target) > 0, "left");
   }
-  lower(val) {
-    let p = this.tree.root;
-    let lower = null;
-    while (p) {
-      if (this.compare(p.data, val) < 0) {
-        lower = p;
-        p = p.right;
-      } else {
-        p = p.left;
-      }
-    }
-    return lower == null ? void 0 : lower.data;
+  lower(target) {
+    return this.tree.search((val) => this.compare(val, target) < 0, "right");
   }
   first() {
     return this.tree.inOrder().next().value;
@@ -152,57 +112,17 @@ class TreeMultiSet {
     const node = this.tree.find(val);
     return node ? node.count : 0;
   }
-  ceil(val) {
-    let p = this.tree.root;
-    let higher = null;
-    while (p) {
-      if (this.compare(p.data, val) >= 0) {
-        higher = p;
-        p = p.left;
-      } else {
-        p = p.right;
-      }
-    }
-    return higher == null ? void 0 : higher.data;
+  ceil(target) {
+    return this.tree.search((val) => this.compare(val, target) >= 0, "left");
   }
-  floor(val) {
-    let p = this.tree.root;
-    let lower = null;
-    while (p) {
-      if (this.compare(val, p.data) >= 0) {
-        lower = p;
-        p = p.right;
-      } else {
-        p = p.left;
-      }
-    }
-    return lower == null ? void 0 : lower.data;
+  floor(target) {
+    return this.tree.search((val) => this.compare(val, target) <= 0, "right");
   }
-  higher(val) {
-    let p = this.tree.root;
-    let higher = null;
-    while (p) {
-      if (this.compare(val, p.data) < 0) {
-        higher = p;
-        p = p.left;
-      } else {
-        p = p.right;
-      }
-    }
-    return higher == null ? void 0 : higher.data;
+  higher(target) {
+    return this.tree.search((val) => this.compare(val, target) > 0, "left");
   }
-  lower(val) {
-    let p = this.tree.root;
-    let lower = null;
-    while (p) {
-      if (this.compare(p.data, val) < 0) {
-        lower = p;
-        p = p.right;
-      } else {
-        p = p.left;
-      }
-    }
-    return lower == null ? void 0 : lower.data;
+  lower(target) {
+    return this.tree.search((val) => this.compare(val, target) < 0, "right");
   }
   first() {
     return this.tree.inOrder().next().value;

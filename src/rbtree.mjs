@@ -260,6 +260,19 @@ class RBTree {
     this.fixAfterInsert(node);
     return true;
   }
+  search(predicate, direction) {
+    let p = this.root;
+    let result = null;
+    while (p) {
+      if (predicate(p.data)) {
+        result = p;
+        p = p[direction];
+      } else {
+        p = p[direction === "left" ? "right" : "left"];
+      }
+    }
+    return result == null ? void 0 : result.data;
+  }
   find(data) {
     let p = this.root;
     while (p) {
@@ -271,6 +284,10 @@ class RBTree {
         break;
     }
     return p != null ? p : null;
+  }
+  count(data) {
+    const node = this.find(data);
+    return node ? node.count : 0;
   }
   *inOrder(root = this.root) {
     if (!root)
