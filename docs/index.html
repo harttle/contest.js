@@ -130,17 +130,23 @@
     main()
 
     async function main() {
+      runButton.addEventListener('click', run)
       const categories = await updateCategories()
       initCopyButton()
       await setCategory(categories[0])
-      run()
-      runButton.addEventListener('click', run)
     }
 
     function initCopyButton() {
       copyButton.addEventListener('click', () => {
         const template = templateEditor.getValue()
-        navigator.clipboard.writeText(template)
+        const text = `/*
+ * Template from contest.js
+ * Github: https://github.com/harttle/contest.js
+ * Website: https://harttle.land/contest.js/
+ */
+${template}`
+        console.log(`copy text:\n${text}`)
+        navigator.clipboard.writeText(text)
         copyButton.classList.add('copied')
         setTimeout(() => {
           copyButton.classList.remove('copied')
@@ -233,6 +239,7 @@
         fetchSource(download_url).then(text => templateEditor.setValue(text.replace(/(^|\n)\s*export\b[\s\S]*$/, ''), 1)),
         fetchSource(sample_download_url).then(text => codeEditor.setValue(text.replace(/^(\s*import\b[^\n]*\n)*\s*/, ''), 1))
       ])
+      run()
     }
     function createEditor(id, lang) {
       const editor = ace.edit(id);
