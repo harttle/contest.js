@@ -1,4 +1,5 @@
-class BIT {
+// src/bit.ts
+var BIT = class {
   constructor(N) {
     this.N = N;
     this.sums = Array(N + 1).fill(0);
@@ -22,7 +23,7 @@ class BIT {
     }
     return sum;
   }
-}
+};
 export {
   BIT
 };

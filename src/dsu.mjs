@@ -1,4 +1,5 @@
-class DSU {
+// src/dsu.ts
+var DSU = class {
   constructor(N) {
     this.parent = Array(N).fill(0).map((x, i) => i);
     this.rank = Array(N).fill(0);
@@ -23,7 +24,7 @@ class DSU {
       this.rank[y]++;
     }
   }
-}
+};
 export {
   DSU
 };

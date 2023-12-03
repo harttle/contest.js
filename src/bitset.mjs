@@ -1,4 +1,5 @@
-class BitSet {
+// src/bitset.ts
+var BitSet = class {
   constructor(val = 0, N = Infinity) {
     this.N = N;
     this.val = 0n;
@@ -73,7 +74,7 @@ class BitSet {
       rhs = new BitSet(rhs);
     return new BitSet(this.val ^ rhs.val, Math.max(this.N, rhs.N));
   }
-}
+};
 export {
   BitSet
 };

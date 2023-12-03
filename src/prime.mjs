@@ -1,3 +1,4 @@
+// src/prime.ts
 function eulersSieve(n) {
   const primes = [];
   const isPrime2 = Array(n + 1).fill(true);

@@ -1,4 +1,58 @@
-import { Heap } from "./heap";
+// src/heap.ts
+var Heap = class {
+  constructor(data = [], compare = (lhs, rhs) => lhs < rhs ? -1 : lhs > rhs ? 1 : 0) {
+    if (typeof data === "function") {
+      compare = data;
+      data = [];
+    }
+    this.data = [null, ...data];
+    this.lt = (i, j) => compare(this.data[i], this.data[j]) < 0;
+    for (let i = this.size(); i > 0; i--)
+      this.heapify(i);
+  }
+  size() {
+    return this.data.length - 1;
+  }
+  push(v) {
+    this.data.push(v);
+    let i = this.size();
+    while (i >> 1 !== 0 && this.lt(i, i >> 1))
+      this.swap(i, i >>= 1);
+  }
+  pop() {
+    this.swap(1, this.size());
+    const top = this.data.pop();
+    this.heapify(1);
+    return top;
+  }
+  top() {
+    return this.data[1];
+  }
+  heapify(i) {
+    while (true) {
+      let min = i;
+      const [l, r, n] = [i * 2, i * 2 + 1, this.data.length];
+      if (l < n && this.lt(l, min))
+        min = l;
+      if (r < n && this.lt(r, min))
+        min = r;
+      if (min !== i) {
+        this.swap(i, min);
+        i = min;
+      } else
+        break;
+    }
+  }
+  clear() {
+    this.data = [null];
+  }
+  swap(i, j) {
+    const d = this.data;
+    [d[i], d[j]] = [d[j], d[i]];
+  }
+};
+
+// src/algorithm.ts
 function nextPermutation(arr) {
   let i = arr.length - 1;
   while (i > 0 && arr[i - 1] >= arr[i])

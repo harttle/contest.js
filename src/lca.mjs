@@ -1,4 +1,5 @@
-class LCA {
+// src/lca.ts
+var LCA = class {
   constructor(nodes) {
     this.depths = nodes.map((x) => x.depth);
     this.N = nodes.length;
@@ -32,7 +33,7 @@ class LCA {
     }
     return this.ancestors[u][0];
   }
-}
+};
 export {
   LCA
 };

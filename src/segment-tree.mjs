@@ -1,4 +1,5 @@
-class SegmentTree {
+// src/segment-tree.ts
+var SegmentTree = class {
   constructor(N, aggregate = (a, b) => a + b, initial = 0) {
     this.N = N;
     this.initial = initial;
@@ -68,7 +69,7 @@ class SegmentTree {
     }
     return ans;
   }
-}
+};
 export {
   SegmentTree
 };

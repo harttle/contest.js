@@ -1,3 +1,4 @@
+// src/functional.ts
 function create2DArray(N, M, n) {
   return [...Array(N)].map(() => Array(M).fill(n));
 }

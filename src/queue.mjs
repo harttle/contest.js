@@ -1,10 +1,11 @@
-class ListNode {
+// src/queue.ts
+var ListNode = class {
   constructor(val = void 0, next = null) {
     this.value = val;
     this.next = next;
   }
-}
-class Queue {
+};
+var Queue = class {
   constructor(collection = []) {
     this.lead = new ListNode();
     this.tail = this.lead;
@@ -44,7 +45,7 @@ class Queue {
       node = node.next;
     }
   }
-}
+};
 export {
   ListNode,
   Queue

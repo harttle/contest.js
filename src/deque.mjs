@@ -1,4 +1,5 @@
-class CircularDeque {
+// src/deque.ts
+var CircularDeque = class {
   constructor(N) {
     this.prev = this.next = null;
     this.begin = this.end = 0;
@@ -64,8 +65,8 @@ class CircularDeque {
       i = (i + 1) % this.data.length;
     } while (i !== this.end);
   }
-}
-class Deque {
+};
+var Deque = class {
   constructor(collection = []) {
     this.head = new CircularDeque(128);
     this.tail = new CircularDeque(128);
@@ -147,7 +148,7 @@ class Deque {
       node = node.next;
     }
   }
-}
+};
 export {
   CircularDeque,
   Deque

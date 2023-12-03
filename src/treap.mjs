@@ -1,4 +1,5 @@
-class TreapNode {
+// src/treap.ts
+var TreapNode = class {
   constructor(value) {
     this.value = value;
     this.count = 1;
@@ -43,8 +44,8 @@ class TreapNode {
     node.pushUp();
     return node;
   }
-}
-class TreapMultiSet {
+};
+var TreapMultiSet = class {
   constructor(compareFn = (a, b) => a - b, leftBound = -Infinity, rightBound = Infinity) {
     this.root = new TreapNode(rightBound);
     this.root.priority = Infinity;
@@ -400,7 +401,7 @@ class TreapMultiSet {
     }
     yield* this.reverseInOrder(root.left);
   }
-}
+};
 export {
   TreapMultiSet
 };

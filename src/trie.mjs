@@ -1,12 +1,12 @@
-class TrieNode {
+// src/trie.ts
+var TrieNode = class {
   constructor() {
     this.count = 0;
     this.countPrefix = 0;
     this.children = {};
   }
-}
-;
-class Trie {
+};
+var Trie = class {
   constructor() {
     this.trie = new TrieNode();
   }
@@ -51,8 +51,7 @@ class Trie {
     });
     return ans;
   }
-}
-;
+};
 export {
   Trie,
   TrieNode

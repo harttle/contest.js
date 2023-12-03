@@ -1,4 +1,5 @@
-class BiRollingHash {
+// src/rolling-hash.ts
+var BiRollingHash = class {
   constructor(L, M1 = 1e5 + 7, M2 = 1e5 + 19) {
     this.h1 = new RollingHash(L, M1);
     this.h2 = new RollingHash(L, M2);
@@ -16,8 +17,8 @@ class BiRollingHash {
     const k2 = this.h2.getKey();
     return `${k1},${k2}`;
   }
-}
-class RollingHash {
+};
+var RollingHash = class {
   constructor(L, M = 1e5 + 7) {
     this.MOD = 1e9 + 7;
     this.MODn = BigInt(1e9 + 7);
@@ -49,7 +50,7 @@ class RollingHash {
     const half = this.power(m, p / 2);
     return half * half % this.MODn;
   }
-}
+};
 export {
   BiRollingHash,
   RollingHash

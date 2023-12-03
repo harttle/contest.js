@@ -1,7 +1,21 @@
-import { modInverse } from "./euclidean";
-const MOD = 1e9 + 7;
-const MODn = BigInt(MOD);
-const _Ann = [1n];
+// src/euclidean.ts
+function gcdExtended(a, b) {
+  if (b === 0)
+    return [a, 1, 0];
+  const [gcd, x1, y1] = gcdExtended(b, a % b);
+  return [gcd, y1, x1 - Math.floor(a / b) * y1];
+}
+function modInverse(a, M) {
+  const [gcd, x] = gcdExtended(a, M);
+  if (gcd !== 1)
+    throw new Error("inverse not exist");
+  return (x % M + M) % M;
+}
+
+// src/binomial.ts
+var MOD = 1e9 + 7;
+var MODn = BigInt(MOD);
+var _Ann = [1n];
 function factorial(N) {
   const Nn = BigInt(N);
   for (let n = BigInt(_Ann.length); n <= Nn; n++)

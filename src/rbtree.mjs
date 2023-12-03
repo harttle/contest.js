@@ -1,4 +1,5 @@
-class RBTreeNode {
+// src/rbtree.ts
+var RBTreeNode = class {
   constructor(data) {
     this.data = data;
     this.left = this.right = this.parent = null;
@@ -16,8 +17,8 @@ class RBTreeNode {
   hasRedChild() {
     return Boolean(this.left && this.left.color === 0) || Boolean(this.right && this.right.color === 0);
   }
-}
-class RBTree {
+};
+var RBTree = class {
   constructor(compare = (l, r) => l < r ? -1 : l > r ? 1 : 0) {
     this.root = null;
     this.lt = (l, r) => compare(l, r) < 0;
@@ -307,7 +308,7 @@ class RBTree {
     for (const v of this.reverseInOrder(root.left))
       yield v;
   }
-}
+};
 export {
   RBTree,
   RBTreeNode

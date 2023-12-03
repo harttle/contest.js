@@ -1,4 +1,5 @@
-class Heap {
+// src/heap.ts
+var Heap = class {
   constructor(data = [], compare = (lhs, rhs) => lhs < rhs ? -1 : lhs > rhs ? 1 : 0) {
     if (typeof data === "function") {
       compare = data;
@@ -49,8 +50,8 @@ class Heap {
     const d = this.data;
     [d[i], d[j]] = [d[j], d[i]];
   }
-}
-class RemovableHeap {
+};
+var RemovableHeap = class {
   constructor(data = [], cmp) {
     this.heap = new Heap(data, cmp);
     this.counts = new Map();
@@ -98,8 +99,8 @@ class RemovableHeap {
       this._invalidCount--;
     }
   }
-}
-class RemovableDoubleHeap {
+};
+var RemovableDoubleHeap = class {
   constructor(data = [], cmp = (lhs, rhs) => lhs < rhs ? -1 : lhs > rhs ? 1 : 0) {
     this.min = new RemovableHeap(data, cmp);
     this.max = new RemovableHeap(data, (lhs, rhs) => -cmp(lhs, rhs));
@@ -125,8 +126,8 @@ class RemovableDoubleHeap {
     this.min.push(num);
     this.max.push(num);
   }
-}
-class PriorityQueue extends RemovableHeap {
+};
+var PriorityQueue = class extends RemovableHeap {
   offer(value) {
     return this.push(value);
   }
@@ -136,7 +137,7 @@ class PriorityQueue extends RemovableHeap {
   peek() {
     return this.top();
   }
-}
+};
 export {
   Heap,
   PriorityQueue,

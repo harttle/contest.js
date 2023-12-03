@@ -1,4 +1,5 @@
-class DirectedGraph {
+// src/graph.ts
+var DirectedGraph = class {
   constructor(N = 0) {
     this.edges = new Map();
     this.rEdges = new Map();
@@ -71,8 +72,8 @@ class DirectedGraph {
     for (const u of this.leaves)
       yield u;
   }
-}
-class UndirectedGraph {
+};
+var UndirectedGraph = class {
   constructor(N = 0) {
     this.edges = new Map();
     this.leaves = new Set();
@@ -141,7 +142,7 @@ class UndirectedGraph {
     else
       this.leaves.delete(u);
   }
-}
+};
 export {
   DirectedGraph,
   UndirectedGraph

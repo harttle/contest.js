@@ -1,3 +1,4 @@
+// src/string.ts
 function kmp(s, p) {
   const N = s.length;
   const M = p.length;
