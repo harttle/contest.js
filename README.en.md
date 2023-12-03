@@ -25,7 +25,7 @@ Module | Content | Links
 [Graph](#Graph) | Graph | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/graph.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/graph.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/graph.spec.ts)
 [Disjoint Union Set](#Disjoint%20Union%20Set) | Path compression, union by rank | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/dsu.spec.ts)
 [Primes](#Primes) | prime test, sieve, nth prime | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/prime.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/prime.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/prime.spec.ts)
-[Permutation and Combination](#Permutation%20and%20Combination) | factorial, modular factorial, Binomial coefficient, Pascal's Triangle | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/binomial.spec.ts)
+[Permutation and Combination](#Permutation%20and%20Combination) | factorial, combination, arrangement, Pascal's Triangle | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/binomial.spec.ts)
 [Euclidean](#Euclidean) | euclidean/GCD algorithm, extended-euclidean/extended-GCD algorithm and modular inverse | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/euclidean.spec.ts)
 [Rolling Hash](#Rolling%20Hash) | Rolling hash, rolling double hash | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/rolling-hash.spec.ts)
 [Functional](#Functional) | create2DArray, create3DArray, greater, valid2D, adjacent2D | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/funcitonal.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/functional.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/funcitonal.spec.ts)
@@ -646,19 +646,13 @@ for (let [prime, count] of factors) {
 
 **factorial(n: number)**: factorial of `n`, e.g. `factorial(3)` return `6`.
 
-**modularFactorial(n: number, MOD: number)**: modular factorial, same as `factorial()` except that the result is modulo by `MOD`.
-
-**factorialSequence(n: number)**: get a sequence of factorials, the value at index `i` represents the factorial of `i`. e.g. `factorialSequence(3)` return `[1, 1, 2, 6]`.
-
-**modularFactorialSequence(n: number, MOD: number)**: modular factorial sequence, same as `factorialSequence()` except that the results are modulo by `MOD`.
+**factorialSeq(n: number)**: get a sequence of factorials, the value at index `i` represents the factorial of `i`. e.g. `factorialSeq(3)` return `[1, 1, 2, 6]`.
 
 **pascalsTriangle(n: number)**: return the `n`-th Pascal's Triangle, e.g. `pascalsTriangle(3)` return `[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]]`, in which the value of `P[n][k]` represents the value of C(n, k).
 
-**modularPascalsTriangle(n: number, MOD: number)**: return the `n`-th Pascal's Triangle with each value modulo `MOD`.
+**combination(n: number, k: number)**: return C(n, k), i.e. number of ways to choose `k` from set of size `n`.
 
-**binomialCoefficient(n: number, k: number)**: return C(n, k), i.e. number of ways to choose `k` from `n`.
-
-**moduleBinomialCoefficient(n: number, k: number, MOD: number)**: return the binomial coefficient with each value modulo `MOD`.
+**arrangement(n: number, k: number)**: return A(n, k), i.e. number of ways to arrange `k` elements in order from set of size `n`.
 
 ## Euclidean
 
@@ -668,7 +662,7 @@ for (let [prime, count] of factors) {
 
 **gcdExtended(a: number, b: number)**: run extended Euclidean algorithm to compute the array `[gcd, x, y]`, in which `gcd` is the greatest common divisor and `gcd === x * a + y * b`.
 
-**modularInverse(a: number, n: number)**: return the modular inverse of `a`, i.e. `a^-1 mod n`. Throws an error if `a` and `n` are not coprime.
+**modInverse(a: number, n: number)**: return the modular inverse of `a`, i.e. `a^-1 mod n`. Throws an error if `a` and `n` are not coprime.
 
 # Rolling Hash
 [TypeScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/rolling-hash.spec.ts)

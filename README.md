@@ -28,7 +28,7 @@
 [并查集](#并查集) | 路径压缩、按秩合并 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/dsu.spec.ts)
 [质数算法](#质数算法) | 质数测试、筛选等 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/prime.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/prime.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/prime.spec.ts)
 [排列组合](#排列组合) | 阶乘、模阶乘、二项式系数、帕斯卡三角 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/binomial.spec.ts)
-[欧几里得算法](#欧几里得算法) | 欧几里得公约数，扩展欧几里得，模拟元 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/euclidean.spec.ts)
+[欧几里得算法](#欧几里得算法) | 欧几里得公约数，扩展欧几里得，模逆元 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/euclidean.spec.ts)
 [滚动哈希](#滚动哈希) | 滚动哈希，双哈希 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/rolling-hash.spec.ts)
 [工具](#工具) | create2DArray, create3DArray, greater, valid2D, adjacent2D | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/funcitonal.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/functional.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/funcitonal.spec.ts)
 
@@ -647,19 +647,13 @@ for (let [prime, count] of factors) {
 
 **factorial(n: number)**：返回 `n` 的阶乘，例如 `factorial(3)` 返回 `6`。
 
-**modularFactorial(n: number, MOD: number)**：模阶乘，同 `factorial()`，区别是结果会对 `MOD` 取模。
-
-**factorialSequence(n: number)**：得到阶乘序列，下标 `i` 的值表示 `i` 的阶乘。例如 `factorialSequence(3)` 返回 `[1, 1, 2, 6]`。
-
-**modularFactorialSequence(n: number, MOD: number)**：得到取模的阶乘序列，同 `factorialSequence()`，区别是结果会对 `MOD` 取模。
+**factorialSeq(n: number)**：得到阶乘序列，下标 `i` 的值表示 `i` 的阶乘。例如 `factorialSeq(3)` 返回 `[1, 1, 2, 6]`。
 
 **pascalsTriangle(n: number)**：返回第 `n` 个帕斯卡三角，例如 `pascalsTriangle(3)` 返回 `[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]]`。其中 `P[n][k]` 表示 C(n, k) 的值。
 
-**modularPascalsTriangle(n: number, MOD: number)**：返回第 `n` 个帕斯卡三角，其中每个值对 `MOD` 取模。
+**combination(n: number, k: number)**：返回二项式系数 C(n, k)，即从 n 个互不相同的元素中取 k 个元素的组合数。
 
-**binomialCoefficient(n: number, k: number)**：返回二项式系数 C(n, k)，即从 n 个互不相同的元素中取 k 个元素的组合数。
-
-**moduleBinomialCoefficient(n: number, k: number, MOD: number)**：返回二项式系数，它的值对 `MOD` 取模。
+**arrangement(n: number, k: number)**：返回 A(n, k)，即从 n 个互不相同的元素中取 k 个元素的排列数。
 
 ## 欧几里得算法
 
@@ -669,7 +663,7 @@ for (let [prime, count] of factors) {
 
 **gcdExtended(a: number, b: number)**：运行扩展欧几里得算法，得到 `[gcd, x, y]` 数组，其中第一个元素 `gcd` 为最大公约数，且 `gcd === x * a + y * b`。
 
-**modularInverse(a: number, n: number)**：返回 `a` 的模逆元，即 `a^-1 mod n`。如果 `a` 和 `n` 不互质则抛出异常。
+**modInverse(a: number, n: number)**：返回 `a` 的模逆元，即 `a^-1 mod n`。如果 `a` 和 `n` 不互质则抛出异常。
 
 ## 滚动哈希
 [TypeScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/rolling-hash.spec.ts)

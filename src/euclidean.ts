@@ -8,7 +8,7 @@ export function gcdExtended (a: number, b: number): number[] {
   return [gcd, y1, x1 - Math.floor(a / b) * y1]
 }
 
-export function modularInverse (a: number, M: number): number {
+export function modInverse (a: number, M: number): number {
   const [gcd, x] = gcdExtended(a, M)
   if (gcd !== 1) throw new Error('inverse not exist')
   return ((x % M) + M) % M

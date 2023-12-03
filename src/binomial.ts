@@ -1,75 +1,22 @@
-const factorialSeq = [1]
+import { modInverse } from './euclidean'
+
+const MOD = 1e9 + 7
+const MODn = BigInt(MOD)
+const _Ann = [1n]
 
 function factorial (N: number): number {
-  const seq = factorialSeq
-  for (let n = seq.length; n <= N; n++) seq.push(seq[seq.length - 1] * n)
-  return seq[N]
+  const Nn = BigInt(N)
+  for (let n = BigInt(_Ann.length); n <= Nn; n++) _Ann.push(_Ann[_Ann.length - 1] * n % MODn)
+  return Number(_Ann[Number(N)])
 }
 
-function factorialSequence (N: number): number[] {
-  const req = [1]
-  for (let n = 1; n <= N; n++) req.push(req[req.length - 1] * n)
-  return req
+function factorialSeq (N: number): number[] {
+  factorial(N)
+  return _Ann.slice(0, N + 1).map(x => Number(x))
 }
 
-const modularFactorialSeq: {
-  [key: string]: Array<bigint>
-} = {}
-
-function modularFactorial (N: number | bigint, M: number | bigint): number {
-  N = BigInt(N)
-  M = BigInt(M)
-  const seq = modularFactorialSeq[M.toString()] = modularFactorialSeq[M.toString()] || [1n]
-  for (let n = BigInt(seq.length); n <= N; n++) seq.push(seq[seq.length - 1] * n % M)
-  return Number(seq[Number(N)])
-}
-
-function modularFactorialSequence (N: number | bigint, M: number | bigint): number[] {
-  N = BigInt(N)
-  M = BigInt(M)
-  const seq = [1n]
-  for (let n = 1n; n <= N; n++) seq.push(seq[seq.length - 1] * n % M)
-  return seq.map(x => Number(x))
-}
-
-function gcdExtended (a: number, b: number): number[] {
-  if (b === 0) return [a, 1, 0]
-  const [gcd, x1, y1] = gcdExtended(b, a % b)
-  return [gcd, y1, x1 - Math.floor(a / b) * y1]
-}
-
-function modularInverse (a: number, M: number): number {
-  const [gcd, x] = gcdExtended(a, M)
-  if (gcd !== 1) throw new Error('inverse not exist')
-  return ((x % M) + M) % M
-}
-
-// Support for number & bigint at the same time
-// https://stackoverflow.com/a/65281351/8242705
-function pascalsTriangle (N: number): number[][]
-function pascalsTriangle (N: bigint): Array<Array<bigint>>
-function pascalsTriangle (N: number | bigint): number[][]|Array<Array<bigint>> {
-  let base1
-  if (typeof N === 'number') {
-    base1 = 1
-  } else {
-    base1 = 1n as unknown as number
-  }
-  const C = [[base1]]
-
-  for (let n = 1; n <= N; ++n) {
-    C.push(Array(n + 1))
-    C[n][0] = C[n][n] = base1
-    for (let k = 1; k < n; ++k) {
-      C[n][k] = C[n - 1][k - 1] + C[n - 1][k]
-    }
-  }
-  return C
-}
-
-function modularPascalsTriangle (N: number, MOD: number): number[][] {
+function pascalsTriangle (N: number): number[][] {
   const C: any[][] = [[1n]]
-  const MODn = BigInt(MOD)
 
   for (let n = 1; n <= N; ++n) {
     C.push(Array(n + 1))
@@ -82,23 +29,21 @@ function modularPascalsTriangle (N: number, MOD: number): number[][] {
   return C
 }
 
-function binomialCoefficient (n: number, k: number): number {
-  let res = 1
-  k = Math.min(k, n - k)
-  for (let i = 1; i <= k; ++i) { res = res * (n - k + i) / i }
-  return Math.round(res)
+function combination (n: number, k: number): number {
+  const deno = modMultiply(factorial(k), factorial(n - k))
+  return modMultiply(factorial(n), modInverse(deno, MOD))
 }
 
-function moduleBinomialCoefficient (n: number, k: number, P: number): number {
-  const deno = modularMultiply(modularFactorial(k, P), modularFactorial(n - k, P), P)
-  return modularMultiply(modularFactorial(n, P), modularInverse(deno, P), P)
+function arrangement (n: number, k: number): number {
+  const deno = factorial(n - k)
+  return modMultiply(factorial(n), modInverse(deno, MOD))
 }
 
-function modularMultiply (a: number, b: number, M: number): number {
-  return Number(BigInt(a) * BigInt(b) % BigInt(M))
+function modMultiply (a: number, b: number): number {
+  return Number(BigInt(a) * BigInt(b) % MODn)
 }
 
 export {
-  factorial, factorialSequence, modularFactorial, modularFactorialSequence,
-  pascalsTriangle, modularPascalsTriangle, binomialCoefficient, moduleBinomialCoefficient, modularMultiply
+  factorial, factorialSeq,
+  pascalsTriangle, combination, arrangement, modMultiply
 }
