@@ -8,6 +8,11 @@ Ready for contest use! Data structures and algorithms in pure JavaScript with ze
 - Easy to change! Implemented in simplified code with less abstraction.
 - Available via npm! Can be imported as part of the WORKING code.
 
+Useful links:
+
+- Online playground: https://harttle.land/contest.js
+- LeetCode Tampermonkey script to run/check cases: https://greasyfork.org/zh-CN/scripts/402276-leetcode-helper-for-javascript
+
 **Table of Contents**
 
 Module | Content | Links

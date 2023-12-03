@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Playground for harttle/contest.js</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+    }
+    h2 {
+      margin: 16px 0 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    h2 button {
+      display: flex;
+      align-items: center;
+      height: 28px;
+      width: 28px;
+      background: transparent;
+      border: 1px solid;
+      border-radius: 50%;
+    }
+    h2 button:hover {
+      color: #C5C8C6;
+      background: #1D1F21;
+    }
+    .page {
+      height: 100%;
+      display: flex;
+      column-gap: 16px;
+      padding: 16px;
+      box-sizing: border-box;
+    }
+    .categories {
+      max-width: 320px;
+    }
+    .categories ul {
+      list-style: none;
+      padding: 0;
+    }
+    .categories li a {
+      cursor: pointer;
+      height: 32px;
+      line-height: 32px;
+      padding: 0 16px;
+      display: block;
+    }
+    .categories li.active, .categories li:hover {
+      color: #C5C8C6;
+      background: #1D1F21;
+    }
+    .playground {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      row-gap: 0px;
+    }
+    .template, .code, .output {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    #template, #code, #output {
+      flex-grow: 1;
+    }
+    #output {
+      color: #C5C8C6;
+      background: #1D1F21;
+      white-space: pre;
+      padding: 12px;
+      font: 12px/normal 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Source Code Pro', 'source-code-pro', monospace;
+    }
+    #copyButton .copied {
+      display: none;
+    }
+    #copyButton.copied .copied {
+      display: initial;
+    }
+    #copyButton.copied .copy {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="categories">
+      <h2>Categories</h2>
+      <ul id="categoryList"></ul>
+    </div>
+    <div class="template">
+      <h2>Template
+        <button id="copyButton">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="copy bi bi-copy" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M4 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zM2 5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1h1v1a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h1v1z"/>
+          </svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="copied bi bi-check2" viewBox="0 0 16 16">
+            <path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/>
+          </svg>
+        </button>
+      </h2>
+      <div id="template"></div>
+    </div>
+    <div class="playground">
+      <div class="code">
+        <h2>Your code
+          <button id="runButton">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-play-fill" viewBox="0 0 16 16">
+              <path d="m11.596 8.697-6.363 3.692c-.54.313-1.233-.066-1.233-.697V4.308c0-.63.692-1.01 1.233-.696l6.363 3.692a.802.802 0 0 1 0 1.393z"/>
+            </svg>
+          </button>
+        </h2>
+        <div id="code"></div>
+      </div>
+      <div class="output">
+        <h2>Output</h2>
+        <div id="output"></div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.22.0/src-min/ace.js"></script>
+  <script>
+    const templateEditor = createEditor('template', 'javascript')
+    const codeEditor = createEditor('code', 'javascript')
+    const files = new Map()
+
+    main()
+
+    async function main() {
+      const categories = await updateCategories()
+      initCopyButton()
+      await setCategory(categories[0])
+      run()
+      runButton.addEventListener('click', run)
+    }
+
+    function initCopyButton() {
+      copyButton.addEventListener('click', () => {
+        const template = templateEditor.getValue()
+        navigator.clipboard.writeText(template)
+        copyButton.classList.add('copied')
+        setTimeout(() => {
+          copyButton.classList.remove('copied')
+        }, 3000)
+      })
+    }
+
+    function clearLogs() {
+      output.innerHTML = "";
+    }
+
+    function log(msg) {
+      output.innerText += msg + '\n'
+    }
+
+    function run() {
+      const template = templateEditor.getValue()
+      const code = codeEditor.getValue()
+      const body = `${template}\n${code}`
+      const fn = new Function(`console`, body)
+
+      clearLogs()
+      fn({
+        log: function(...args) {
+          console.log(...args)
+          log(args.map(serialize).join(' '))
+        },
+        warn: function(...args) {
+          console.warn(...args)
+          log(args.map(serialize).join(' '))
+        },
+        error: function(...args) {
+          console.error(...args)
+          log(args.map(serialize).join(' '))
+        }
+      })
+    }
+
+    function serialize(result) {
+      return JSON.stringify(result, (k, v) => {
+        if (Number.isNaN(v) || v === Infinity || v === -Infinity || v === undefined || typeof v === 'bigint') return '' + v
+        return v
+      })
+    }
+
+    async function fetchCategories() {
+      const response = await fetch('https://api.github.com/repos/harttle/contest.js/contents/src')
+      const files = await response.json()
+      return files.filter(x => /\.mjs$/.test(x.name) && x.type === "file" && x.name !== "index.mjs" && !x.name.endsWith('.sample.mjs'))
+    }
+    async function fetchSource(download_url) {
+      if (!files.has(download_url)) {
+        const response = await fetch(download_url)
+        const text = await response.text()
+        files.set(download_url, text)
+      }
+      return files.get(download_url)
+    }
+    async function updateCategories() {
+      const categories = await fetchCategories()
+      console.log('categories', categories)
+      for (const category of categories) {
+        const { name, html_url, download_url } = category
+        const li = document.createElement('li')
+        const a = document.createElement('a')
+        a.innerText = name.replace(/\.\w+/, '')
+        a.dataset.name = name
+        a.dataset.download_url = download_url
+        a.dataset.html_url = html_url
+        a.addEventListener('click', e => setCategory(category))
+        li.appendChild(a)
+        categoryList.appendChild(li)
+      }
+      return categories
+    }
+    async function setCategory(category) {
+      console.log('setting category', category)
+
+      for (const li of categoryList.children) {
+        if (li.querySelector('a').dataset.name === category.name) {
+          li.classList.add('active')
+        } else {
+          li.classList.remove('active')
+        }
+      }
+
+      const { html_url, download_url } = category
+      const sample_download_url = download_url.replace(/\.mjs$/, '.sample.mjs')
+      await Promise.all([
+        fetchSource(download_url).then(text => templateEditor.setValue(text.replace(/(^|\n)\s*export\b[\s\S]*$/, ''), 1)),
+        fetchSource(sample_download_url).then(text => codeEditor.setValue(text.replace(/^(\s*import\b[^\n]*\n)*\s*/, ''), 1))
+      ])
+    }
+    function createEditor(id, lang) {
+      const editor = ace.edit(id);
+      editor.setTheme('ace/theme/tomorrow_night');
+      editor.getSession().setMode('ace/mode/' + lang);
+      editor.getSession().setOptions({
+        tabSize: 2,
+        useSoftTabs: true
+      });
+      editor.renderer.setScrollMargin(15);
+      return editor;
+    }
+  </script>
+</body>
+</html>

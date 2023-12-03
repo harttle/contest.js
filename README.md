@@ -8,7 +8,10 @@
 - **容易更改**。采用简化的实现，尽量少的抽象层级。
 - **支持 npm**。加一句 require，即可写出可以工作的代码。
 
-支持在 LeetCode 页面提取、执行、判定用例的 Tampermonkey 脚本： https://greasyfork.org/zh-CN/scripts/402276-leetcode-helper-for-javascript
+有用链接：
+
+- 在线预览： https://harttle.land/contest.js
+- 在 LeetCode 页面执行/判定用例： https://greasyfork.org/zh-CN/scripts/402276-leetcode-helper-for-javascript
 
 **索引**
 
