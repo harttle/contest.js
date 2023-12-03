@@ -1,65 +1,19 @@
-const factorialSeq = [1];
+import { modInverse } from "./euclidean";
+const MOD = 1e9 + 7;
+const MODn = BigInt(MOD);
+const _Ann = [1n];
 function factorial(N) {
-  const seq = factorialSeq;
-  for (let n = seq.length; n <= N; n++)
-    seq.push(seq[seq.length - 1] * n);
-  return seq[N];
+  const Nn = BigInt(N);
+  for (let n = BigInt(_Ann.length); n <= Nn; n++)
+    _Ann.push(_Ann[_Ann.length - 1] * n % MODn);
+  return Number(_Ann[Number(N)]);
 }
-function factorialSequence(N) {
-  const req = [1];
-  for (let n = 1; n <= N; n++)
-    req.push(req[req.length - 1] * n);
-  return req;
-}
-const modularFactorialSeq = {};
-function modularFactorial(N, M) {
-  N = BigInt(N);
-  M = BigInt(M);
-  const seq = modularFactorialSeq[M.toString()] = modularFactorialSeq[M.toString()] || [1n];
-  for (let n = BigInt(seq.length); n <= N; n++)
-    seq.push(seq[seq.length - 1] * n % M);
-  return Number(seq[Number(N)]);
-}
-function modularFactorialSequence(N, M) {
-  N = BigInt(N);
-  M = BigInt(M);
-  const seq = [1n];
-  for (let n = 1n; n <= N; n++)
-    seq.push(seq[seq.length - 1] * n % M);
-  return seq.map((x) => Number(x));
-}
-function gcdExtended(a, b) {
-  if (b === 0)
-    return [a, 1, 0];
-  const [gcd, x1, y1] = gcdExtended(b, a % b);
-  return [gcd, y1, x1 - Math.floor(a / b) * y1];
-}
-function modularInverse(a, M) {
-  const [gcd, x] = gcdExtended(a, M);
-  if (gcd !== 1)
-    throw new Error("inverse not exist");
-  return (x % M + M) % M;
+function factorialSeq(N) {
+  factorial(N);
+  return _Ann.slice(0, N + 1).map((x) => Number(x));
 }
 function pascalsTriangle(N) {
-  let base1;
-  if (typeof N === "number") {
-    base1 = 1;
-  } else {
-    base1 = 1n;
-  }
-  const C = [[base1]];
-  for (let n = 1; n <= N; ++n) {
-    C.push(Array(n + 1));
-    C[n][0] = C[n][n] = base1;
-    for (let k = 1; k < n; ++k) {
-      C[n][k] = C[n - 1][k - 1] + C[n - 1][k];
-    }
-  }
-  return C;
-}
-function modularPascalsTriangle(N, MOD) {
   const C = [[1n]];
-  const MODn = BigInt(MOD);
   for (let n = 1; n <= N; ++n) {
     C.push(Array(n + 1));
     C[n][0] = C[n][n] = 1n;
@@ -72,29 +26,22 @@ function modularPascalsTriangle(N, MOD) {
       C[n][k] = Number(C[n][k]);
   return C;
 }
-function binomialCoefficient(n, k) {
-  let res = 1;
-  k = Math.min(k, n - k);
-  for (let i = 1; i <= k; ++i) {
-    res = res * (n - k + i) / i;
-  }
-  return Math.round(res);
+function combination(n, k) {
+  const deno = modMultiply(factorial(k), factorial(n - k));
+  return modMultiply(factorial(n), modInverse(deno, MOD));
 }
-function moduleBinomialCoefficient(n, k, P) {
-  const deno = modularMultiply(modularFactorial(k, P), modularFactorial(n - k, P), P);
-  return modularMultiply(modularFactorial(n, P), modularInverse(deno, P), P);
+function arrangement(n, k) {
+  const deno = factorial(n - k);
+  return modMultiply(factorial(n), modInverse(deno, MOD));
 }
-function modularMultiply(a, b, M) {
-  return Number(BigInt(a) * BigInt(b) % BigInt(M));
+function modMultiply(a, b) {
+  return Number(BigInt(a) * BigInt(b) % MODn);
 }
 export {
-  binomialCoefficient,
+  arrangement,
+  combination,
   factorial,
-  factorialSequence,
-  modularFactorial,
-  modularFactorialSequence,
-  modularMultiply,
-  modularPascalsTriangle,
-  moduleBinomialCoefficient,
+  factorialSeq,
+  modMultiply,
   pascalsTriangle
 };
