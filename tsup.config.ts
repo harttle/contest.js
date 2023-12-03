@@ -14,6 +14,7 @@ const options: Options = {
   ],
   outDir: 'lib',
   esbuildOptions (options, context) {
+    options.bundle = true
     options.splitting = false
   }
 }
