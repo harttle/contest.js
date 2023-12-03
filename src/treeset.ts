@@ -132,6 +132,15 @@ class TreeMultiSet<T = number> {
     return true
   }
 
+  deleteAll (val: T): boolean {
+    let successful = false
+    while (this.tree.delete(val)) {
+      this._size--
+      successful = true
+    }
+    return successful
+  }
+
   count (val: T): number {
     const node = this.tree.find(val)
     return node ? node.count : 0

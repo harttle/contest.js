@@ -1,0 +1,21 @@
+import { Heap, RemovableHeap } from './heap.mjs'
+
+console.log('Heap')
+const heap = new Heap()
+heap.push(3)
+console.log('top', heap.top())
+heap.push(4)
+console.log('top', heap.top())
+heap.push(2)
+console.log('top', heap.top())
+heap.pop(2)
+console.log('top', heap.top())
+
+console.log('RemovableHeap')
+const rheap = new RemovableHeap()
+rheap.push(3)
+rheap.push(4)
+rheap.push(2)
+rheap.remove(2)
+console.log('top', heap.top())
+console.log('size', heap.size())
