@@ -420,6 +420,14 @@ var TreeMultiSet = class {
     this._size--;
     return true;
   }
+  deleteAll(val) {
+    let successful = false;
+    while (this.tree.delete(val)) {
+      this._size--;
+      successful = true;
+    }
+    return successful;
+  }
   count(val) {
     const node = this.tree.find(val);
     return node ? node.count : 0;
