@@ -66,21 +66,19 @@ function partition <T=number> (arr: T[], pred: (val: T) => number, begin = 0, en
 }
 
 function dijkstra<T> (source: T, G: Map<T, Map<T, number>>): Map<T, number> {
-  type PQEntry = [T, number]
-  const dist = new Map()
-  const pq = new Heap((l: PQEntry, r: PQEntry) => l[1] - r[1])
-  pq.push([source, 0])
+  const dist = new Map([[source, 0]])
+  const pq = new Heap([[0, source]], (l: [number, T], r: [number, T]) => l[0] - r[0])
+  const finalized = new Set()
 
   while (pq.size()) {
-    const [u, d] = pq.pop()
-    if (dist.has(u)) continue
-    dist.set(u, d)
-    const edges = G.has(u) ? G.get(u)! : []
-    for (const [v, w] of edges) {
-      const currDist = dist.has(v) ? dist.get(v) : Infinity
-      const nextDist = d + w
-      if (nextDist < currDist) {
-        pq.push([v, nextDist])
+    const [d, u] = pq.pop()
+    if (finalized.has(u)) continue
+    else finalized.add(u)
+
+    for (const [v, w] of G.get(u) ?? []) {
+      if (d + w < (dist.get(v) ?? Infinity)) {
+        pq.push([d + w, v])
+        dist.set(v, d + w)
       }
     }
   }
