@@ -16,10 +16,10 @@ class BiRollingHash {
     this.h2.degest(val)
   }
 
-  getKey (): string {
+  getKey (): number {
     const k1 = this.h1.getKey()
     const k2 = this.h2.getKey()
-    return `${k1},${k2}`
+    return k1 + (1e9 + 7) * k2
   }
 }
 

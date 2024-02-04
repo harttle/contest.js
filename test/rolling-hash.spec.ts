@@ -32,10 +32,11 @@ describe('rolling hash', () => {
       hash.digest(3)
       hash.digest(4)
       hash.digest(5)
-      expect(hash.getKey()).toEqual('345,30405')
+      expect(hash.getKey()).toEqual(345 + 30405 * (1e9 + 7))
       hash.digest(6)
       hash.degest(3)
-      expect(hash.getKey()).toEqual('456,40506')
+      const MOD = 1e9 + 7
+      expect(hash.getKey()).toEqual(456 + 40506 * MOD)
     })
     it('can be used to find repeating string', () => {
       const LEN = 3
@@ -48,7 +49,16 @@ describe('rolling hash', () => {
         if (i >= LEN) hash.degest(str.charCodeAt(i - LEN) - 97)
         results.push(hash.getKey())
       }
-      expect(results).toEqual(['0,0', '1,1', '31,33', '902,1026', '1769,2015', '2524,2884', '31,33'])
+      const MOD = 1e9 + 7
+      expect(results).toEqual([
+        0,
+        1 + MOD,
+        31 + 33 * MOD,
+        902 + 1026 * MOD,
+        1769 + 2015 * MOD,
+        2524 + 2884 * MOD,
+        31 + 33 * MOD
+      ])
     })
   })
 })
