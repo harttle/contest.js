@@ -55,13 +55,13 @@ var RemovableHeap = class {
   constructor(data = [], cmp) {
     this.heap = new Heap(data, cmp);
     this.counts = new Map();
-    this._invalidCount = 0;
+    this._size = 0;
     for (let i = 1; i < this.heap.data.length; i++) {
-      this._setCount(this.heap.data[i], 1);
+      this.count(this.heap.data[i], 1);
     }
   }
   size() {
-    return this.heap.size() - this._invalidCount;
+    return this._size;
   }
   top() {
     this._normalize();
@@ -72,31 +72,30 @@ var RemovableHeap = class {
     if (this.heap.size() < 1)
       return void 0;
     const top = this.heap.pop();
-    this._setCount(top, -1);
+    this.count(top, -1);
     return top;
   }
   push(num) {
-    this._setCount(num, 1);
+    this.count(num, 1);
     this.heap.push(num);
   }
   remove(num) {
     if (Number(this.counts.get(num)) > 0) {
-      this._setCount(num, -1);
-      this._invalidCount++;
+      this.count(num, -1);
     }
   }
   has(value) {
     return this.counts.get(value) > 0;
   }
-  _setCount(num, diff) {
+  count(num, diff = 1) {
     var _a;
     const count = (_a = this.counts.get(num)) != null ? _a : 0;
     this.counts.set(num, count + diff);
+    this._size += diff;
   }
   _normalize() {
     while (this.heap.size() && !this.counts.get(this.heap.top())) {
       this.heap.pop();
-      this._invalidCount--;
     }
   }
 };
