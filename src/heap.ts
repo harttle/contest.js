@@ -61,7 +61,7 @@ class Heap<T=number> {
 class RemovableHeap<T> {
   heap: Heap<T>
   counts: Map<T, number>
-  _invalidCount: number
+  _size: number
   constructor ()
   constructor (data: T[])
   constructor (cmp: Compare<T>)
@@ -70,14 +70,14 @@ class RemovableHeap<T> {
   constructor (data: (T[] | Compare<T>) = [], cmp?: Compare<T>) {
     this.heap = new Heap<T>(data, cmp)
     this.counts = new Map()
-    this._invalidCount = 0
+    this._size = 0
     for (let i = 1; i < this.heap.data.length; i++) {
-      this._setCount(this.heap.data[i]!, 1)
+      this.count(this.heap.data[i]!, 1)
     }
   }
 
   size (): number {
-    return this.heap.size() - this._invalidCount
+    return this._size
   }
 
   top (): T {
@@ -89,19 +89,18 @@ class RemovableHeap<T> {
     this._normalize()
     if (this.heap.size() < 1) return undefined
     const top = this.heap.pop()
-    this._setCount(top, -1)
+    this.count(top, -1)
     return top
   }
 
   push (num: T): void {
-    this._setCount(num, 1)
+    this.count(num, 1)
     this.heap.push(num)
   }
 
   remove (num: T): void {
     if (Number(this.counts.get(num)) > 0) {
-      this._setCount(num, -1)
-      this._invalidCount++
+      this.count(num, -1)
     }
   }
 
@@ -109,15 +108,15 @@ class RemovableHeap<T> {
     return this.counts.get(value)! > 0
   }
 
-  private _setCount (num: T, diff: number): void {
+  private count (num: T, diff = 1): void {
     const count = this.counts.get(num) ?? 0
     this.counts.set(num, count + diff)
+    this._size += diff
   }
 
   private _normalize (): void {
     while (this.heap.size() && !this.counts.get(this.heap.top())) {
       this.heap.pop()
-      this._invalidCount--
     }
   }
 }
