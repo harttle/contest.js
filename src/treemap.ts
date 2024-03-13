@@ -25,6 +25,10 @@ class TreeMap<K = number, V = unknown> {
     return !!this.tree.find(key)
   }
 
+  get (key: K): V | undefined {
+    return this.map.get(key)
+  }
+
   set (key: K, val: V): boolean {
     const successful = this.tree.insert(key)
     this._size += successful ? 1 : 0
