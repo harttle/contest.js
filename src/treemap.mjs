@@ -330,6 +330,9 @@ var TreeMap = class {
   has(key) {
     return !!this.tree.find(key);
   }
+  get(key) {
+    return this.map.get(key);
+  }
   set(key, val) {
     const successful = this.tree.insert(key);
     this._size += successful ? 1 : 0;
