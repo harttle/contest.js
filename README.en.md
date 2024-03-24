@@ -33,6 +33,7 @@ Module | Content | Links
 [Permutation and Combination](#Permutation%20and%20Combination) | factorial, combination, arrangement, Pascal's Triangle | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/binomial.spec.ts)
 [Euclidean](#Euclidean) | euclidean/GCD algorithm, extended-euclidean/extended-GCD algorithm and modular inverse | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/euclidean.spec.ts)
 [Rolling Hash](#Rolling%20Hash) | Rolling hash, rolling double hash | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/rolling-hash.spec.ts)
+[String Hash](#String%20Hash) | String hash, String double hash | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/string-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/string-hash.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/string-hash.spec.ts)
 [Functional](#Functional) | create2DArray, create3DArray, greater, valid2D, adjacent2D | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/funcitonal.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/functional.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/funcitonal.spec.ts)
 
 
@@ -581,7 +582,7 @@ Provides `DirectedGraph` and `UndirectedGraph`, implemented by `Map`, especially
 
 **`.size(): number`**：return the count of nodes.
 
-**`.getLeaves(): IterableIterator<TNode>`**：iterate over leave nodes (in degree <= 1), removing edges during iteration may cause new nodes added into iteration.
+**`.getLeaves(): IterableIterator<TNode>`**：iterate over leave nodes (`in degree <= 1`), removing edges during iteration may cause new nodes added into iteration.
 
 **`.getDistance(u, v): number`**：return distance between `u` and `v` if there is an edge between them, `Infinity` otherwise.
 
@@ -709,7 +710,46 @@ for (let i = 0; i < arr.length; i++) {
   console.log(hash.getKey())
 }
 // Output the following sequence, note that the two "abc"s have the same hash 31
-'0,0', '1,1', '31,33', '902,1026', '1769,2015', '2524,2884', '31,33'
+// 0
+// 1000000008
+// 33000000262
+// 1026000008084
+// 2015000015874
+// 2884000022712
+// 33000000262
+```
+
+# String Hash
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/string-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/string-hash.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/string-hash.spec.ts)
+
+**new StringHash(M: number)**: create a string hash object. M is the base, typically should be a prime number greater than the max value to be hashed. Eg. we're hashing numbers in 0-26, M can be 29 or 31.
+
+**.getValue()**: get current hash value.
+
+**.digest(value: number)**: add next number into the string hash.
+
+```javascript
+const hash = new StringHash(29)
+const str = 'abcdabc'
+const arr = [...str].map((c) => c.charCodeAt() - 97)
+for (let i = 0; i < arr.length; i++) {
+  hash.digest(arr[i])
+  console.log(hash.getKey())
+}
+```
+
+**new BiStringHash(M1: number, M2: number)**: create a string double hash object. M1 is the base of first string hash, M2 is the base of second string hash.
+
+Methods of BiStringHash are the same as StringHash, except that `.getKey()` returns a comma separated string, separating the two hash values.
+
+```javascript
+const hash = new BiStringHash(29, 31)
+const str = 'abcdabc'
+const arr = [...str].map((c) => c.charCodeAt() - 97)
+for (let i = 0; i < arr.length; i++) {
+  hash.digest(arr[i])
+  console.log(hash.getKey())
+}
 ```
 
 ## Functional
