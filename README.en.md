@@ -528,11 +528,11 @@ A segment tree implementation using binary tree represented by `Array`, default 
 
 **.floor(val: any)**: find and return the index of largest element `<= val`, return `-1` if no such element exists.
 
-**.ceil(val: any)**: find and return the index of smallest element `>= val`, return `Infinity` if no such element exists.
+**.ceil(val: any)**: find and return the index of smallest element `>= val`, return `-1` if no such element exists.
 
 **.lower(val: any)**: find and return the index of largest element `< val`, return `-1` if no such element exists.
 
-**.higher(val: any)**: find and return the index of smallest element `> val`, return `Infinity` if no such element exists.
+**.higher(val: any)**: find and return the index of smallest element `> val`, return `-1` if no such element exists.
 
 ```javascript
 const sumTree = new SegmentTree(5)
@@ -550,7 +550,7 @@ sumTree.prefix(3) // 10
 sumTree.ceil(7) // 3
 sumTree.ceil(6) // 2
 sumTree.ceil(5) // 2
-sumTree.ceil(11) // Infinity
+sumTree.ceil(11) // -1
 
 const maxTree = new SegmentTree(5, Math.max)
 maxTree.update(0, 1)

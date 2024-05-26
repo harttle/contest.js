@@ -527,11 +527,11 @@ bit.sum(10) // elements in [1, 10] sums to 10 + 20 + 100 = 130
 
 **.floor(val: any)**：找到并返回聚合值小于等于 `val` 的最大元素下标，如果不存在这样的元素则返回 `-1`。
 
-**.ceil(val: any)**：找到并返回聚合值大于等于 `val` 的最小元素下标，如果不存在这样的元素则返回 Infinity。
+**.ceil(val: any)**：找到并返回聚合值大于等于 `val` 的最小元素下标，如果不存在这样的元素则返回 `-1`。
 
 **.lower(val: any)**：找到并返回聚合值小于 `val` 的最大元素下标，如果不存在这样的元素则返回 `-1`。
 
-**.higher(val: any)**：找到并返回聚合值大于 `val` 的最小元素下标，如果不存在这样的元素则返回 `Infinity`。
+**.higher(val: any)**：找到并返回聚合值大于 `val` 的最小元素下标，如果不存在这样的元素则返回 `-1`。
 
 ```javascript
 const sumTree = new SegmentTree(5)
@@ -549,7 +549,7 @@ sumTree.prefix(3) // 10
 sumTree.ceil(7) // 3
 sumTree.ceil(6) // 2
 sumTree.ceil(5) // 2
-sumTree.ceil(11) // Infinity
+sumTree.ceil(11) // -1
 
 const maxTree = new SegmentTree(5, Math.max)
 maxTree.update(0, 1)

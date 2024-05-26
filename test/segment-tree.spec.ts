@@ -1,19 +1,11 @@
 import { SegmentTree } from '../src/segment-tree'
 
 describe('SegmentTree', () => {
-  describe('.valueAt()', () => {
-    it('should initial to zeros', () => {
-      const tree = new SegmentTree(2)
-      expect(tree.valueAt(0)).toEqual(0)
-      expect(tree.valueAt(1)).toEqual(0)
-      expect(tree.valueAt(2)).toEqual(undefined)
-    })
-  })
   describe('.update()', () => {
     it('add a single value', () => {
       const tree = new SegmentTree(2)
       tree.update(0, 3)
-      expect(tree.valueAt(0)).toEqual(3)
+      expect(tree.query(0, 0)).toEqual(3)
     })
   })
   describe('.prefix()', () => {
@@ -48,14 +40,14 @@ describe('SegmentTree', () => {
       expect(tree.higher(7)).toEqual(3)
       expect(tree.higher(6)).toEqual(3)
       expect(tree.higher(5)).toEqual(2)
-      expect(tree.higher(10)).toEqual(Infinity)
+      expect(tree.higher(10)).toEqual(-1)
     })
 
     it('ceil', () => {
       expect(tree.ceil(7)).toEqual(3)
       expect(tree.ceil(6)).toEqual(2)
       expect(tree.ceil(5)).toEqual(2)
-      expect(tree.ceil(11)).toEqual(Infinity)
+      expect(tree.ceil(11)).toEqual(-1)
     })
 
     it('lower', () => {
