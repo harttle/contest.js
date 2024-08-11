@@ -1,18 +1,18 @@
 type Aggregate<T> = (lhs: T, rhs: T) => T
 type Predicate<T> = (value: T) => boolean
 
-class TreeNode<T = number> {
+class SegmentTreeNode<T = number> {
   value: T
-  private l?: TreeNode<T>
-  private r?: TreeNode<T>
+  private l?: SegmentTreeNode<T>
+  private r?: SegmentTreeNode<T>
   constructor (private lo: number, private hi: number, arr: T[], private initial: T, private aggregate = (a: T, b: T) => (a as any) + b) {
     this.aggregate = aggregate as any
     if (lo === hi) {
       this.value = arr[lo]
     } else {
       const m = (lo + hi) >> 1
-      this.l = new TreeNode(lo, m, arr, initial, aggregate)
-      this.r = new TreeNode(m + 1, hi, arr, initial, aggregate)
+      this.l = new SegmentTreeNode(lo, m, arr, initial, aggregate)
+      this.r = new SegmentTreeNode(m + 1, hi, arr, initial, aggregate)
       this.value = this.aggregate(this.l.value, this.r.value)
     }
   }
@@ -50,10 +50,10 @@ class TreeNode<T = number> {
 }
 
 class SegmentTree<T = number> {
-  public readonly tree: TreeNode<T>
+  public readonly tree: SegmentTreeNode<T>
 
   constructor (N: number, aggregate: Aggregate<T> = ((a: number, b: number) => a + b) as any, initial: T = 0 as any) {
-    this.tree = new TreeNode(0, N - 1, Array(N).fill(initial), initial, aggregate)
+    this.tree = new SegmentTreeNode(0, N - 1, Array(N).fill(initial), initial, aggregate)
   }
 
   public update (i: number, value: T): void {
@@ -87,4 +87,4 @@ class SegmentTree<T = number> {
   }
 }
 
-export { SegmentTree, TreeNode }
+export { SegmentTree, SegmentTreeNode }

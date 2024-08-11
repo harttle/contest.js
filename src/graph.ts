@@ -1,3 +1,13 @@
+export function createGraph<T> (edges: Array<[T, T, number]>): Map<T, Map<T, number>> {
+  const G = new Map()
+  for (const [u, v, w] of edges) {
+    if (!G.has(u)) G.set(u, new Map())
+    const currW = G.get(u)!.has(v) ? G.get(u)!.get(v) : Infinity
+    G.get(u).set(v, Math.min(currW, w))
+  }
+  return G
+}
+
 export class DirectedGraph<TNode> {
   private readonly edges = new Map<TNode, Map<TNode, number>>()
   private readonly rEdges = new Map<TNode, Map<TNode, number>>()

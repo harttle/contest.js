@@ -17,7 +17,7 @@ Useful links:
 
 Module | Content | Links
 ---  | ---  | ---
-[Algorithm](#Algorithm) | swap, shuffle, reverse, sort, dijkstra, createTree, createGraph | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/algorithm.spec.ts)
+[Algorithm](#Algorithm) | swap, shuffle, reverse, sort, createGraph | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/algorithm.spec.ts)
 [String](#String) | kmp, rabinkarp | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/string.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/string.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/string.spec.ts)
 [Queue](#Queue) | Queue | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/queue.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/queue.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/queue.spec.ts)
 [Deque](#Deque) | Deque | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/deque.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/deque.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/deque.spec.ts)
@@ -27,13 +27,14 @@ Module | Content | Links
 [BitSet](#BitSet) | BitSet | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bitset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bitset.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bitset.spec.ts)
 [Binary Indexed Tree](#Binary%20Indexed%20Tree) | BIT | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bit.spec.ts)
 [Segment Tree](#Segment%20Tree) | SegmentTree | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/segment-tree.spec.ts)
-[Graph](#Graph) | Graph | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/graph.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/graph.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/graph.spec.ts)
+[Graph](#Graph) | Graph, dijkstra, createGraph | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/graph.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/graph.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/graph.spec.ts)
 [Disjoint Union Set](#Disjoint%20Union%20Set) | Path compression, union by rank | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/dsu.spec.ts)
 [Primes](#Primes) | prime test, sieve, nth prime | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/prime.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/prime.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/prime.spec.ts)
 [Permutation and Combination](#Permutation%20and%20Combination) | factorial, combination, arrangement, Pascal's Triangle | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/binomial.spec.ts)
 [Euclidean](#Euclidean) | euclidean/GCD algorithm, extended-euclidean/extended-GCD algorithm and modular inverse | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/euclidean.spec.ts)
 [Rolling Hash](#Rolling%20Hash) | Rolling hash, rolling double hash | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/rolling-hash.spec.ts)
 [String Hash](#String%20Hash) | String hash, String double hash | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/string-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/string-hash.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/string-hash.spec.ts)
+[Tree](#Tree) | createTree, createWeightedTree, LCA | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/tree.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/tree.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/tree.spec.ts)
 [Functional](#Functional) | create2DArray, create3DArray, greater, valid2D, adjacent2D | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/funcitonal.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/functional.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/funcitonal.spec.ts)
 
 
@@ -71,62 +72,6 @@ console.log(arr) // [1, 5, 4, 3, 2]
 let arr = [1, 3, 2]
 sort(arr)    // [1, 2, 3]
 sort(arr, (l, r) => r - l)    // [3, 2, 1]
-```
-
-### Graph Algorithms
-
-**createGraph(edges)**: create a 2d Map representing the graph from an array of edges: `[T, T, number]`. The result can be used as input of `dijkstra` algorithm.
-
-```javascript
-const G = createGraph([
-    [0, 1, 10],
-    [1, 0, 30],
-    [1, 2, 50]
-])
-G.get(0)    // Map(1) { 1 => 10 }
-G.get(1)    // Map(2) { 0 => 30, 2 => 50 }
-```
-
-**dijkstra(source, G)**: return the single source shortest distance. `G.get(u).get(v)` represents the weight of an edge from `u` to `v`. `source` and keys of `G` can be of arbitrary primitive data type, like strings, numbers, etc. Returns the `dist` of type `Map<T, number>`, where `dist[u]` represents the shortest distance from `source` to `u`.
-
-```javascript
-const G = new Map()
-G.set(0, new Map([[1, 10]]))
-G.set(1, new Map([[0, 30], [2, 50]]))
-
-dijkstra(0, G) // Map(3) { 0 => 0, 1 => 10, 2 => 60 }
-```
-
-Make use of `createGraph()`, the above snippet is equivalent to:
-
-```javascript
-const G = new createGraph([
-    [0, 1, 10],
-    [1, 0, 30],
-    [1, 2, 50],
-])
-
-dijkstra(0, G) // Map(3) { 0 => 0, 1 => 10, 2 => 60 }
-```
-
-### createTree
-
-**createTree(N: number, edges: [number, number][] | [number, number, number][]): TreeNode[]**: create a tree from an array of edges: `[number, number, number]`. Returns a node array with first node to be root.
-
-```javascript
-const nodes = createTree(3, [[0, 1], [0, 2]])
-console.log(nodes[0]) // { index: 0, children: Map{[{index: 1, ...}, 1], [{index: 2, ...}, 1]}, depth: 0 }
-console.log(nodes[1]) // { index: 1, children: Map{}, parent: {index: 0, ...}, depth: 1 }
-console.log(nodes[2]) // { index: 2, children: Map{}, parent: {index: 0, ...}, depth: 1 }
-```
-
-For weighted tree, add another number representing weight for each edge
-
-```javascript
-const nodes = createTree(3, [[0, 1, 10], [0, 2, 20]])
-console.log(nodes[0]) // { index: 0, children: Map{[{index: 1, ...}, 10], [{index: 2, ...}, 20]}, depth: 0 }
-console.log(nodes[1]) // { index: 1, children: Map{}, parent: {index: 0, ...}, depth: 1 }
-console.log(nodes[2]) // { index: 2, children: Map{}, parent: {index: 0, ...}, depth: 1 }
 ```
 
 ### Other
@@ -612,6 +557,45 @@ Provides `DirectedGraph` and `UndirectedGraph`, implemented by `Map`, especially
 
 **`.getAllEdges(): IterableIterator<[TNode, TNode, number]>`**: same as `DirectedGraph`.
 
+### createGraph
+
+**createGraph(edges)**: create a 2d Map representing the graph from an array of edges: `[T, T, number]`. The result can be used as input of `dijkstra` algorithm.
+
+```javascript
+const G = createGraph([
+    [0, 1, 10],
+    [1, 0, 30],
+    [1, 2, 50]
+])
+G.get(0)    // Map(1) { 1 => 10 }
+G.get(1)    // Map(2) { 0 => 30, 2 => 50 }
+```
+
+### dijkstra
+
+**dijkstra(source, G)**: return the single source shortest distance. `G.get(u).get(v)` represents the weight of an edge from `u` to `v`. `source` and keys of `G` can be of arbitrary primitive data type, like strings, numbers, etc. Returns the `dist` of type `Map<T, number>`, where `dist[u]` represents the shortest distance from `source` to `u`.
+
+```javascript
+const G = new Map()
+G.set(0, new Map([[1, 10]]))
+G.set(1, new Map([[0, 30], [2, 50]]))
+
+dijkstra(0, G) // Map(3) { 0 => 0, 1 => 10, 2 => 60 }
+```
+
+Make use of `createGraph()`, the above snippet is equivalent to:
+
+```javascript
+const G = new createGraph([
+    [0, 1, 10],
+    [1, 0, 30],
+    [1, 2, 50],
+])
+
+dijkstra(0, G) // Map(3) { 0 => 0, 1 => 10, 2 => 60 }
+```
+
+
 ## Disjoint Union Set
 
 [TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/dsu.spec.ts)
@@ -751,6 +735,45 @@ for (let i = 0; i < arr.length; i++) {
   console.log(hash.getKey())
 }
 ```
+
+## Tree
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/tree.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/tree.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/tree.spec.ts)
+
+### createTree
+
+**createTree(N: number, edges: [number, number][]): TreeNode[]**: create a tree from an array of edges: `[number, number]`. Returns a node array with first node to be root.
+
+```javascript
+const nodes = createTree(3, [[0, 1], [0, 2]])
+console.log(nodes[0]) // { index: 0, children: Set{{index: 1, ...}, {index: 2, ...}}, depth: 0 }
+console.log(nodes[1]) // { index: 1, children: Set{}, parent: {index: 0, ...}, depth: 1 }
+console.log(nodes[2]) // { index: 2, children: Set{}, parent: {index: 0, ...}, depth: 1 }
+```
+
+### createWeightedTree
+
+**createWeightedTree(N: number, edges: [number, number, number][]): WeightedTreeNode[]**: create a weighted tree from an array of edges: `[number, number, number]`. Returns a node array with first node to be root.
+
+Add another number representing weight for each edge:
+
+```javascript
+const nodes = createWeightedTree(3, [[0, 1, 10], [0, 2, 20]])
+console.log(nodes[0]) // { index: 0, children: Map{[{index: 1, ...}, 10], [{index: 2, ...}, 20]}, depth: 0 }
+console.log(nodes[1]) // { index: 1, children: Map{}, parent: {index: 0, ...}, depth: 1 }
+console.log(nodes[2]) // { index: 2, children: Map{}, parent: {index: 0, ...}, depth: 1 }
+```
+
+### LCA
+
+* **new LCA(nodes: TreeNode[])**: create a LCA structure with tree nodes rooted at `nodes[0]`.
+* **.getLCA(u: number, v: number)**: get LCA of node `u` and `v`.
+
+```typescript
+const nodes = createTree(6, [[0, 1], [0, 2], [1, 4], [1, 3], [4, 5]])
+const lca = new LCA(nodes)
+console.log(lca.getLCA(3, 5)) // 1
+```
+
 
 ## Functional
 

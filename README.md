@@ -17,7 +17,7 @@
 
 模块 | 内容 | 链接
 ---  | ---  | ---
-[算法](#算法) | swap, shuffle, reverse, sort, dijkstra | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/algorithm.spec.ts)
+[算法](#算法) | swap, shuffle, reverse, sort | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/algorithm.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/algorithm.spec.ts)
 [字符串](#字符串) | kmp, rabinkarp | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/string.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/string.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/string.spec.ts)
 [队列](#队列) | Queue | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/queue.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/queue.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/queue.spec.ts)
 [双向队列](#双向队列) | Deque | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/deque.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/deque.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/deque.spec.ts)
@@ -27,13 +27,14 @@
 [BitSet](#BitSet) | BitSet | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bitset.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bitset.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bitset.spec.ts)
 [树状数组](#树状数组) | BIT | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/bit.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/bit.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/bit.spec.ts)
 [线段树](#线段树) | SegmentTree | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/segment-tree.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/segment-tree.spec.ts)
-[图](#图) | Graph | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/graph.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/graph.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/graph.spec.ts)
+[图](#图) | Graph, dijkstra, createGraph | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/graph.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/graph.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/graph.spec.ts)
 [并查集](#并查集) | 路径压缩、按秩合并 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/dsu.spec.ts)
 [质数算法](#质数算法) | 质数测试、筛选等 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/prime.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/prime.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/prime.spec.ts)
 [排列组合](#排列组合) | 阶乘、模阶乘、二项式系数、帕斯卡三角 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/binomial.spec.ts)
 [欧几里得算法](#欧几里得算法) | 欧几里得公约数，扩展欧几里得，模逆元 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/euclidean.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/euclidean.spec.ts)
 [滚动哈希](#滚动哈希) | 滚动哈希，双哈希 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/rolling-hash.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/rolling-hash.spec.ts)
 [字符串哈希](#字符串哈希) | 滚动哈希，双哈希 | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/string-hash.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/string-hash.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/string-hash.spec.ts)
+[树](#树) | createTree, createWeightedTree, LCA | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/tree.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/tree.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/tree.spec.ts)
 [工具](#工具) | create2DArray, create3DArray, greater, valid2D, adjacent2D | [TypeScript](https://github.com/harttle/contest.js/blob/master/src/funcitonal.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/functional.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/funcitonal.spec.ts)
 
 ## 算法
@@ -70,62 +71,6 @@ console.log(arr) // [1, 5, 4, 3, 2]
 let arr = [1, 3, 2]
 sort(arr) // [1, 2, 3]
 sort(arr, (l, r) => r - l) // [3, 2, 1]
-```
-
-### 图算法
-
-**createGraph(edges)**：从边 `[T, T, number]` 的数组创建有表示向图的二维映射。可用于 `dijkstra` 算法。
-
-```javascript
-const G = createGraph([
-    [0, 1, 10],
-    [1, 0, 30],
-    [1, 2, 50]
-])
-G.get(0) // Map(1) { 1 => 10 }
-G.get(1) // Map(2) { 0 => 30, 2 => 50 }
-```
-
-**dijkstra(source, G)**: 单源最短路径算法。`G` 为二维映射，`G.get(u).get(v)` 表示有向图中边 `u` 到 `v` 的权。`source` 和 `G` 的键可以是任意基本类型比如数字、字符串等。返回一个 `dist: Map<T, number>`，`dist[u]` 表示 `source` 到 `u` 的最短路径长度。
-
-```javascript
-const G = new Map()
-G.set(0, new Map([[1, 10]]))
-G.set(1, new Map([[0, 30], [2, 50]]))
-
-dijkstra(0, G) // Map(3) { 0 => 0, 1 => 10, 2 => 60 }
-```
-
-<!-- 可以借助于 `createGraph()`，上述代码等价于： -->
-
-```javascript
-const G = new createGraph([
-    [0, 1, 10],
-    [1, 0, 30],
-    [1, 2, 50],
-])
-
-dijkstra(0, G) // Map(3) { 0 => 0, 1 => 10, 2 => 60 }
-```
-
-### createTree
-
-**createTree(N: number, edges: [number, number][] | [number, number, number][]): TreeNode[]**: 从边的数组 `[number, number, number]` 生成一棵树，返回节点列表，其中第一个节点为树的根节点。
-
-```javascript
-const nodes = createTree(3, [[0, 1], [0, 2]])
-console.log(nodes[0]) // { index: 0, children: Map{[{index: 1, ...}, 1], [{index: 2, ...}, 1]}, depth: 0 }
-console.log(nodes[1]) // { index: 1, children: Map{}, parent: {index: 0, ...}, depth: 1 }
-console.log(nodes[2]) // { index: 2, children: Map{}, parent: {index: 0, ...}, depth: 1 }
-```
-
-对于有权边的树，每条边增加一个表示权重的数字即可：
-
-```javascript
-const nodes = createTree(3, [[0, 1, 10], [0, 2, 20]])
-console.log(nodes[0]) // { index: 0, children: Map{[{index: 1, ...}, 10], [{index: 2, ...}, 20]}, depth: 0 }
-console.log(nodes[1]) // { index: 1, children: Map{}, parent: {index: 0, ...}, depth: 1 }
-console.log(nodes[2]) // { index: 2, children: Map{}, parent: {index: 0, ...}, depth: 1 }
 ```
 
 ### 其他算法
@@ -611,6 +556,44 @@ maxTree.prefix(2) // 3
 
 **.getAllEdges(): IterableIterator<[TNode, TNode, number]>**: 同 `DirectedGraph`。
 
+### createGraph
+
+**createGraph(edges)**：从边 `[T, T, number]` 的数组创建有表示向图的二维映射。可用于 `dijkstra` 算法。
+
+```javascript
+const G = createGraph([
+    [0, 1, 10],
+    [1, 0, 30],
+    [1, 2, 50]
+])
+G.get(0) // Map(1) { 1 => 10 }
+G.get(1) // Map(2) { 0 => 30, 2 => 50 }
+```
+
+### dijkstra
+
+**dijkstra(source, G)**: 单源最短路径算法。`G` 为二维映射，`G.get(u).get(v)` 表示有向图中边 `u` 到 `v` 的权。`source` 和 `G` 的键可以是任意基本类型比如数字、字符串等。返回一个 `dist: Map<T, number>`，`dist[u]` 表示 `source` 到 `u` 的最短路径长度。
+
+```javascript
+const G = new Map()
+G.set(0, new Map([[1, 10]]))
+G.set(1, new Map([[0, 30], [2, 50]]))
+
+dijkstra(0, G) // Map(3) { 0 => 0, 1 => 10, 2 => 60 }
+```
+
+<!-- 可以借助于 `createGraph()`，上述代码等价于： -->
+
+```javascript
+const G = new createGraph([
+    [0, 1, 10],
+    [1, 0, 30],
+    [1, 2, 50],
+])
+
+dijkstra(0, G) // Map(3) { 0 => 0, 1 => 10, 2 => 60 }
+```
+
 ## 并查集
 
 [TypeScript](https://github.com/harttle/contest.js/blob/master/src/dsu.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/dsu.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/dsu.spec.ts)
@@ -749,6 +732,42 @@ for (let i = 0; i < arr.length; i++) {
   hash.digest(arr[i])
   console.log(hash.getKey())
 }
+```
+
+## 树
+[TypeScript](https://github.com/harttle/contest.js/blob/master/src/tree.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/tree.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/tree.spec.ts)
+
+### createTree
+
+**createTree(N: number, edges: [number, number][]): TreeNode[]**: 从边的数组 `[number, number]` 生成一棵树，返回节点列表，其中第一个节点为树的根节点。
+
+```javascript
+const nodes = createTree(3, [[0, 1], [0, 2]])
+console.log(nodes[0]) // { index: 0, children: Map{[{index: 1, ...}, 1], [{index: 2, ...}, 1]}, depth: 0 }
+console.log(nodes[1]) // { index: 1, children: Map{}, parent: {index: 0, ...}, depth: 1 }
+console.log(nodes[2]) // { index: 2, children: Map{}, parent: {index: 0, ...}, depth: 1 }
+```
+
+### createWeightedTree
+
+**createWeightedTree(N: number, edges: [number, number, number][]): TreeNode[]**: 从边的数组 `[number, number, number]` 生成一棵有权重的树，返回节点列表，其中第一个节点为树的根节点。前两个数字为边的两个节点，最后一个数字为权重：
+
+```javascript
+const nodes = createTree(3, [[0, 1, 10], [0, 2, 20]])
+console.log(nodes[0]) // { index: 0, children: Map{[{index: 1, ...}, 10], [{index: 2, ...}, 20]}, depth: 0 }
+console.log(nodes[1]) // { index: 1, children: Map{}, parent: {index: 0, ...}, depth: 1 }
+console.log(nodes[2]) // { index: 2, children: Map{}, parent: {index: 0, ...}, depth: 1 }
+```
+
+### LCA
+
+* **new LCA(nodes: TreeNode[])**: 创建一个根为 `nodes[0]` 的 LCA 结构。
+* **.getLCA(u: number, v: number)**: 拿到 `u` 和 `v` 的最低公共祖先。
+
+```typescript
+const nodes = createTree(6, [[0, 1], [0, 2], [1, 4], [1, 3], [4, 5]])
+const lca = new LCA(nodes)
+console.log(lca.getLCA(3, 5)) // 1
 ```
 
 ## 工具
