@@ -1,6 +1,5 @@
 import { LCA, TreeNode, WeightedTreeNode, createTree, createWeightedTree } from '../src/tree'
 
-
 describe('tree', () => {
   describe('createTree()', () => {
     it('should be able to create a single node tree', () => {

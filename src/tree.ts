@@ -35,7 +35,6 @@ export function createTree (N: number, edges: Array<[number, number] | [number, 
   return nodes
 }
 
-
 export function createWeightedTree (N: number, edges: Array<[number, number, number] | [number, number]>): WeightedTreeNode[] {
   const nodes: WeightedTreeNode[] = Array(N).fill(0).map((_x, index) => ({ index, children: new Map(), depth: 0, parent: undefined }))
   const G = Array(N).fill(0).map(_x => new Map())
