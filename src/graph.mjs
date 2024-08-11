@@ -1,4 +1,14 @@
 // src/graph.ts
+function createGraph(edges) {
+  const G = new Map();
+  for (const [u, v, w] of edges) {
+    if (!G.has(u))
+      G.set(u, new Map());
+    const currW = G.get(u).has(v) ? G.get(u).get(v) : Infinity;
+    G.get(u).set(v, Math.min(currW, w));
+  }
+  return G;
+}
 var DirectedGraph = class {
   constructor(N = 0) {
     this.edges = new Map();
@@ -145,5 +155,6 @@ var UndirectedGraph = class {
 };
 export {
   DirectedGraph,
-  UndirectedGraph
+  UndirectedGraph,
+  createGraph
 };
