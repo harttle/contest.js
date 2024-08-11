@@ -1254,7 +1254,7 @@ var SegmentTreeNode = class {
   }
   update(i, value) {
     if (i < this.lo || i > this.hi)
-      return this.initial;
+      return;
     if (this.lo === this.hi)
       this.value = value;
     else {
@@ -1277,8 +1277,10 @@ var SegmentTreeNode = class {
     if (i <= this.lo && j >= this.hi)
       return this.value;
     const m = this.lo + this.hi >> 1;
-    const l1 = Math.max(this.lo, i), r1 = Math.min(m, j);
-    const l2 = Math.max(m, i), r2 = Math.min(this.hi, j);
+    const l1 = Math.max(this.lo, i);
+    const r1 = Math.min(m, j);
+    const l2 = Math.max(m, i);
+    const r2 = Math.min(this.hi, j);
     let ans = this.initial;
     if (l1 <= r1)
       ans = this.aggregate(ans, this.l.query(l1, r1));
