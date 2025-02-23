@@ -634,9 +634,9 @@ for (let [prime, count] of factors) {
 
 [TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs) [Test Case](https://github.com/harttle/contest.js/blob/master/test/binomial.spec.ts)
 
-**factorial(n: number)**: factorial of `n`, e.g. `factorial(3)` return `6`.
+**fact**：factorial array of length N, e.g. `fact[0] = fact[1] = 1`，`fact[2] = 2`
 
-**factorialSeq(n: number)**: get a sequence of factorials, the value at index `i` represents the factorial of `i`. e.g. `factorialSeq(3)` return `[1, 1, 2, 6]`.
+**factInvs**：modular inverse of factorial array of length N.
 
 **pascalsTriangle(n: number)**: return the `n`-th Pascal's Triangle, e.g. `pascalsTriangle(3)` return `[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]]`, in which the value of `P[n][k]` represents the value of C(n, k).
 

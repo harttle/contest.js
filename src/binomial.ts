@@ -1,18 +1,30 @@
-import { modInverse } from './euclidean'
-
+const N = 1e5
 const MOD = 1e9 + 7
 const MODn = BigInt(MOD)
-const _Ann = [1n]
+const fact = getFactorials()
+const factInvs = getFactorialInvs()
 
-function factorial (N: number): number {
-  const Nn = BigInt(N)
-  for (let n = BigInt(_Ann.length); n <= Nn; n++) _Ann.push(_Ann[_Ann.length - 1] * n % MODn)
-  return Number(_Ann[Number(N)])
+function getFactorials (): number[] {
+  const fact = [1n]
+  for (let i = 1; i <= N; i++) fact.push(fact[i - 1] * BigInt(i) % MODn)
+  return fact.map(x => Number(x))
 }
 
-function factorialSeq (N: number): number[] {
-  factorial(N)
-  return _Ann.slice(0, N + 1).map(x => Number(x))
+function getFactorialInvs (): number[] {
+  const arr = Array(N + 1)
+  arr[N] = power(fact[N], MOD - 2)
+
+  for (let i = N - 1; i >= 0; i--) {
+    arr[i] = prod(arr[i + 1], i + 1)
+  }
+  return arr
+}
+
+function power (x: number, p: number): number {
+  if (!p) return 1
+  if (p % 2) return prod(power(x, p - 1), x)
+  const h = power(x, p / 2)
+  return prod(h, h) % MOD
 }
 
 function pascalsTriangle (N: number): number[][] {
@@ -30,20 +42,22 @@ function pascalsTriangle (N: number): number[][] {
 }
 
 function combination (n: number, k: number): number {
-  const deno = modMultiply(factorial(k), factorial(n - k))
-  return modMultiply(factorial(n), modInverse(deno, MOD))
+  return prod(fact[n], factInvs[k], factInvs[n - k])
 }
 
 function arrangement (n: number, k: number): number {
-  const deno = factorial(n - k)
-  return modMultiply(factorial(n), modInverse(deno, MOD))
+  return prod(fact[n], factInvs[n - k])
 }
 
-function modMultiply (a: number, b: number): number {
-  return Number(BigInt(a) * BigInt(b) % MODn)
+function prod (...args: number[]): number {
+  let p = 1n
+  for (const arg of args) {
+    p = p * BigInt(arg) % MODn
+  }
+  return Number(p)
 }
 
 export {
-  factorial, factorialSeq,
-  pascalsTriangle, combination, arrangement, modMultiply
+  MOD, fact, factInvs, getFactorials, power,
+  pascalsTriangle, combination, arrangement, prod
 }

@@ -632,9 +632,9 @@ for (let [prime, count] of factors) {
 
 [TypeScript](https://github.com/harttle/contest.js/blob/master/src/binomial.ts) [JavaScript](https://github.com/harttle/contest.js/blob/master/src/binomial.mjs) [Test Cases](https://github.com/harttle/contest.js/blob/master/test/binomial.spec.ts)
 
-**factorial(n: number)**：返回 `n` 的阶乘，例如 `factorial(3)` 返回 `6`。
+**fact**：长度为 N 的排列数，例如 `fact[0] = fact[1] = 1`，`fact[2] = 2`。
 
-**factorialSeq(n: number)**：得到阶乘序列，下标 `i` 的值表示 `i` 的阶乘。例如 `factorialSeq(3)` 返回 `[1, 1, 2, 6]`。
+**factInvs**：长度为 N 的排列数的模逆元。
 
 **pascalsTriangle(n: number)**：返回第 `n` 个帕斯卡三角，例如 `pascalsTriangle(3)` 返回 `[[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]]`。其中 `P[n][k]` 表示 C(n, k) 的值。
 

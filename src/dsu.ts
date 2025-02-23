@@ -10,8 +10,7 @@ class DSU {
   find (x: number): number {
     if (this.parent[x] === x) return x
     // path compression
-    this.parent[x] = this.find(this.parent[x])
-    return this.parent[x]
+    return this.parent[x] = this.find(this.parent[x])
   }
 
   union (x: number, y: number): void {

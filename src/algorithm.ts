@@ -48,10 +48,11 @@ function shuffle <T=number> (arr: T[]): T[] {
   return arr
 }
 function sort<T=number> (arr: T[], begin = 0, end = arr.length, cmp: ((a: T, b: T) => number) = (l, r) => Number(l) - Number(r)): T[] {
+  if (end - begin <= 1) return arr
   const pivot = arr[(begin + end) >> 1]
   const mi = partition(arr, val => cmp(val, pivot), begin, end)
-  if (begin < mi - 1) sort(arr, begin, mi, cmp)
-  if (mi < end - 1) sort(arr, mi, end, cmp)
+  sort(arr, begin, mi, cmp)
+  sort(arr, mi, end, cmp)
   return arr
 }
 // Hoare partition scheme
@@ -66,19 +67,19 @@ function partition <T=number> (arr: T[], pred: (val: T) => number, begin = 0, en
 }
 
 function dijkstra<T> (source: T, G: Map<T, Map<T, number>>): Map<T, number> {
-  const dist = new Map([[source, 0]])
+  const dist = new Map()
   const pq = new Heap([[0, source]], (l: [number, T], r: [number, T]) => l[0] - r[0])
-  const finalized = new Set()
 
   while (pq.size()) {
     const [d, u] = pq.pop()
-    if (finalized.has(u)) continue
-    else finalized.add(u)
+    if (dist.has(u)) continue
+    else dist.set(u, d)
 
     for (const [v, w] of G.get(u) ?? []) {
       if (d + w < (dist.get(v) ?? Infinity)) {
-        pq.push([d + w, v])
-        dist.set(v, d + w)
+        if (!dist.has(v) || d + w < dist.get(v)) {
+          pq.push([d + w, v])
+        }
       }
     }
   }

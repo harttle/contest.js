@@ -1,18 +1,22 @@
 import {
-  factorial, factorialSeq,
+  fact, factInvs,
+  MOD,
   pascalsTriangle, combination, arrangement
 } from '../src/binomial'
 
 describe('binomial', () => {
-  it('.factorial()', () => {
-    expect(factorial(0)).toEqual(1)
-    expect(factorial(1)).toEqual(1)
-    expect(factorial(2)).toEqual(2)
-    expect(factorial(3)).toEqual(6)
-    expect(factorial(4)).toEqual(24)
+  it('fact', () => {
+    expect(fact[0]).toEqual(1)
+    expect(fact[1]).toEqual(1)
+    expect(fact[2]).toEqual(2)
+    expect(fact[3]).toEqual(6)
+    expect(fact[4]).toEqual(24)
   })
-  it('.factorialSeq()', () => {
-    expect(factorialSeq(4)).toEqual([1, 1, 2, 6, 24])
+  it('factInvs', () => {
+    expect(fact[0] * factInvs[0] % MOD).toEqual(1)
+    expect(fact[1] * factInvs[1] % MOD).toEqual(1)
+    expect(fact[2] * factInvs[2] % MOD).toEqual(1)
+    expect(fact[3] * factInvs[3] % MOD).toEqual(1)
   })
   it('.pascalsTriangle()', () => {
     expect(pascalsTriangle(4)).toEqual([
