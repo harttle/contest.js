@@ -104,12 +104,12 @@ function shuffle(arr) {
   return arr;
 }
 function sort(arr, begin = 0, end = arr.length, cmp = (l, r) => Number(l) - Number(r)) {
+  if (end - begin <= 1)
+    return arr;
   const pivot = arr[begin + end >> 1];
   const mi = partition(arr, (val) => cmp(val, pivot), begin, end);
-  if (begin < mi - 1)
-    sort(arr, begin, mi, cmp);
-  if (mi < end - 1)
-    sort(arr, mi, end, cmp);
+  sort(arr, begin, mi, cmp);
+  sort(arr, mi, end, cmp);
   return arr;
 }
 function partition(arr, pred, begin = 0, end = arr.length) {
@@ -129,19 +129,19 @@ function partition(arr, pred, begin = 0, end = arr.length) {
 }
 function dijkstra(source, G) {
   var _a, _b;
-  const dist = new Map([[source, 0]]);
+  const dist = new Map();
   const pq = new Heap([[0, source]], (l, r) => l[0] - r[0]);
-  const finalized = new Set();
   while (pq.size()) {
     const [d, u] = pq.pop();
-    if (finalized.has(u))
+    if (dist.has(u))
       continue;
     else
-      finalized.add(u);
+      dist.set(u, d);
     for (const [v, w] of (_a = G.get(u)) != null ? _a : []) {
       if (d + w < ((_b = dist.get(v)) != null ? _b : Infinity)) {
-        pq.push([d + w, v]);
-        dist.set(v, d + w);
+        if (!dist.has(v) || d + w < dist.get(v)) {
+          pq.push([d + w, v]);
+        }
       }
     }
   }

@@ -140,10 +140,10 @@ var PriorityQueue = class extends RemovableHeap {
 
 // src/bit.ts
 var BIT = class {
-  constructor(N) {
-    this.N = N;
-    this.sums = Array(N + 1).fill(0);
-    this.nums = Array(N + 1).fill(0);
+  constructor(N2) {
+    this.N = N2;
+    this.sums = Array(N2 + 1).fill(0);
+    this.nums = Array(N2 + 1).fill(0);
   }
   increment(n, diff) {
     this.nums[n] += diff;
@@ -166,11 +166,11 @@ var BIT = class {
 };
 
 // src/functional.ts
-function create2DArray(N, M, n) {
-  return [...Array(N)].map(() => Array(M).fill(n));
+function create2DArray(N2, M, n) {
+  return [...Array(N2)].map(() => Array(M).fill(n));
 }
-function create3DArray(N, M, L, n) {
-  return [...Array(N)].map(() => create2DArray(M, L, n));
+function create3DArray(N2, M, L, n) {
+  return [...Array(N2)].map(() => create2DArray(M, L, n));
 }
 function memorized(fn, getKey = (...args) => args.join(",")) {
   const memo = new Map();
@@ -236,8 +236,8 @@ function swap(arr, l, r) {
   arr[r] = tmp;
 }
 function shuffle(arr) {
-  const N = arr.length;
-  for (let i = N - 1; i > 0; i--) {
+  const N2 = arr.length;
+  for (let i = N2 - 1; i > 0; i--) {
     const j = Math.floor((i + 1) * Math.random());
     const tmp = arr[i];
     arr[i] = arr[j];
@@ -246,12 +246,12 @@ function shuffle(arr) {
   return arr;
 }
 function sort(arr, begin = 0, end = arr.length, cmp = (l, r) => Number(l) - Number(r)) {
+  if (end - begin <= 1)
+    return arr;
   const pivot = arr[begin + end >> 1];
   const mi = partition(arr, (val) => cmp(val, pivot), begin, end);
-  if (begin < mi - 1)
-    sort(arr, begin, mi, cmp);
-  if (mi < end - 1)
-    sort(arr, mi, end, cmp);
+  sort(arr, begin, mi, cmp);
+  sort(arr, mi, end, cmp);
   return arr;
 }
 function partition(arr, pred, begin = 0, end = arr.length) {
@@ -271,19 +271,19 @@ function partition(arr, pred, begin = 0, end = arr.length) {
 }
 function dijkstra(source, G) {
   var _a, _b;
-  const dist = new Map([[source, 0]]);
+  const dist = new Map();
   const pq = new Heap([[0, source]], (l, r) => l[0] - r[0]);
-  const finalized = new Set();
   while (pq.size()) {
     const [d, u] = pq.pop();
-    if (finalized.has(u))
+    if (dist.has(u))
       continue;
     else
-      finalized.add(u);
+      dist.set(u, d);
     for (const [v, w] of (_a = G.get(u)) != null ? _a : []) {
       if (d + w < ((_b = dist.get(v)) != null ? _b : Infinity)) {
-        pq.push([d + w, v]);
-        dist.set(v, d + w);
+        if (!dist.has(v) || d + w < dist.get(v)) {
+          pq.push([d + w, v]);
+        }
       }
     }
   }
@@ -292,7 +292,7 @@ function dijkstra(source, G) {
 
 // src/string.ts
 function kmp(s, p) {
-  const N = s.length;
+  const N2 = s.length;
   const M = p.length;
   const T = [0];
   for (let i = 1, len = 0; i < M; ) {
@@ -303,7 +303,7 @@ function kmp(s, p) {
     else
       T[i++] = 0;
   }
-  for (let i = 0, len = 0; i < N; ) {
+  for (let i = 0, len = 0; i < N2; ) {
     if (s[i] === p[len]) {
       len++;
       i++;
@@ -317,7 +317,7 @@ function kmp(s, p) {
   return -1;
 }
 function rabinkarp(s, p) {
-  const N = s.length;
+  const N2 = s.length;
   const M = p.length;
   const q = 1e9 + 7;
   const D = maxCharCode(s) + 1;
@@ -330,10 +330,10 @@ function rabinkarp(s, p) {
     hash = (hash * D + code(s, i)) % q;
     target = (target * D + code(p, i)) % q;
   }
-  for (let i = M; i <= N; i++) {
+  for (let i = M; i <= N2; i++) {
     if (check(i - M))
       return i - M;
-    if (i === N)
+    if (i === N2)
       continue;
     hash = ((hash - h * code(s, i - M)) * D + code(s, i)) % q;
     if (hash < 0)
@@ -362,8 +362,8 @@ function code(s, i) {
 
 // src/bitset.ts
 var BitSet = class {
-  constructor(val = 0, N = Infinity) {
-    this.N = N;
+  constructor(val = 0, N2 = Infinity) {
+    this.N = N2;
     this.val = 0n;
     if (typeof val === "number" || typeof val === "bigint") {
       this.val = BigInt(val);
@@ -378,7 +378,7 @@ var BitSet = class {
           this.val |= bit;
       }
     }
-    const RANGE = N === Infinity ? -1n : (1n << BigInt(N)) - 1n;
+    const RANGE = N2 === Infinity ? -1n : (1n << BigInt(N2)) - 1n;
     this.val &= RANGE;
   }
   capacity() {
@@ -931,15 +931,14 @@ var TreeMultiSet = class {
 
 // src/dsu.ts
 var DSU = class {
-  constructor(N) {
-    this.parent = Array(N).fill(0).map((x, i) => i);
-    this.rank = Array(N).fill(0);
+  constructor(N2) {
+    this.parent = Array(N2).fill(0).map((x, i) => i);
+    this.rank = Array(N2).fill(0);
   }
   find(x) {
     if (this.parent[x] === x)
       return x;
-    this.parent[x] = this.find(this.parent[x]);
-    return this.parent[x];
+    return this.parent[x] = this.find(this.parent[x]);
   }
   union(x, y) {
     x = this.find(x);
@@ -959,11 +958,11 @@ var DSU = class {
 
 // src/deque.ts
 var CircularDeque = class {
-  constructor(N) {
+  constructor(N2) {
     this.prev = this.next = null;
     this.begin = this.end = 0;
     this.empty = true;
-    this.data = Array(N);
+    this.data = Array(N2);
   }
   isFull() {
     return this.end === this.begin && !this.empty;
@@ -1185,8 +1184,8 @@ function gcd(a, b) {
 function gcdExtended(a, b) {
   if (b === 0)
     return [a, 1, 0];
-  const [gcd2, x1, y1] = gcdExtended(b, a % b);
-  return [gcd2, y1, x1 - Math.floor(a / b) * y1];
+  const [gcd2, x, y] = gcdExtended(b, a % b);
+  return [gcd2, y, x - Math.floor(a / b) * y];
 }
 function modInverse(a, M) {
   const [gcd2, x] = gcdExtended(a, M);
@@ -1196,124 +1195,107 @@ function modInverse(a, M) {
 }
 
 // src/binomial.ts
+var N = 1e5;
 var MOD = 1e9 + 7;
 var MODn = BigInt(MOD);
-var _Ann = [1n];
-function factorial(N) {
-  const Nn = BigInt(N);
-  for (let n = BigInt(_Ann.length); n <= Nn; n++)
-    _Ann.push(_Ann[_Ann.length - 1] * n % MODn);
-  return Number(_Ann[Number(N)]);
+var fact = getFactorials();
+var factInvs = getFactorialInvs();
+function getFactorials() {
+  const fact2 = [1n];
+  for (let i = 1; i <= N; i++)
+    fact2.push(fact2[i - 1] * BigInt(i) % MODn);
+  return fact2.map((x) => Number(x));
 }
-function factorialSeq(N) {
-  factorial(N);
-  return _Ann.slice(0, N + 1).map((x) => Number(x));
+function getFactorialInvs() {
+  const arr = Array(N + 1);
+  arr[N] = power(fact[N], MOD - 2);
+  for (let i = N - 1; i >= 0; i--) {
+    arr[i] = prod(arr[i + 1], i + 1);
+  }
+  return arr;
 }
-function pascalsTriangle(N) {
+function power(x, p) {
+  if (!p)
+    return 1;
+  if (p % 2)
+    return prod(power(x, p - 1), x);
+  const h = power(x, p / 2);
+  return prod(h, h) % MOD;
+}
+function pascalsTriangle(N2) {
   const C = [[1n]];
-  for (let n = 1; n <= N; ++n) {
+  for (let n = 1; n <= N2; ++n) {
     C.push(Array(n + 1));
     C[n][0] = C[n][n] = 1n;
     for (let k = 1; k < n; ++k) {
       C[n][k] = (C[n - 1][k - 1] + C[n - 1][k]) % MODn;
     }
   }
-  for (let n = 0; n <= N; n++)
+  for (let n = 0; n <= N2; n++)
     for (let k = 0; k <= n; k++)
       C[n][k] = Number(C[n][k]);
   return C;
 }
 function combination(n, k) {
-  const deno = modMultiply(factorial(k), factorial(n - k));
-  return modMultiply(factorial(n), modInverse(deno, MOD));
+  return prod(fact[n], factInvs[k], factInvs[n - k]);
 }
 function arrangement(n, k) {
-  const deno = factorial(n - k);
-  return modMultiply(factorial(n), modInverse(deno, MOD));
+  return prod(fact[n], factInvs[n - k]);
 }
-function modMultiply(a, b) {
-  return Number(BigInt(a) * BigInt(b) % MODn);
+function prod(...args) {
+  let p = 1n;
+  for (const arg of args) {
+    p = p * BigInt(arg) % MODn;
+  }
+  return Number(p);
 }
 
 // src/segment-tree.ts
-var SegmentTreeNode = class {
-  constructor(lo, hi, arr, initial, aggregate = (a, b) => a + b) {
-    this.lo = lo;
-    this.hi = hi;
-    this.initial = initial;
-    this.aggregate = aggregate;
-    this.aggregate = aggregate;
-    if (lo === hi) {
-      this.value = arr[lo];
-    } else {
-      const m = lo + hi >> 1;
-      this.l = new SegmentTreeNode(lo, m, arr, initial, aggregate);
-      this.r = new SegmentTreeNode(m + 1, hi, arr, initial, aggregate);
-      this.value = this.aggregate(this.l.value, this.r.value);
-    }
-  }
-  update(i, value) {
-    if (i < this.lo || i > this.hi)
-      return;
-    if (this.lo === this.hi)
-      this.value = value;
-    else {
-      this.l.update(i, value);
-      this.r.update(i, value);
-      this.value = this.aggregate(this.l.value, this.r.value);
-    }
-  }
-  prefix(i) {
-    if (this.lo === this.hi)
-      return this.value;
-    const m = this.lo + this.hi >> 1;
-    if (i <= m)
-      return this.l.prefix(i);
-    return this.aggregate(this.l.value, this.r.prefix(i));
-  }
-  query(i, j) {
-    if (i > j)
-      return this.initial;
-    if (i <= this.lo && j >= this.hi)
-      return this.value;
-    const m = this.lo + this.hi >> 1;
-    const l1 = Math.max(this.lo, i);
-    const r1 = Math.min(m, j);
-    const l2 = Math.max(m, i);
-    const r2 = Math.min(this.hi, j);
-    let ans = this.initial;
-    if (l1 <= r1)
-      ans = this.aggregate(ans, this.l.query(l1, r1));
-    if (l2 <= r2)
-      ans = this.aggregate(ans, this.r.query(l2, r2));
-    return ans;
-  }
-  findPrefix(pred) {
-    if (this.lo === this.hi)
-      return pred(this.value) ? this.lo : -1;
-    if (pred(this.l.value))
-      return this.l.findPrefix(pred);
-    return this.r.findPrefix((value) => pred(this.aggregate(value, this.l.value)));
-  }
-};
 var SegmentTree = class {
-  constructor(N, aggregate = (a, b) => a + b, initial = 0) {
-    this.tree = new SegmentTreeNode(0, N - 1, Array(N).fill(initial), initial, aggregate);
+  constructor(N2, aggregate = (a, b) => a + b, initial = 0) {
+    this.N = N2;
+    this.tree = Array(N2 * 4).fill(initial);
+    this.aggregate = aggregate;
+    this.initial = initial;
   }
-  update(i, value) {
-    this.tree.update(i, value);
+  update(idx, val, node = 1, start = 0, end = this.N - 1) {
+    if (start === end)
+      this.tree[node] = val;
+    else {
+      const mid = Math.floor((start + end) / 2);
+      if (idx <= mid)
+        this.update(idx, val, node * 2, start, mid);
+      else
+        this.update(idx, val, node * 2 + 1, mid + 1, end);
+      this.tree[node] = this.aggregate(this.tree[node * 2], this.tree[node * 2 + 1]);
+    }
   }
-  prefix(i) {
-    return this.tree.prefix(i);
+  query(l, r, node = 1, start = 0, end = this.N - 1) {
+    if (l <= start && end <= r)
+      return this.tree[node];
+    if (r < start || end < l)
+      return this.initial;
+    const mi = Math.floor((start + end) / 2);
+    const lval = this.query(l, r, node * 2, start, mi);
+    const rval = this.query(l, r, node * 2 + 1, mi + 1, end);
+    return this.aggregate(lval, rval);
   }
-  query(l, r) {
-    return this.tree.query(l, r);
+  prefix(r) {
+    return this.query(0, r);
+  }
+  findPrefix(pred, node = 1, start = 0, end = this.N - 1) {
+    if (start === end)
+      return pred(this.tree[node]) ? end : -1;
+    const mi = Math.floor((start + end) / 2);
+    if (pred(this.tree[node * 2]))
+      return this.findPrefix(pred, node * 2, start, mi);
+    return this.findPrefix((val) => pred(this.aggregate(val, this.tree[node * 2])), node * 2 + 1, mi + 1, end);
   }
   higher(target) {
-    return this.tree.findPrefix((value) => value > target);
+    return this.findPrefix((value) => value > target);
   }
   ceil(target) {
-    return this.tree.findPrefix((value) => value >= target);
+    return this.findPrefix((value) => value >= target);
   }
   lower(target) {
     const i = this.ceil(target);
@@ -1873,9 +1855,9 @@ var TreapMultiSet = class {
 };
 
 // src/tree.ts
-function createTree(N, edges) {
-  const nodes = Array(N).fill(0).map((_x, index) => ({ index, children: new Set(), depth: 0, parent: void 0 }));
-  const G = Array(N).fill(0).map((_x) => new Set());
+function createTree(N2, edges) {
+  const nodes = Array(N2).fill(0).map((_x, index) => ({ index, children: new Set(), depth: 0, parent: void 0 }));
+  const G = Array(N2).fill(0).map((_x) => new Set());
   for (const [u, v] of edges) {
     G[u].add(v);
     G[v].add(u);
@@ -1894,9 +1876,9 @@ function createTree(N, edges) {
   }
   return nodes;
 }
-function createWeightedTree(N, edges) {
-  const nodes = Array(N).fill(0).map((_x, index) => ({ index, children: new Map(), depth: 0, parent: void 0 }));
-  const G = Array(N).fill(0).map((_x) => new Map());
+function createWeightedTree(N2, edges) {
+  const nodes = Array(N2).fill(0).map((_x, index) => ({ index, children: new Map(), depth: 0, parent: void 0 }));
+  const G = Array(N2).fill(0).map((_x) => new Map());
   for (const [u, v, w = 1] of edges) {
     G[u].set(v, w);
     G[v].set(u, w);
@@ -1961,6 +1943,7 @@ export {
   Heap,
   LCA,
   ListNode,
+  MOD,
   PriorityQueue,
   Queue,
   RBTree,
@@ -1969,7 +1952,6 @@ export {
   RemovableHeap,
   RollingHash,
   SegmentTree,
-  SegmentTreeNode,
   StringHash,
   TreapMultiSet,
   TreeMultiSet,
@@ -1985,23 +1967,25 @@ export {
   dijkstra,
   eratosthenesSieve,
   eulersSieve,
-  factorial,
-  factorialSeq,
+  fact,
+  factInvs,
   gcd,
   gcdExtended,
+  getFactorials,
   isPrime,
   kmp,
   maxCharCode,
   memorized,
   modInverse,
-  modMultiply,
   nextPermutation,
   partition,
   pascalsTriangle,
+  power,
   prevPermutation,
   prime,
   primeFactors,
   primesLeq,
+  prod,
   rabinkarp,
   reverse,
   shuffle,

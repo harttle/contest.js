@@ -1,61 +1,66 @@
-// src/euclidean.ts
-function gcdExtended(a, b) {
-  if (b === 0)
-    return [a, 1, 0];
-  const [gcd, x1, y1] = gcdExtended(b, a % b);
-  return [gcd, y1, x1 - Math.floor(a / b) * y1];
-}
-function modInverse(a, M) {
-  const [gcd, x] = gcdExtended(a, M);
-  if (gcd !== 1)
-    throw new Error("inverse not exist");
-  return (x % M + M) % M;
-}
-
 // src/binomial.ts
+var N = 1e5;
 var MOD = 1e9 + 7;
 var MODn = BigInt(MOD);
-var _Ann = [1n];
-function factorial(N) {
-  const Nn = BigInt(N);
-  for (let n = BigInt(_Ann.length); n <= Nn; n++)
-    _Ann.push(_Ann[_Ann.length - 1] * n % MODn);
-  return Number(_Ann[Number(N)]);
+var fact = getFactorials();
+var factInvs = getFactorialInvs();
+function getFactorials() {
+  const fact2 = [1n];
+  for (let i = 1; i <= N; i++)
+    fact2.push(fact2[i - 1] * BigInt(i) % MODn);
+  return fact2.map((x) => Number(x));
 }
-function factorialSeq(N) {
-  factorial(N);
-  return _Ann.slice(0, N + 1).map((x) => Number(x));
+function getFactorialInvs() {
+  const arr = Array(N + 1);
+  arr[N] = power(fact[N], MOD - 2);
+  for (let i = N - 1; i >= 0; i--) {
+    arr[i] = prod(arr[i + 1], i + 1);
+  }
+  return arr;
 }
-function pascalsTriangle(N) {
+function power(x, p) {
+  if (!p)
+    return 1;
+  if (p % 2)
+    return prod(power(x, p - 1), x);
+  const h = power(x, p / 2);
+  return prod(h, h) % MOD;
+}
+function pascalsTriangle(N2) {
   const C = [[1n]];
-  for (let n = 1; n <= N; ++n) {
+  for (let n = 1; n <= N2; ++n) {
     C.push(Array(n + 1));
     C[n][0] = C[n][n] = 1n;
     for (let k = 1; k < n; ++k) {
       C[n][k] = (C[n - 1][k - 1] + C[n - 1][k]) % MODn;
     }
   }
-  for (let n = 0; n <= N; n++)
+  for (let n = 0; n <= N2; n++)
     for (let k = 0; k <= n; k++)
       C[n][k] = Number(C[n][k]);
   return C;
 }
 function combination(n, k) {
-  const deno = modMultiply(factorial(k), factorial(n - k));
-  return modMultiply(factorial(n), modInverse(deno, MOD));
+  return prod(fact[n], factInvs[k], factInvs[n - k]);
 }
 function arrangement(n, k) {
-  const deno = factorial(n - k);
-  return modMultiply(factorial(n), modInverse(deno, MOD));
+  return prod(fact[n], factInvs[n - k]);
 }
-function modMultiply(a, b) {
-  return Number(BigInt(a) * BigInt(b) % MODn);
+function prod(...args) {
+  let p = 1n;
+  for (const arg of args) {
+    p = p * BigInt(arg) % MODn;
+  }
+  return Number(p);
 }
 export {
+  MOD,
   arrangement,
   combination,
-  factorial,
-  factorialSeq,
-  modMultiply,
-  pascalsTriangle
+  fact,
+  factInvs,
+  getFactorials,
+  pascalsTriangle,
+  power,
+  prod
 };
