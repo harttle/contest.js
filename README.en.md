@@ -10,7 +10,7 @@ Ready for contest use! Data structures and algorithms in pure JavaScript with ze
 
 Useful links:
 
-- Online playground: https://harttle.land/contest.js
+- Online playground: https://www.harttle.com/contest.js
 - LeetCode Tampermonkey script to run/check cases: https://greasyfork.org/zh-CN/scripts/402276-leetcode-helper-for-javascript
 
 **Table of Contents**

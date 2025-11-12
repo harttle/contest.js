@@ -10,7 +10,7 @@
 
 有用链接：
 
-- 在线预览： https://harttle.land/contest.js
+- 在线预览： https://www.harttle.com/contest.js
 - 在 LeetCode 页面执行/判定用例： https://greasyfork.org/zh-CN/scripts/402276-leetcode-helper-for-javascript
 
 **索引**
