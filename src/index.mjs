@@ -7,7 +7,7 @@ var Heap = class {
     }
     this.data = [null, ...data];
     this.lt = (i, j) => compare(this.data[i], this.data[j]) < 0;
-    for (let i = this.size(); i > 0; i--)
+    for (let i = this.size() >> 1; i > 0; i--)
       this.heapify(i);
   }
   size() {
@@ -31,7 +31,9 @@ var Heap = class {
   heapify(i) {
     while (true) {
       let min = i;
-      const [l, r, n] = [i * 2, i * 2 + 1, this.data.length];
+      const l = i * 2;
+      const r = i * 2 + 1;
+      const n = this.data.length;
       if (l < n && this.lt(l, min))
         min = l;
       if (r < n && this.lt(r, min))
@@ -48,7 +50,9 @@ var Heap = class {
   }
   swap(i, j) {
     const d = this.data;
-    [d[i], d[j]] = [d[j], d[i]];
+    const tmp = d[i];
+    d[i] = d[j];
+    d[j] = tmp;
   }
 };
 var RemovableHeap = class {
@@ -271,19 +275,16 @@ function partition(arr, pred, begin = 0, end = arr.length) {
 }
 function dijkstra(source, G) {
   var _a, _b;
-  const dist = new Map();
+  const dist = new Map([[source, 0]]);
   const pq = new Heap([[0, source]], (l, r) => l[0] - r[0]);
   while (pq.size()) {
     const [d, u] = pq.pop();
-    if (dist.has(u))
+    if (d > dist.get(u))
       continue;
-    else
-      dist.set(u, d);
     for (const [v, w] of (_a = G.get(u)) != null ? _a : []) {
       if (d + w < ((_b = dist.get(v)) != null ? _b : Infinity)) {
-        if (!dist.has(v) || d + w < dist.get(v)) {
-          pq.push([d + w, v]);
-        }
+        dist.set(v, d + w);
+        pq.push([d + w, v]);
       }
     }
   }
