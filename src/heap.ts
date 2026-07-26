@@ -15,7 +15,7 @@ class Heap<T=number> {
     }
     this.data = [null, ...data]
     this.lt = (i, j) => compare(this.data[i]!, this.data[j]!) < 0
-    for (let i = this.size(); i > 0; i--) this.heapify(i)
+    for (let i = this.size() >> 1; i > 0; i--) this.heapify(i)
   }
 
   size (): number {
@@ -39,7 +39,9 @@ class Heap<T=number> {
   heapify (i: number): void {
     while (true) {
       let min = i
-      const [l, r, n] = [i * 2, i * 2 + 1, this.data.length]
+      const l = i * 2
+      const r = i * 2 + 1
+      const n = this.data.length
       if (l < n && this.lt(l, min)) min = l
       if (r < n && this.lt(r, min)) min = r
       if (min !== i) {
@@ -53,8 +55,10 @@ class Heap<T=number> {
   }
 
   private swap (i: number, j: number): void {
-    const d = this.data;
-    [d[i], d[j]] = [d[j], d[i]]
+    const d = this.data
+    const tmp = d[i]
+    d[i] = d[j]
+    d[j] = tmp
   }
 }
 

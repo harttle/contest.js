@@ -67,19 +67,17 @@ function partition <T=number> (arr: T[], pred: (val: T) => number, begin = 0, en
 }
 
 function dijkstra<T> (source: T, G: Map<T, Map<T, number>>): Map<T, number> {
-  const dist = new Map()
+  const dist = new Map([[source, 0]])
   const pq = new Heap([[0, source]], (l: [number, T], r: [number, T]) => l[0] - r[0])
 
   while (pq.size()) {
     const [d, u] = pq.pop()
-    if (dist.has(u)) continue
-    else dist.set(u, d)
+    if (d > dist.get(u)!) continue
 
     for (const [v, w] of G.get(u) ?? []) {
       if (d + w < (dist.get(v) ?? Infinity)) {
-        if (!dist.has(v) || d + w < dist.get(v)) {
-          pq.push([d + w, v])
-        }
+        dist.set(v, d + w)
+        pq.push([d + w, v])
       }
     }
   }
